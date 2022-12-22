@@ -19,6 +19,9 @@
 		80C2880E2954EC8300067BBC /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C2880D2954EC8300067BBC /* Endpoint.swift */; };
 		80C288112954EF7C00067BBC /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C288102954EF7C00067BBC /* RequestMethod.swift */; };
 		80C288132954F06700067BBC /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C288122954F06700067BBC /* RequestError.swift */; };
+		80C28817295508B500067BBC /* JSONPlaceHolderEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C28816295508B500067BBC /* JSONPlaceHolderEndpoint.swift */; };
+		80C2881A29550BA900067BBC /* JSONPlaceHolderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C2881929550BA900067BBC /* JSONPlaceHolderService.swift */; };
+		80C2881D29550C1100067BBC /* JSONPlaceHolderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C2881C29550C1100067BBC /* JSONPlaceHolderResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,9 @@
 		80C2880D2954EC8300067BBC /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		80C288102954EF7C00067BBC /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
 		80C288122954F06700067BBC /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		80C28816295508B500067BBC /* JSONPlaceHolderEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceHolderEndpoint.swift; sourceTree = "<group>"; };
+		80C2881929550BA900067BBC /* JSONPlaceHolderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceHolderService.swift; sourceTree = "<group>"; };
+		80C2881C29550C1100067BBC /* JSONPlaceHolderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceHolderResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +148,9 @@
 		80C288032954E40400067BBC /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				80C2881B29550BF400067BBC /* Models */,
+				80C2881829550B9700067BBC /* Service */,
+				80C288152955089600067BBC /* Endpoints */,
 				80C2880A2954EC0100067BBC /* Base */,
 				80C288042954E88200067BBC /* Client */,
 			);
@@ -172,6 +181,30 @@
 				80C2880D2954EC8300067BBC /* Endpoint.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		80C288152955089600067BBC /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				80C28816295508B500067BBC /* JSONPlaceHolderEndpoint.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		80C2881829550B9700067BBC /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				80C2881929550BA900067BBC /* JSONPlaceHolderService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		80C2881B29550BF400067BBC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				80C2881C29550C1100067BBC /* JSONPlaceHolderResponse.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,8 +339,11 @@
 			files = (
 				80C287DC2954E3E300067BBC /* ContentView.swift in Sources */,
 				80C287DA2954E3E300067BBC /* LivefrontChallengeApp.swift in Sources */,
+				80C28817295508B500067BBC /* JSONPlaceHolderEndpoint.swift in Sources */,
 				80C288132954F06700067BBC /* RequestError.swift in Sources */,
 				80C2880E2954EC8300067BBC /* Endpoint.swift in Sources */,
+				80C2881D29550C1100067BBC /* JSONPlaceHolderResponse.swift in Sources */,
+				80C2881A29550BA900067BBC /* JSONPlaceHolderService.swift in Sources */,
 				80C288112954EF7C00067BBC /* RequestMethod.swift in Sources */,
 				80C288062954E8A400067BBC /* HTTPClient.swift in Sources */,
 			);

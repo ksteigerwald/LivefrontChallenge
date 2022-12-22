@@ -1,73 +1,96 @@
-# The path to the swiftlint executable
-linter: swiftlint
+opt_in_rules:
+  - implicit_return
+  - empty_string
+  - convenience_type
+  - toggle_bool
+  - modifier_order
+  - file_name
+  - implicitly_unwrapped_optional
+  - weak_delegate
+  - missing_docs
+  - force_unwrapping
+  - closure_end_indentation
+  - fatal_error_message
+  - indentation_width
+  - joined_default_parameter
+  - multiline_parameters_brackets
+  - private_outlet
+  - private_subject
+  - unused_declaration
+  - unneeded_parentheses_in_closure_argument
+  - unused_import
+  - vertical_parameter_alignment_on_call
 
-# The following rules are the most commonly used ones. You can enable or disable them as needed.
-
-# Enables or disables all rules.
-enabled: true
-
-# Disables the specified rules.
-disabled_rules:
-  - force_cast
-  - force_try
-
-# Changes the severity level of the specified rules.
-severity:
-  error:
-    - force_unwrapping
-  warning:
-    - empty_count
-
-# A list of paths to include during linting.
 included:
-  - Source/**
+  - LivefrontChallenge
 
-# A list of paths to exclude during linting.
-excluded:
+excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
   - Pods
-  - Source/ExcludedFolder
+  - fastlane
 
-# The number of spaces used for indentation.
-indentation:
-  - 2 spaces
+comment_spacing:
+  severity: error
 
-# The length of line to be used.
-line_length:
-  - 160
+convenience_type:
+  severity: error
 
-# The number of empty lines at the start of the file.
-file_header:
-  - 0 lines
+vertical_whitespace:
+  severity: error
 
-# The number of empty lines at the end of the file.
-file_footer:
-  - 0 lines
+indentation_width:
+  severity: error
 
-# The number of empty lines around a single line.
-line_delimiter:
-  - 0 lines
+fatal_error_message:
+  severity: error
 
-# The number of empty lines between methods.
-method_separator:
-  - 1 line
+closure_end_indentation:
+  severity: error
 
-# The number of empty lines around switch cases.
-switch_case:
-  - 0 lines
+vertical_parameter_alignment_on_call:
+  severity: error
 
-# The number of empty lines around functions.
-function_separator:
-  - 0 lines
+unused_import:
+  severity: error
 
-# The number of empty lines around type definitions.
-type_definition_separator:
-  - 0 lines
+unneeded_parentheses_in_closure_argument:
+  severity: error
 
-# The number of empty lines between class and struct properties.
-property_separator:
-  - 1 line
+unused_declaration:
+  severity: error
 
-# The number of empty lines between properties of the same type.
-type_property_separator:
-  - 1 line
+multiline_parameters_brackets:
+  severity: error
+
+joined_default_parameter:
+  severity: error
+
+trailing_whitespace:
+  severity: error
+
+implicit_return:
+  severity: error
+
+colon:
+  severity: error
+
+unused_closure_parameter:
+  severity: error
+
+missing_docs: error
+
+force_unwrapping:
+  severity: error
+
+line_length: 2000
+file_length: 40000
+type_body_length: 800
+
+function_parameter_count: 20
+function_body_length: 600
+
+identifier_name:
+  min_length: # only min_length
+    warning: 0
+    error: 0
+

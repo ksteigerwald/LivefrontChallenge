@@ -7,6 +7,9 @@
 
 import Foundation
 
+enum Networks {
+    case jsonPlaceHolder
+}
 /// A protocol that represents an endpoint in a REST API
 protocol Endpoint {
     
@@ -24,4 +27,17 @@ protocol Endpoint {
     
     /// An optional dictionary containing the query parameters for the request
     var parameters: [URLQueryItem]? { get }
+
+    // Determines the api to target
+    var network: Networks { get }
+}
+
+extension Endpoint {
+
+    var url: String {
+        switch network {
+        case .jsonPlaceHolder:
+            return "https://jsonplaceholder.typicode.com/"
+        }
+    }
 }

@@ -6,12 +6,15 @@
 //
 
 import XCTest
+@testable import LivefrontChallenge
 
 final class HTTPClientTests: XCTestCase {
     
     func testSendRequest() {
         // Set up test objects
         let client = HTTPClient()
+
+
         let endpoint = Endpoint(url: "https://jsonplaceholder.typicode.com/posts/1", method: "GET")
         
         // Call sendRequest and store the result
