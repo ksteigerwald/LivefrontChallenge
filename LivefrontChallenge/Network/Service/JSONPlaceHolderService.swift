@@ -8,13 +8,11 @@
 import Foundation
 
 protocol JSONPlaceHolderServiceable {
-    func getPosts(article: Int) async -> Result<JSONPlaceHolderResponse, RequestError>
+    func getPosts(article: Int) async throws -> Result<JSONPlaceHolderResponse, RequestError>
 }
 
 final class JSONPlaceHolderService: HTTPClient, JSONPlaceHolderServiceable {
-    func getPosts(article: Int) async -> Result<JSONPlaceHolderResponse, RequestError> {
-        
+    func getPosts(article: Int) async throws -> Result<JSONPlaceHolderResponse, RequestError> {
+        try await sendRequest(endpoint: JSONPlaceHolderEndpoint.getTest, responseModel: JSONPlaceHolderResponse.self)
     }
-
-
 }

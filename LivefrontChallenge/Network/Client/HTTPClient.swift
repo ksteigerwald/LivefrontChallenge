@@ -8,16 +8,16 @@
 import Foundation
 
 /// Protocol for HTTPClient
-public protocol HTTPClient {
+protocol HTTPClient {
 
     /// Primary method for HTTPClient to send data to server
     /// - parameter endpoint: The `Endpoint` builds a contructor to seed a network request
     /// - parameter responseModel: The `T.Type` Pass it a codable model the client will serialize its results
     /// - returns: A response containing a `<T, RequestError>`
-    func sendRequest<T: Decodable>(endpoint: Endpoint, responseModel: T.Type) async -> Result<T, RequestError>
+    func sendRequest<T: Decodable>(endpoint: Endpoint, responseModel: T.Type) async throws -> Result<T, RequestError>
 }
 
-public extension HTTPClient {
+extension HTTPClient {
     func sendRequest<T: Decodable>(
         endpoint: Endpoint,
         responseModel: T.Type
