@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		80C288092954EAAC00067BBC /* HTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C288082954EAAC00067BBC /* HTTPClientTests.swift */; };
 		80C2880E2954EC8300067BBC /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C2880D2954EC8300067BBC /* Endpoint.swift */; };
 		80C288112954EF7C00067BBC /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C288102954EF7C00067BBC /* RequestMethod.swift */; };
+		80C288132954F06700067BBC /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C288122954F06700067BBC /* RequestError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		80C288082954EAAC00067BBC /* HTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
 		80C2880D2954EC8300067BBC /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		80C288102954EF7C00067BBC /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
+		80C288122954F06700067BBC /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			children = (
 				80C288052954E8A400067BBC /* HTTPClient.swift */,
 				80C288102954EF7C00067BBC /* RequestMethod.swift */,
+				80C288122954F06700067BBC /* RequestError.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -181,7 +184,6 @@
 				80C287D22954E3E300067BBC /* Sources */,
 				80C287D32954E3E300067BBC /* Frameworks */,
 				80C287D42954E3E300067BBC /* Resources */,
-				80C2880F2954EE3900067BBC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -297,26 +299,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		80C2880F2954EE3900067BBC /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		80C287D22954E3E300067BBC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -324,6 +306,7 @@
 			files = (
 				80C287DC2954E3E300067BBC /* ContentView.swift in Sources */,
 				80C287DA2954E3E300067BBC /* LivefrontChallengeApp.swift in Sources */,
+				80C288132954F06700067BBC /* RequestError.swift in Sources */,
 				80C2880E2954EC8300067BBC /* Endpoint.swift in Sources */,
 				80C288112954EF7C00067BBC /* RequestMethod.swift in Sources */,
 				80C288062954E8A400067BBC /* HTTPClient.swift in Sources */,

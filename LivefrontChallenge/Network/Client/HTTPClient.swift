@@ -21,8 +21,12 @@ extension HTTPClient {
     func sendRequest<T: Decodable>(
         endpoint: Endpoint,
         responseModel: T.Type
-    ) async -> Result<T, RequestError> {
-        var request = URLComponents(string: endpoint.url)
+    ) async throws -> Result<T, RequestError> {
+        
+        var request = URLComponents(string: endpoint.url)!
+        if request == nil {
+            throw RequestError.invalidURL
+        }
         
         if let parameters = endpoint.parameters {
             request.queryItems = parameters
@@ -32,7 +36,7 @@ extension HTTPClient {
         
         var urlRequest = URLRequest(url: url)
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.httpMethod = endpoint.method
+        urlRequest.httpMethod = endpoint.method.rawValue
         
         do {
             let (data, response) = try await URLSession.shared.data(for: urlRequest, delegate: nil)
@@ -44,9 +48,9 @@ extension HTTPClient {
                 guard let decodedResponse = try? JSONDecoder().decode(responseModel, from: data) else {
                     throw RequestError.decode
                 }
-                return decodedResponse
+                return decodedResponse as! Result<T, RequestError>
             case 401:
-                throw RequestError.unauthorised
+                throw RequestError.unauthorized
             default:
                 throw RequestError.unknown
             }

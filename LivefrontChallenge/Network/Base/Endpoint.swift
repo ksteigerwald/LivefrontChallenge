@@ -11,7 +11,7 @@ import Foundation
 protocol Endpoint {
     
     /// The base URL for the endpoint
-    var baseURL: String { get }
+    var url: String { get }
     
     /// The path for the endpoint, relative to the base URL
     var path: String { get }
@@ -23,5 +23,5 @@ protocol Endpoint {
     var body: [String: AnyObject]? { get }
     
     /// An optional dictionary containing the query parameters for the request
-    var parameters: [String: String]? { get }
+    var parameters: [URLQueryItem]? { get }
 }
