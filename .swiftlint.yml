@@ -1,0 +1,73 @@
+# The path to the swiftlint executable
+linter: swiftlint
+
+# The following rules are the most commonly used ones. You can enable or disable them as needed.
+
+# Enables or disables all rules.
+enabled: true
+
+# Disables the specified rules.
+disabled_rules:
+  - force_cast
+  - force_try
+
+# Changes the severity level of the specified rules.
+severity:
+  error:
+    - force_unwrapping
+  warning:
+    - empty_count
+
+# A list of paths to include during linting.
+included:
+  - Source/**
+
+# A list of paths to exclude during linting.
+excluded:
+  - Carthage
+  - Pods
+  - Source/ExcludedFolder
+
+# The number of spaces used for indentation.
+indentation:
+  - 2 spaces
+
+# The length of line to be used.
+line_length:
+  - 160
+
+# The number of empty lines at the start of the file.
+file_header:
+  - 0 lines
+
+# The number of empty lines at the end of the file.
+file_footer:
+  - 0 lines
+
+# The number of empty lines around a single line.
+line_delimiter:
+  - 0 lines
+
+# The number of empty lines between methods.
+method_separator:
+  - 1 line
+
+# The number of empty lines around switch cases.
+switch_case:
+  - 0 lines
+
+# The number of empty lines around functions.
+function_separator:
+  - 0 lines
+
+# The number of empty lines around type definitions.
+type_definition_separator:
+  - 0 lines
+
+# The number of empty lines between class and struct properties.
+property_separator:
+  - 1 line
+
+# The number of empty lines between properties of the same type.
+type_property_separator:
+  - 1 line

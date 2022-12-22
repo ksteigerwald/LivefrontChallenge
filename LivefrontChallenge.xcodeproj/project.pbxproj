@@ -14,6 +14,10 @@
 		80C287EB2954E3E800067BBC /* LivefrontChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287EA2954E3E800067BBC /* LivefrontChallengeTests.swift */; };
 		80C287F52954E3E800067BBC /* LivefrontChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287F42954E3E800067BBC /* LivefrontChallengeUITests.swift */; };
 		80C287F72954E3E800067BBC /* LivefrontChallengeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287F62954E3E800067BBC /* LivefrontChallengeUITestsLaunchTests.swift */; };
+		80C288062954E8A400067BBC /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C288052954E8A400067BBC /* HTTPClient.swift */; };
+		80C288092954EAAC00067BBC /* HTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C288082954EAAC00067BBC /* HTTPClientTests.swift */; };
+		80C2880E2954EC8300067BBC /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C2880D2954EC8300067BBC /* Endpoint.swift */; };
+		80C288112954EF7C00067BBC /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C288102954EF7C00067BBC /* RequestMethod.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,10 @@
 		80C287F02954E3E800067BBC /* LivefrontChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LivefrontChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C287F42954E3E800067BBC /* LivefrontChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivefrontChallengeUITests.swift; sourceTree = "<group>"; };
 		80C287F62954E3E800067BBC /* LivefrontChallengeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivefrontChallengeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		80C288052954E8A400067BBC /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		80C288082954EAAC00067BBC /* HTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
+		80C2880D2954EC8300067BBC /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		80C288102954EF7C00067BBC /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +122,7 @@
 		80C287E92954E3E800067BBC /* LivefrontChallengeTests */ = {
 			isa = PBXGroup;
 			children = (
+				80C288072954EA8500067BBC /* Client */,
 				80C287EA2954E3E800067BBC /* LivefrontChallengeTests.swift */,
 			);
 			path = LivefrontChallengeTests;
@@ -131,8 +140,35 @@
 		80C288032954E40400067BBC /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				80C2880A2954EC0100067BBC /* Base */,
+				80C288042954E88200067BBC /* Client */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		80C288042954E88200067BBC /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				80C288052954E8A400067BBC /* HTTPClient.swift */,
+				80C288102954EF7C00067BBC /* RequestMethod.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		80C288072954EA8500067BBC /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				80C288082954EAAC00067BBC /* HTTPClientTests.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		80C2880A2954EC0100067BBC /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				80C2880D2954EC8300067BBC /* Endpoint.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +181,7 @@
 				80C287D22954E3E300067BBC /* Sources */,
 				80C287D32954E3E300067BBC /* Frameworks */,
 				80C287D42954E3E300067BBC /* Resources */,
+				80C2880F2954EE3900067BBC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -260,6 +297,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		80C2880F2954EE3900067BBC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		80C287D22954E3E300067BBC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -267,6 +324,9 @@
 			files = (
 				80C287DC2954E3E300067BBC /* ContentView.swift in Sources */,
 				80C287DA2954E3E300067BBC /* LivefrontChallengeApp.swift in Sources */,
+				80C2880E2954EC8300067BBC /* Endpoint.swift in Sources */,
+				80C288112954EF7C00067BBC /* RequestMethod.swift in Sources */,
+				80C288062954E8A400067BBC /* HTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80C288092954EAAC00067BBC /* HTTPClientTests.swift in Sources */,
 				80C287EB2954E3E800067BBC /* LivefrontChallengeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
