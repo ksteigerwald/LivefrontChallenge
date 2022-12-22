@@ -94,6 +94,7 @@
 		80C287D82954E3E300067BBC /* LivefrontChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				80C288032954E40400067BBC /* Network */,
 				80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */,
 				80C287DB2954E3E300067BBC /* ContentView.swift */,
 				80C287DD2954E3E700067BBC /* Assets.xcassets */,
@@ -125,6 +126,13 @@
 				80C287F62954E3E800067BBC /* LivefrontChallengeUITestsLaunchTests.swift */,
 			);
 			path = LivefrontChallengeUITests;
+			sourceTree = "<group>";
+		};
+		80C288032954E40400067BBC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
