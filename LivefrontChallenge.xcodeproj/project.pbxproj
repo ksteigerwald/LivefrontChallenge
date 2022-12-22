@@ -60,6 +60,7 @@
 		80C28816295508B500067BBC /* JSONPlaceHolderEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceHolderEndpoint.swift; sourceTree = "<group>"; };
 		80C2881929550BA900067BBC /* JSONPlaceHolderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceHolderService.swift; sourceTree = "<group>"; };
 		80C2881C29550C1100067BBC /* JSONPlaceHolderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceHolderResponse.swift; sourceTree = "<group>"; };
+		80D4BE292955230C000DA3B5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +95,7 @@
 				80C287E92954E3E800067BBC /* LivefrontChallengeTests */,
 				80C287F32954E3E800067BBC /* LivefrontChallengeUITests */,
 				80C287D72954E3E300067BBC /* Products */,
+				80D4BE282955230C000DA3B5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -205,6 +207,14 @@
 				80C2881C29550C1100067BBC /* JSONPlaceHolderResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		80D4BE282955230C000DA3B5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				80D4BE292955230C000DA3B5 /* XCTest.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
