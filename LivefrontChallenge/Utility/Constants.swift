@@ -26,6 +26,4 @@ public enum Environment {
             }
         }
     }
-
-    //ProcessInfo.processInfo.environment["OPENAI_KEY"] ?? "NOAPI-KEY-GIVEN"
 }
