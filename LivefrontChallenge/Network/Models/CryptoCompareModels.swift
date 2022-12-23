@@ -41,7 +41,7 @@ struct CryptoCompareResponse: Decodable {
       /// A list of promoted articles
       let promoted: [PromotedArticle]
       /// A list of news articles
-      let data: [NewsArticle]
+      let articles: [NewsArticle]
       /// The rate limit for the response
       let rateLimit: RateLimit
       /// A boolean value indicating if the response has a warning
@@ -51,7 +51,7 @@ struct CryptoCompareResponse: Decodable {
           case type = "Type"
           case message = "Message"
           case promoted = "Promoted"
-          case data = "Data"
+          case articles = "Data"
           case rateLimit = "RateLimit"
           case hasWarning = "HasWarning"
       }

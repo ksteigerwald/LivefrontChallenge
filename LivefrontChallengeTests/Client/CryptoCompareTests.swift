@@ -27,6 +27,7 @@ final class CryptoCompareTests: XCTestCase {
             extraParams: nil,
             sign: nil
         )
+
         stub(condition: isHost("min-api.cryptocompare.com")) { _ in
             let stubPath = OHPathForFile("CryptoCompare.json", JSONReusable.self)
             return fixture(filePath: stubPath!, headers: ["Content-Type": "application/json"])
@@ -37,7 +38,7 @@ final class CryptoCompareTests: XCTestCase {
         case .success(let data):
             print(data)
             XCTAssertEqual(data.type, 100)
-            XCTAssertEqual(data.data.count, 50)
+            XCTAssertEqual(data.articles.count, 50)
         case .failure(let err):
             print(err)
         }
