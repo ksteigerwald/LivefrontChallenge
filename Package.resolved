@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "backedcodable",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jegnux/BackedCodable",
+      "state" : {
+        "revision" : "c28a4e556298bd81ba068f0f1c534af73ffd46f9",
+        "version" : "0.1.1"
+      }
+    },
+    {
       "identity" : "ohhttpstubs",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/AliSoftware/OHHTTPStubs",

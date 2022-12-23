@@ -38,8 +38,8 @@ final class OpenAITests: XCTestCase {
         case .success(let data):
             XCTAssertEqual(data.model, "text-davinci-003")
             XCTAssertEqual(data.id, "cmpl-6QUNMKAMo1CkvCEOYCmY8aD7B1Hba")
-            XCTAssertEqual(data.usage.completion_tokens, 94)
-            XCTAssertEqual(data.usage.prompt_tokens, 112)
+            XCTAssertEqual(data.usage.completionTokens, 94)
+            XCTAssertEqual(data.usage.promptTokens, 112)
         case .failure(let err):
             print(err)
         }

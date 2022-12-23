@@ -34,14 +34,32 @@ struct CryptoCompareRequestParams: Encodable, URLQueryItemConvertible {
 }
 
 struct CryptoCompareResponse: Decodable {
-    /// The type of the response, with a value of 100 indicating success
-    let type: Int
-    /// A message describing the response
-    let message: String
-    /// An array of promoted news articles
-    let promoted: [PromotedArticle]
-    /// An array of news articles
-    let data: [NewsArticle]
+    /// The type of response
+      let type: Int
+      /// The message of the response
+      let message: String
+      /// A list of promoted articles
+      let promoted: [PromotedArticle]
+      /// A list of news articles
+      let data: [NewsArticle]
+      /// The rate limit for the response
+      let rateLimit: RateLimit
+      /// A boolean value indicating if the response has a warning
+      let hasWarning: Bool
+
+      private enum CodingKeys: String, CodingKey {
+          case type = "Type"
+          case message = "Message"
+          case promoted = "Promoted"
+          case data = "Data"
+          case rateLimit = "RateLimit"
+          case hasWarning = "HasWarning"
+      }
+
+}
+
+struct RateLimit: Decodable {
+    // TODO: add properties
 }
 
 struct PromotedArticle: Decodable {
@@ -54,7 +72,7 @@ struct NewsArticle: Decodable {
     /// The globally unique identifier of the news article
     let guid: String
     /// The Unix timestamp of when the article was published
-    let publishedOn: Int
+    let publishedOn: Int?
     /// The URL of the article's image
     let imageUrl: String
     /// The title of the article
@@ -74,16 +92,30 @@ struct NewsArticle: Decodable {
     /// The categories the article belongs to
     let categories: String
     /// Information about the source of the article
-    let sourceInfo: SourceInfo
+    let sourceInfo: SourceInfo?
     /// The source of the article
     let source: String
+
+    private enum CodingKeys: String, CodingKey {
+            case id
+            case guid
+            case publishedOn = "published_on"
+            case imageUrl = "imageurl"
+            case title
+            case url
+            case body
+            case tags
+            case lang
+            case upvotes
+            case downvotes
+            case categories
+            case sourceInfo = "source_info"
+            case source
+        }
 }
 
 struct SourceInfo: Decodable {
-    /// The name of the source
     let name: String
-    /// The URL of the source's image
     let img: String
-    /// The language of the source
     let lang: String
 }

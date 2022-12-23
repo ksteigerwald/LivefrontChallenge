@@ -27,15 +27,19 @@ final class CryptoCompareTests: XCTestCase {
             extraParams: nil,
             sign: nil
         )
-        
-        let result = try? await service.getNews(requestParams: params)
+        stub(condition: isHost("min-api.cryptocompare.com")) { _ in
+            let stubPath = OHPathForFile("CryptoCompare.json", JSONReusable.self)
+            return fixture(filePath: stubPath!, headers: ["Content-Type": "application/json"])
+        }
+
+        let result = try! await service.getNews(requestParams: params)
         switch result {
         case .success(let data):
-            XCTAssertEqual(data.type, 555)
+            print(data)
+            XCTAssertEqual(data.type, 100)
+            XCTAssertEqual(data.data.count, 50)
         case .failure(let err):
             print(err)
-        case .none:
-            print("none: \(result)")
         }
     }
 }

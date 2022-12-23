@@ -12,12 +12,13 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", from: "6.6.0"),
+        .package(url: "https://github.com/jegnux/BackedCodable", from: "0.1.1"),
         .package(url: "https://github.com/AliSoftware/OHHTTPStubs", from: "9.1.0")
     ],
     targets: [
         .target(
             name: "LivefrontChallenge",
-            dependencies: ["SwiftGenPlugin"]),
+            dependencies: ["SwiftGenPlugin", "BackedCodable"]),
         .testTarget(name: "LivefrontChallengeTests",
             dependencies: [
                 "LivefrontChallenge",

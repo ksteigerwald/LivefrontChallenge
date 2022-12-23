@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import BackedCodable
 
 struct OpenAIRequestParams: Encodable {
     /// The name of the model to use for the request
@@ -33,47 +34,71 @@ struct OpenAIRequestParams: Encodable {
     let presence_penalty: Float
 }
 
-struct OpenAIResponse: Decodable {
+struct OpenAIResponse: BackedDecodable, Decodable {
+
+    /// Default init for Backed Framework
+    init(_: DeferredDecoder) {  }
+
     /// The unique identifier for the response
-    let id: String
+    @Backed()
+    var id: String
 
     /// The type of response object
-    let object: String
+    @Backed()
+    var object: String
 
     /// The timestamp of when the response was created
-    let created: Int
+    @Backed()
+    var created: Int
 
     /// The name of the model used to generate the response
-    let model: String
+    @Backed()
+    var model: String
 
     /// An array of completion choices
-    let choices: [Choice]
+    @Backed(options: .lossy)
+    var choices: [Choice]
 
     /// Statistics about the usage of the response
-    let usage: Usage
+    @Backed()
+    var usage: Usage
 }
 
-struct Choice: Decodable {
+struct Choice: BackedDecodable, Decodable {
+    /// Default init for Backed Framework
+    init(_: DeferredDecoder) {  }
+
     /// The completed text
-    let text: String
+    @Backed()
+    var text: String
 
     /// The index of the choice
-    let index: Int
+    @Backed()
+    var index: Int
 
     /// An array of log probabilities for each token in the choice
-    let logprobs: [Float]?
+    @Backed()
+    var logprobs: [Float]
 
     /// The reason why the choice was generated
-    let finish_reason: String
+    @Backed("finish_reason")
+    var finishReason: String
 }
 
-struct Usage: Decodable {
+struct Usage: BackedDecodable, Decodable {
+
+    /// Default init for Backed Framework
+    init(_: DeferredDecoder) {  }
+
     /// The number of tokens in the prompt
-    let prompt_tokens: Int
+    @Backed("prompt_tokens")
+    var promptTokens: Int
 
     /// The number of tokens in the completion
-    let completion_tokens: Int
+    @Backed("completion_tokens")
+    var completionTokens: Int
 
     /// The total number of tokens in the response
-    let total_tokens: Int
+    @Backed("total_tokens")
+    var totalTokens: Int
 }

@@ -27,6 +27,7 @@
 		80C0A01129560EBE000D6E30 /* CryptoCompareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A01029560EBE000D6E30 /* CryptoCompareService.swift */; };
 		80C0A01329561072000D6E30 /* URLQueryItemConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A01229561072000D6E30 /* URLQueryItemConvertable.swift */; };
 		80C0A015295611D5000D6E30 /* CryptoCompareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A014295611D5000D6E30 /* CryptoCompareTests.swift */; };
+		80C0A01829563E81000D6E30 /* BackedCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 80C0A01729563E81000D6E30 /* BackedCodable */; };
 		80C287DA2954E3E300067BBC /* LivefrontChallengeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */; };
 		80C287DC2954E3E300067BBC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287DB2954E3E300067BBC /* ContentView.swift */; };
 		80C287DE2954E3E700067BBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C287DD2954E3E700067BBC /* Assets.xcassets */; };
@@ -106,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80C0A01829563E81000D6E30 /* BackedCodable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +317,9 @@
 			dependencies = (
 			);
 			name = LivefrontChallenge;
+			packageProductDependencies = (
+				80C0A01729563E81000D6E30 /* BackedCodable */,
+			);
 			productName = LivefrontChallenge;
 			productReference = 80C287D62954E3E300067BBC /* LivefrontChallenge.app */;
 			productType = "com.apple.product-type.application";
@@ -393,6 +398,7 @@
 			mainGroup = 80C287CD2954E3E300067BBC;
 			packageReferences = (
 				801C215929552849008072D8 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
+				80C0A01629563E81000D6E30 /* XCRemoteSwiftPackageReference "BackedCodable" */,
 			);
 			productRefGroup = 80C287D72954E3E300067BBC /* Products */;
 			projectDirPath = "";
@@ -798,6 +804,14 @@
 				kind = branch;
 			};
 		};
+		80C0A01629563E81000D6E30 /* XCRemoteSwiftPackageReference "BackedCodable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jegnux/BackedCodable";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -810,6 +824,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 801C215929552849008072D8 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
 			productName = OHHTTPStubsSwift;
+		};
+		80C0A01729563E81000D6E30 /* BackedCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80C0A01629563E81000D6E30 /* XCRemoteSwiftPackageReference "BackedCodable" */;
+			productName = BackedCodable;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

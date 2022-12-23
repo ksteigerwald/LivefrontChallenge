@@ -51,6 +51,17 @@ extension HTTPClient {
                     throw RequestError.decode
                 }
                 return .success(decodedResponse)
+                /*
+                do {
+                    let decoder = JSONDecoder()
+                    // decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let decodeResponse = try decoder.decode(responseModel, from: data)
+                    return .success(decodeResponse)
+                } catch {
+                    print(error)
+                    throw RequestError.decode
+                }
+                 */
             case 401:
                 throw RequestError.unauthorized
             default:
