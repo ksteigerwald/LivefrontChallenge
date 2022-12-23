@@ -11,6 +11,11 @@
 		801C215D29552849008072D8 /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 801C215C29552849008072D8 /* OHHTTPStubsSwift */; };
 		801C2160295529AA008072D8 /* JSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C215F295529AA008072D8 /* JSONFile.swift */; };
 		801C21632955366C008072D8 /* JSONPlaceholder.json in Resources */ = {isa = PBXBuildFile; fileRef = 801C21622955366C008072D8 /* JSONPlaceholder.json */; };
+		801C216529553BDC008072D8 /* GeckoEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C216429553BDC008072D8 /* GeckoEndpoint.swift */; };
+		801C216729553E7D008072D8 /* GeckoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C216629553E7D008072D8 /* GeckoService.swift */; };
+		801C216929554B98008072D8 /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C216829554B98008072D8 /* OpenAIService.swift */; };
+		801C216B29554BEE008072D8 /* OpenAIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C216A29554BEE008072D8 /* OpenAIModels.swift */; };
+		801C216D29554C86008072D8 /* OpenAIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C216C29554C86008072D8 /* OpenAIEndpoint.swift */; };
 		80C287DA2954E3E300067BBC /* LivefrontChallengeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */; };
 		80C287DC2954E3E300067BBC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287DB2954E3E300067BBC /* ContentView.swift */; };
 		80C287DE2954E3E700067BBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C287DD2954E3E700067BBC /* Assets.xcassets */; };
@@ -48,6 +53,11 @@
 /* Begin PBXFileReference section */
 		801C215F295529AA008072D8 /* JSONFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFile.swift; sourceTree = "<group>"; };
 		801C21622955366C008072D8 /* JSONPlaceholder.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONPlaceholder.json; sourceTree = "<group>"; };
+		801C216429553BDC008072D8 /* GeckoEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeckoEndpoint.swift; sourceTree = "<group>"; };
+		801C216629553E7D008072D8 /* GeckoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeckoService.swift; sourceTree = "<group>"; };
+		801C216829554B98008072D8 /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
+		801C216A29554BEE008072D8 /* OpenAIModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIModels.swift; sourceTree = "<group>"; };
+		801C216C29554C86008072D8 /* OpenAIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIEndpoint.swift; sourceTree = "<group>"; };
 		80C287D62954E3E300067BBC /* LivefrontChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LivefrontChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivefrontChallengeApp.swift; sourceTree = "<group>"; };
 		80C287DB2954E3E300067BBC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -215,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				80C28816295508B500067BBC /* JSONPlaceHolderEndpoint.swift */,
+				801C216429553BDC008072D8 /* GeckoEndpoint.swift */,
+				801C216C29554C86008072D8 /* OpenAIEndpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -223,6 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				80C2881929550BA900067BBC /* JSONPlaceHolderService.swift */,
+				801C216629553E7D008072D8 /* GeckoService.swift */,
+				801C216829554B98008072D8 /* OpenAIService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -231,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				80C2881C29550C1100067BBC /* JSONPlaceHolderResponse.swift */,
+				801C216A29554BEE008072D8 /* OpenAIModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -382,15 +397,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				80C287DC2954E3E300067BBC /* ContentView.swift in Sources */,
+				801C216B29554BEE008072D8 /* OpenAIModels.swift in Sources */,
 				80C287DA2954E3E300067BBC /* LivefrontChallengeApp.swift in Sources */,
+				801C216929554B98008072D8 /* OpenAIService.swift in Sources */,
 				80C28817295508B500067BBC /* JSONPlaceHolderEndpoint.swift in Sources */,
 				80C288132954F06700067BBC /* RequestError.swift in Sources */,
+				801C216D29554C86008072D8 /* OpenAIEndpoint.swift in Sources */,
 				80C2880E2954EC8300067BBC /* Endpoint.swift in Sources */,
+				801C216529553BDC008072D8 /* GeckoEndpoint.swift in Sources */,
 				80C2881D29550C1100067BBC /* JSONPlaceHolderResponse.swift in Sources */,
 				80C2881A29550BA900067BBC /* JSONPlaceHolderService.swift in Sources */,
 				801C2160295529AA008072D8 /* JSONFile.swift in Sources */,
 				80C288112954EF7C00067BBC /* RequestMethod.swift in Sources */,
 				80C288062954E8A400067BBC /* HTTPClient.swift in Sources */,
+				801C216729553E7D008072D8 /* GeckoService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

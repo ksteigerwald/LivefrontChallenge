@@ -9,6 +9,8 @@ import Foundation
 
 enum Networks {
     case jsonPlaceHolder
+    case gecko
+    case openai
 }
 /// A protocol that represents an endpoint in a REST API
 protocol Endpoint {
@@ -38,6 +40,10 @@ extension Endpoint {
         switch network {
         case .jsonPlaceHolder:
             return "https://jsonplaceholder.typicode.com/"
+        case .gecko:
+            return "https://api.coingecko.com/api/v3/"
+        case .openai:
+            return "https://api.openai.com/v1/"
         }
     }
 }
