@@ -11,6 +11,7 @@ enum Networks {
     case jsonPlaceHolder
     case gecko
     case openai
+    case cryptoCompare
 }
 /// A protocol that represents an endpoint in a REST API
 protocol Endpoint {
@@ -44,6 +45,8 @@ extension Endpoint {
             return "https://api.coingecko.com/api/v3/"
         case .openai:
             return "https://api.openai.com/"
+        case .cryptoCompare:
+            return "https://min-api.cryptocompare.com/data/v2/"
         }
     }
 
@@ -53,6 +56,10 @@ extension Endpoint {
         case .openai:
             return defaults.comb(
                 dict: ["Authorization": Environment.Key.bearer(key: .openai).value]
+            )
+        case .cryptoCompare:
+            return defaults.comb(
+                dict: ["Authorization": Environment.Key.apikey(key: .cryptoCompare).value]
             )
         default: return defaults
         }

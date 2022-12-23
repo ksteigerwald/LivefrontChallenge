@@ -6,7 +6,6 @@
 //
 
 import XCTest
-
 import OHHTTPStubs
 import OHHTTPStubsSwift
 @testable import LivefrontChallenge
