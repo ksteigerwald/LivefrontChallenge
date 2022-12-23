@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum JSONPlaceHolderEndpoint {
     case getTest
 }
@@ -31,7 +30,7 @@ extension JSONPlaceHolderEndpoint: Endpoint {
         }
     }
 
-    var body: [String : AnyObject]? {
+    var body: [String: AnyObject]? {
         nil
     }
 
