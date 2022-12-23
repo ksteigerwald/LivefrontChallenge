@@ -28,15 +28,22 @@ final class OpenAITests: XCTestCase {
             presence_penalty: 0
         )
 
+        stub(condition: isHost("api.openai.com")) { _ in
+            let stubPath = OHPathForFile("completion.json", JSONReusable.self)
+            return fixture(filePath: stubPath!, headers: ["Content-Type": "application/json"])
+        }
+
         let result = try! await service.getSummaries(requestParams: params)
 
         switch result {
         case .success(let data):
-            print(data)
+            XCTAssertEqual(data.model, "text-davinci-003")
+            XCTAssertEqual(data.id, "cmpl-6QUNMKAMo1CkvCEOYCmY8aD7B1Hba")
+            XCTAssertEqual(data.usage.completion_tokens, 94)
+            XCTAssertEqual(data.usage.prompt_tokens, 112)
         case .failure(let err):
             print(err)
         }
-
     }
 
     func testPerformanceExample() throws {

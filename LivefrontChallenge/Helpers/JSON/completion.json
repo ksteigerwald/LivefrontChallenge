@@ -1,0 +1,19 @@
+{
+  "id": "cmpl-6QUNMKAMo1CkvCEOYCmY8aD7B1Hba",
+  "object": "text_completion",
+  "created": 1671771312,
+  "model": "text-davinci-003",
+  "choices": [
+    {
+      "text": "\"\n\nFTX Asks Judge for Assistance in Dispute Over $450M Robinhood Shares: Cryptocurrency exchange FTX has requested a judge to intervene in a dispute with the Robinhood trading platform over $450 million worth of shares.\n\nThe Most Eco-Friendly Blockchain Networks of 2022: As blockchain technology continues to advance, more and more networks are focusing on sustainability and environmental impact. Here are the most eco-friendly blockchain networks of 2022.",
+      "index": 0,
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 112,
+    "completion_tokens": 94,
+    "total_tokens": 206
+  }
+}
