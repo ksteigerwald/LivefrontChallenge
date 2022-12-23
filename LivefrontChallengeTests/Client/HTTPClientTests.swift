@@ -16,7 +16,6 @@ final class HTTPClientTests: XCTestCase {
     override func setUpWithError() throws {
         self.service = JSONPlaceHolderService()
     }
-
  
     func testSendRequest() async {
         stub(condition: isHost("jsonplaceholder.typicode.com")) { _ in

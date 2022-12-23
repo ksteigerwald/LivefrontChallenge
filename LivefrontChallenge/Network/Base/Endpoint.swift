@@ -25,7 +25,7 @@ protocol Endpoint {
     var method: RequestMethod { get }
 
     /// An optional dictionary containing the body of the request
-    var body: [String: AnyObject]? { get }
+    var body: [String: Any]? { get }
 
     /// An optional dictionary containing the query parameters for the request
     var parameters: [URLQueryItem]? { get }
@@ -43,7 +43,18 @@ extension Endpoint {
         case .gecko:
             return "https://api.coingecko.com/api/v3/"
         case .openai:
-            return "https://api.openai.com/v1/"
+            return "https://api.openai.com/"
+        }
+    }
+
+    var headers: [String: String] {
+        let defaults: [String: String] = ["Content-Type": "application/json"]
+        switch network {
+        case .openai:
+            return defaults.comb(dict:
+                ["Authorization": "Bearer "]
+            )
+        default: return defaults
         }
     }
 }

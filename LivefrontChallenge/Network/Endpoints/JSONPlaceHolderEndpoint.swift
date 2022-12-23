@@ -30,7 +30,7 @@ extension JSONPlaceHolderEndpoint: Endpoint {
         }
     }
 
-    var body: [String: AnyObject]? {
+    var body: [String: Any]? {
         nil
     }
 

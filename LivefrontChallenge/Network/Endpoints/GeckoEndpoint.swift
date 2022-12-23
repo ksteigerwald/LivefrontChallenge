@@ -20,7 +20,7 @@ extension GeckoEndpoint: Endpoint {
         return .get
     }
 
-    var body: [String : AnyObject]? {
+    var body: [String : Any]? {
         nil
     }
 

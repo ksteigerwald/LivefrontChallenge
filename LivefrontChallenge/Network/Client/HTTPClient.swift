@@ -23,7 +23,7 @@ extension HTTPClient {
         responseModel: T.Type
     ) async throws -> Result<T, RequestError> {
 
-        var request = URLComponents(string: endpoint.url)!
+        var request = URLComponents(string: endpoint.url + endpoint.path)!
         if request == nil {
             throw RequestError.invalidURL
         }
@@ -35,8 +35,13 @@ extension HTTPClient {
         guard let url = request.url else { throw RequestError.invalidURL }
 
         var urlRequest = URLRequest(url: url)
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        // urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.httpMethod = endpoint.method.rawValue
+        urlRequest.allHTTPHeaderFields = endpoint.headers
+
+        if let body = endpoint.body {
+            urlRequest.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .sortedKeys)
+        }
 
         do {
             let (data, response) = try await URLSession.shared.data(for: urlRequest, delegate: nil)

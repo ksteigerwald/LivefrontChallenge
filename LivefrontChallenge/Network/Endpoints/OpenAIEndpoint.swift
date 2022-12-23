@@ -21,7 +21,7 @@ extension OpenAIEndpoint: Endpoint {
     var path: String {
         switch self {
         case .documents:
-            return "documents"
+            return "v1/completions"
         }
     }
 
@@ -29,10 +29,10 @@ extension OpenAIEndpoint: Endpoint {
         return .post
     }
 
-    var body: [String: AnyObject]? {
+    var body: [String: Any]? {
         switch self {
         case .documents(let requestParams):
-            return nil
+            return requestParams.toDictionary()
         }
     }
 
