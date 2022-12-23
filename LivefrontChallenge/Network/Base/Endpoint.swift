@@ -51,8 +51,8 @@ extension Endpoint {
         let defaults: [String: String] = ["Content-Type": "application/json"]
         switch network {
         case .openai:
-            return defaults.comb(dict:
-                ["Authorization": "Bearer "]
+            return defaults.comb(
+                dict: ["Authorization": Environment.Key.bearer(key: .openai).value]
             )
         default: return defaults
         }

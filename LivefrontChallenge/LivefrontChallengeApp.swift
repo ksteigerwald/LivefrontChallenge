@@ -11,7 +11,12 @@ import SwiftUI
 struct LivefrontChallengeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            // When testing do not run the whole app in order to speed up things
+            if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
+                EmptyView()
+            } else {
+                ContentView()
+            }
         }
     }
 }

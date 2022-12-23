@@ -24,9 +24,6 @@ extension HTTPClient {
     ) async throws -> Result<T, RequestError> {
 
         var request = URLComponents(string: endpoint.url + endpoint.path)!
-        if request == nil {
-            throw RequestError.invalidURL
-        }
 
         if let parameters = endpoint.parameters {
             request.queryItems = parameters
