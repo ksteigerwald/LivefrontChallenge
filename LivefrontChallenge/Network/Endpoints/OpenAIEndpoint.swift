@@ -15,7 +15,7 @@ enum OpenAIEndpoint {
 
 extension OpenAIEndpoint: Endpoint {
     var network: Networks {
-        return .openai
+        .openai
     }
 
     var path: String {
@@ -26,7 +26,7 @@ extension OpenAIEndpoint: Endpoint {
     }
 
     var method: RequestMethod {
-        return .post
+        .post
     }
 
     var body: [String: Any]? {

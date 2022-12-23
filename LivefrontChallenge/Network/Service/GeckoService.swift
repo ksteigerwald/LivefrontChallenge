@@ -10,5 +10,3 @@ import Foundation
 protocol GeckoServiceable {}
 
 final class GeckoService: HTTPClient, GeckoServiceable {}
-
-

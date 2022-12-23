@@ -17,10 +17,10 @@ extension GeckoEndpoint: Endpoint {
     }
 
     var method: RequestMethod {
-        return .get
+        .get
     }
 
-    var body: [String : Any]? {
+    var body: [String: Any]? {
         nil
     }
 
@@ -29,6 +29,6 @@ extension GeckoEndpoint: Endpoint {
     }
 
     var network: Networks {
-        return .gecko
+        .gecko
     }
 }

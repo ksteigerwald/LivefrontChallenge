@@ -16,7 +16,6 @@ protocol OpenAIServiceable {
     func getSummaries(requestParams: OpenAIRequestParams) async throws -> Result<OpenAIResponse, RequestError>
 }
 
-
 final class OpenAIService: HTTPClient, OpenAIServiceable {
     func getSummaries(requestParams: OpenAIRequestParams) async throws -> Result<OpenAIResponse, RequestError> {
         try await sendRequest(
