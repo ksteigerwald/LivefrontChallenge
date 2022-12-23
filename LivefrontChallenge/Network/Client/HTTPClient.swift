@@ -48,7 +48,7 @@ extension HTTPClient {
                 guard let decodedResponse = try? JSONDecoder().decode(responseModel, from: data) else {
                     throw RequestError.decode
                 }
-                return decodedResponse as! Result<T, RequestError>
+                return .success(decodedResponse)
             case 401:
                 throw RequestError.unauthorized
             default:
