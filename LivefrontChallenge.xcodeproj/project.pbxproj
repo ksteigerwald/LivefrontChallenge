@@ -28,6 +28,7 @@
 		80C0A01329561072000D6E30 /* URLQueryItemConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A01229561072000D6E30 /* URLQueryItemConvertable.swift */; };
 		80C0A015295611D5000D6E30 /* CryptoCompareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A014295611D5000D6E30 /* CryptoCompareTests.swift */; };
 		80C0A01829563E81000D6E30 /* BackedCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 80C0A01729563E81000D6E30 /* BackedCodable */; };
+		80C0A01C295658C9000D6E30 /* CryptoCompareNewsCategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 80C0A01B295658C9000D6E30 /* CryptoCompareNewsCategories.json */; };
 		80C287DA2954E3E300067BBC /* LivefrontChallengeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */; };
 		80C287DC2954E3E300067BBC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287DB2954E3E300067BBC /* ContentView.swift */; };
 		80C287DE2954E3E700067BBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C287DD2954E3E700067BBC /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 		80C0A01029560EBE000D6E30 /* CryptoCompareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCompareService.swift; sourceTree = "<group>"; };
 		80C0A01229561072000D6E30 /* URLQueryItemConvertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLQueryItemConvertable.swift; sourceTree = "<group>"; };
 		80C0A014295611D5000D6E30 /* CryptoCompareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCompareTests.swift; sourceTree = "<group>"; };
+		80C0A01B295658C9000D6E30 /* CryptoCompareNewsCategories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CryptoCompareNewsCategories.json; sourceTree = "<group>"; };
 		80C287D62954E3E300067BBC /* LivefrontChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LivefrontChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivefrontChallengeApp.swift; sourceTree = "<group>"; };
 		80C287DB2954E3E300067BBC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				801C21622955366C008072D8 /* JSONPlaceholder.json */,
 				80C0A00529556D6B000D6E30 /* completion.json */,
 				80C0A00E29560B10000D6E30 /* CryptoCompare.json */,
+				80C0A01B295658C9000D6E30 /* CryptoCompareNewsCategories.json */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				801C21632955366C008072D8 /* JSONPlaceholder.json in Resources */,
 				80C0A00629556D6B000D6E30 /* completion.json in Resources */,
 				80C287E12954E3E700067BBC /* Preview Assets.xcassets in Resources */,
+				80C0A01C295658C9000D6E30 /* CryptoCompareNewsCategories.json in Resources */,
 				80C287DE2954E3E700067BBC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -46,7 +46,7 @@ extension Endpoint {
         case .openai:
             return "https://api.openai.com/"
         case .cryptoCompare:
-            return "https://min-api.cryptocompare.com/data/v2/"
+            return "https://min-api.cryptocompare.com/data/"
         }
     }
 

@@ -1,0 +1,539 @@
+[
+  {
+    "categoryName": "1INCH",
+    "wordsAssociatedWithCategory": [
+      "1INCH"
+    ]
+  },
+  {
+    "categoryName": "AAVE",
+    "wordsAssociatedWithCategory": [
+      "AAVE"
+    ]
+  },
+  {
+    "categoryName": "ADA",
+    "wordsAssociatedWithCategory": [
+      "ADA",
+      "CARDANO"
+    ]
+  },
+  {
+    "categoryName": "ALGO",
+    "wordsAssociatedWithCategory": [
+      "ALGO",
+      "ALGORAND"
+    ]
+  },
+  {
+    "categoryName": "ALTCOIN",
+    "wordsAssociatedWithCategory": [
+      "ALTCOIN",
+      "ALTCOINS"
+    ]
+  },
+  {
+    "categoryName": "ASIA",
+    "wordsAssociatedWithCategory": [
+      "ASIA",
+      "CHINA",
+      "KOREA",
+      "JAPAN",
+      "HONG",
+      "SINGAPORE",
+      "TAIWAN"
+    ]
+  },
+  {
+    "categoryName": "ATOM",
+    "wordsAssociatedWithCategory": [
+      "ATOM",
+      "COSMOS"
+    ],
+    "excludedPhrases": [
+      "Atomic Coin"
+    ]
+  },
+  {
+    "categoryName": "AVAX",
+    "wordsAssociatedWithCategory": [
+      "AVAX",
+      "AVALANCHE"
+    ]
+  },
+  {
+    "categoryName": "AXS",
+    "wordsAssociatedWithCategory": [
+      "AXS",
+      "AXIE"
+    ]
+  },
+  {
+    "categoryName": "BAL",
+    "wordsAssociatedWithCategory": [
+      "BAL",
+      "BALANCER"
+    ]
+  },
+  {
+    "categoryName": "BAT",
+    "wordsAssociatedWithCategory": [
+      "BAT"
+    ],
+    "includedPhrases": [
+      "BASIC ATTENTION TOKEN"
+    ]
+  },
+  {
+    "categoryName": "BCH",
+    "wordsAssociatedWithCategory": [
+      "BCH",
+      "BITCOINCASH"
+    ],
+    "includedPhrases": [
+      "BITCOIN CASH"
+    ]
+  },
+  {
+    "categoryName": "BLOCKCHAIN",
+    "wordsAssociatedWithCategory": [
+      "BLOCKCHAIN",
+      "PROTOCOL",
+      "SCALING"
+    ]
+  },
+  {
+    "categoryName": "BTC",
+    "wordsAssociatedWithCategory": [
+      "BTC",
+      "BITCOIN",
+      "SATOSHI"
+    ],
+    "excludedPhrases": [
+      "BITCOIN CASH"
+    ]
+  },
+  {
+    "categoryName": "BUSINESS",
+    "wordsAssociatedWithCategory": [
+      "BUSINESS",
+      "INVESTOR",
+      "INVESTORS",
+      "REVENUE",
+      "PROFIT",
+      "ENTERPRISE",
+      "COMMERCE",
+      "STOCK"
+    ]
+  },
+  {
+    "categoryName": "COMMODITY",
+    "wordsAssociatedWithCategory": [
+      "COMMODITIES",
+      "OIL",
+      "OIL-BACKED"
+    ]
+  },
+  {
+    "categoryName": "COMP",
+    "wordsAssociatedWithCategory": [
+      "COMP",
+      "COMPOUND",
+      "cETH",
+      "cTokens"
+    ]
+  },
+  {
+    "categoryName": "CRV",
+    "wordsAssociatedWithCategory": [
+      "CRV",
+      "CURVE"
+    ]
+  },
+  {
+    "categoryName": "DASH",
+    "wordsAssociatedWithCategory": [
+      "DASH",
+      "DIGITALCASH"
+    ]
+  },
+  {
+    "categoryName": "DOGE",
+    "wordsAssociatedWithCategory": [
+      "DOGE",
+      "DOGECOIN"
+    ]
+  },
+  {
+    "categoryName": "DOT",
+    "wordsAssociatedWithCategory": [
+      "DOT",
+      "POLKADOT"
+    ]
+  },
+  {
+    "categoryName": "ENJ",
+    "wordsAssociatedWithCategory": [
+      "ENJ",
+      "ENJIN"
+    ]
+  },
+  {
+    "categoryName": "ETC",
+    "wordsAssociatedWithCategory": [
+      "ETC",
+      "ETHEREUMCLASSIC"
+    ],
+    "includedPhrases": [
+      "ETHEREUM CLASSIC"
+    ]
+  },
+  {
+    "categoryName": "ETH",
+    "wordsAssociatedWithCategory": [
+      "ETH",
+      "ETHEREUM",
+      "VITALIK",
+      "FOUNDATION"
+    ],
+    "excludedPhrases": [
+      "ETHEREUM CLASSIC"
+    ]
+  },
+  {
+    "categoryName": "EXCHANGE",
+    "wordsAssociatedWithCategory": [
+      "EXCHANGE",
+      "BITFINEX",
+      "POLONIEX",
+      "BINANCE"
+    ]
+  },
+  {
+    "categoryName": "FIAT",
+    "wordsAssociatedWithCategory": [
+      "FIAT",
+      "RESERVE",
+      "GOLD",
+      "GOLD-BACKED",
+      "BANK",
+      "DOLLAR",
+      "POUND",
+      "EURO",
+      "YEN"
+    ]
+  },
+  {
+    "categoryName": "FIL",
+    "wordsAssociatedWithCategory": [
+      "FIL",
+      "FILECOIN"
+    ]
+  },
+  {
+    "categoryName": "FTM",
+    "wordsAssociatedWithCategory": [
+      "FTM",
+      "FANTOM"
+    ]
+  },
+  {
+    "categoryName": "ICO",
+    "wordsAssociatedWithCategory": [
+      "ICOS",
+      "ICO",
+      "OFFERING",
+      "TOKEN",
+      "TOKENS",
+      "RAISE",
+      "RAISED"
+    ]
+  },
+  {
+    "categoryName": "KNC",
+    "wordsAssociatedWithCategory": [
+      "KNC",
+      "KYBERNETWORK"
+    ],
+    "includedPhrases": [
+      "KYBER NETWORK"
+    ]
+  },
+  {
+    "categoryName": "LINK",
+    "wordsAssociatedWithCategory": [
+      "LINK",
+      "CHAINLINK"
+    ]
+  },
+  {
+    "categoryName": "LRC",
+    "wordsAssociatedWithCategory": [
+      "LRC",
+      "LOOPRING"
+    ]
+  },
+  {
+    "categoryName": "LTC",
+    "wordsAssociatedWithCategory": [
+      "LTC",
+      "LITECOIN"
+    ]
+  },
+  {
+    "categoryName": "LUNA",
+    "wordsAssociatedWithCategory": [
+      "LUNA",
+      "TERRA",
+      "UST"
+    ],
+    "excludedPhrases": [
+      "LUNC",
+      "LUNA Classic"
+    ]
+  },
+  {
+    "categoryName": "LUNC",
+    "wordsAssociatedWithCategory": [
+      "LUNC"
+    ],
+    "includedPhrases": [
+      "Terra Classic",
+      "LUNA Classic"
+    ]
+  },
+  {
+    "categoryName": "MANA",
+    "wordsAssociatedWithCategory": [
+      "MANA",
+      "DECENTRALAND"
+    ],
+    "excludedPhrases": [
+      "Genesis Mana"
+    ]
+  },
+  {
+    "categoryName": "MARKET",
+    "wordsAssociatedWithCategory": [
+      "MARKET",
+      "MARKETS",
+      "ANALYSIS",
+      "INDEX",
+      "PRICES"
+    ]
+  },
+  {
+    "categoryName": "MATIC",
+    "wordsAssociatedWithCategory": [
+      "MATIC",
+      "POLYGON"
+    ]
+  },
+  {
+    "categoryName": "MINING",
+    "wordsAssociatedWithCategory": [
+      "MINING",
+      "HASHRATE",
+      "HASHING",
+      "POOLS",
+      "REWARD"
+    ]
+  },
+  {
+    "categoryName": "MKR",
+    "wordsAssociatedWithCategory": [
+      "MKR",
+      "MAKER"
+    ]
+  },
+  {
+    "categoryName": "OTHER"
+  },
+  {
+    "categoryName": "REGULATION",
+    "wordsAssociatedWithCategory": [
+      "REGULATION",
+      "LEGAL",
+      "LAW",
+      "TAX",
+      "TAXES",
+      "SENATE",
+      "LEGISLATION",
+      "PRESIDENT",
+      "TREASURY",
+      "SEC",
+      "BOE"
+    ]
+  },
+  {
+    "categoryName": "REN",
+    "wordsAssociatedWithCategory": [
+      "REN",
+      "RenVM",
+      "RenBridge"
+    ]
+  },
+  {
+    "categoryName": "SAND",
+    "wordsAssociatedWithCategory": [
+      "SAND"
+    ],
+    "includedPhrases": [
+      "THE SANDBOX"
+    ]
+  },
+  {
+    "categoryName": "SHIB",
+    "wordsAssociatedWithCategory": [
+      "SHIB"
+    ],
+    "includedPhrases": [
+      "SHIBA INU"
+    ]
+  },
+  {
+    "categoryName": "SNX",
+    "wordsAssociatedWithCategory": [
+      "SNX",
+      "SYNTHETIX"
+    ]
+  },
+  {
+    "categoryName": "SOL",
+    "wordsAssociatedWithCategory": [
+      "SOL",
+      "SOLANA"
+    ]
+  },
+  {
+    "categoryName": "SPONSORED",
+    "wordsAssociatedWithCategory": [
+      "SPONSORED",
+      "FEATURED",
+      "PRESS RELEASE",
+      "PRESS RELEASES"
+    ]
+  },
+  {
+    "categoryName": "SUSHI",
+    "wordsAssociatedWithCategory": [
+      "SUSHI",
+      "SUSHISWAP"
+    ]
+  },
+  {
+    "categoryName": "TECHNOLOGY",
+    "wordsAssociatedWithCategory": [
+      "SOFTWARE",
+      "TECHNOLOGY",
+      "TECH"
+    ]
+  },
+  {
+    "categoryName": "TRADING",
+    "wordsAssociatedWithCategory": [
+      "TECHNICAL",
+      "TRADING",
+      "FUNDAMENTALS",
+      "PRICE",
+      "BULL",
+      "BEAR",
+      "BULLISH",
+      "BEARISH",
+      "RALLY"
+    ]
+  },
+  {
+    "categoryName": "TRX",
+    "wordsAssociatedWithCategory": [
+      "TRX",
+      "TRONIX"
+    ]
+  },
+  {
+    "categoryName": "UMA",
+    "wordsAssociatedWithCategory": [
+      "UMA"
+    ],
+    "includedPhrases": [
+      "Universal Market Access"
+    ]
+  },
+  {
+    "categoryName": "UNI",
+    "wordsAssociatedWithCategory": [
+      "UNI",
+      "UNISWAP"
+    ]
+  },
+  {
+    "categoryName": "USDT",
+    "wordsAssociatedWithCategory": [
+      "USDT",
+      "TETHER"
+    ]
+  },
+  {
+    "categoryName": "WALLET",
+    "wordsAssociatedWithCategory": [
+      "LEDGER",
+      "TREZOR",
+      "KEEPKEY",
+      "COINOMI",
+      "JAXX",
+      "MYETHERWALLET"
+    ]
+  },
+  {
+    "categoryName": "XLM",
+    "wordsAssociatedWithCategory": [
+      "XLM",
+      "STELLAR"
+    ]
+  },
+  {
+    "categoryName": "XMR",
+    "wordsAssociatedWithCategory": [
+      "XMR",
+      "MONERO"
+    ]
+  },
+  {
+    "categoryName": "XRP",
+    "wordsAssociatedWithCategory": [
+      "XRP",
+      "RIPPLE"
+    ]
+  },
+  {
+    "categoryName": "XTZ",
+    "wordsAssociatedWithCategory": [
+      "XTZ",
+      "TEZOZ"
+    ]
+  },
+  {
+    "categoryName": "YFI",
+    "wordsAssociatedWithCategory": [
+      "YFI"
+    ],
+    "includedPhrases": [
+      "YEARN FINANCE",
+      "YEARN.FINANCE"
+    ]
+  },
+  {
+    "categoryName": "ZEC",
+    "wordsAssociatedWithCategory": [
+      "ZEC",
+      "ZCASH"
+    ]
+  },
+  {
+    "categoryName": "ZRX",
+    "wordsAssociatedWithCategory": [
+      "ZRX",
+      "0X"
+    ]
+  }
+]

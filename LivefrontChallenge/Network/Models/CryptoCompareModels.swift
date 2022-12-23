@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import BackedCodable
 
 struct CryptoCompareRequestParams: Encodable, URLQueryItemConvertible {
     /// A list of feeds to include in the response.
@@ -118,4 +119,25 @@ struct SourceInfo: Decodable {
     let name: String
     let img: String
     let lang: String
+}
+
+struct CryptoCompareNewsCategoriesResponse: Decodable {
+    /// The name of the news category
+    let categoryName: String
+
+    /// A list of words that are associated with the category
+    let wordsAssociatedWithCategory: [String]?
+
+    /// A list of phrases that are included in the category
+    let includedPhrases: [String]?
+
+    /// A list of phrases that are excluded from the category
+    let excludedPhrases: [String]?
+
+    private enum CodingKeys: String, CodingKey {
+        case categoryName = "categoryName"
+        case wordsAssociatedWithCategory = "wordsAssociatedWithCategory"
+        case includedPhrases = "includedPhrases"
+        case excludedPhrases = "excludedPhrases"
+    }
 }

@@ -17,6 +17,22 @@ final class CryptoCompareTests: XCTestCase {
         service = CryptoCompareService()
     }
 
+    func testGetNewsCategories() async {
+
+        stub(condition: isHost("min-api.cryptocompare.com")) { _ in
+            let stubPath = OHPathForFile("CryptoCompareNewsCategories.json", JSONReusable.self)
+            return fixture(filePath: stubPath!, headers: ["Content-Type": "application/json"])
+        }
+
+        let result = try! await service.getNewsCategories()
+        switch result {
+        case .success(let data):
+            XCTAssertEqual(data.count, 63)
+        case .failure(let err):
+            print(err)
+        }
+    }
+
     func testGetNews() async {
         let params = CryptoCompareRequestParams(
             feeds: nil,

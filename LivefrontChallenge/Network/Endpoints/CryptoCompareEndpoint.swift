@@ -10,6 +10,7 @@ import Foundation
 /// Enum representing the different endpoints available in the OpenAI API
 enum CryptoCompareEndpoint {
     case news(params: CryptoCompareRequestParams)
+    case newsCategories
 }
 
 extension CryptoCompareEndpoint: Endpoint {
@@ -19,7 +20,8 @@ extension CryptoCompareEndpoint: Endpoint {
 
     var path: String {
         switch self {
-        case .news: return "news/"
+        case .news: return "v2/news/"
+        case .newsCategories: return "news/categories"
         }
     }
 
@@ -34,6 +36,7 @@ extension CryptoCompareEndpoint: Endpoint {
     var parameters: [URLQueryItem]? {
         switch self {
         case .news(let params): return params.asURLQueryItems()
+        default: return nil
         }
     }
 }
