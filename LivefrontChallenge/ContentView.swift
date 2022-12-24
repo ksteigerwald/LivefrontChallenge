@@ -11,6 +11,7 @@ struct ContentView: View {
 
     @EnvironmentObject var app: AppEnvironment
     @State private var isCategoriesLoaded = false
+
     let article = AIArticle(body: "XRP")
 
     var mainContent: some View {
@@ -41,17 +42,16 @@ struct ContentView: View {
                 mainContent
             } else {
                 Text("loading...")
+                    .font(Font.DesignSystem.headingH1)
             }
         }
         .ignoresSafeArea(.all, edges: .top)
         .navigationTitle("CryptoBytes")
+            .font(Font.DesignSystem.headingH1)
         .task {
             do {
-                try! await self.app.categories.fetchCategories()
+                await self.app.categories.fetchCategories()
                 self.isCategoriesLoaded = true
-            }
-            catch {
-                print("error...")
             }
         }
     }
