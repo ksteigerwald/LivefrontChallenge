@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class CryptoCompareRepository: ObservableObject {
     let service: CryptoCompareService
     @Published var categories = [CryptoCompareNewsCategoriesResponse]()
