@@ -17,7 +17,8 @@ struct ContentView: View {
     var mainContent: some View {
         VStack(alignment: .leading) {
             Text("Recommendations")
-                .font(.system(.body, weight: .bold))
+                .foregroundColor(Color.DesignSystem.primary100)
+                .font(Font.DesignSystem.headingH2)
             HStack {
                 LazyHGrid(rows: gridLayout, alignment: .center, spacing: columnSpacing, pinnedViews: []) {
                     HStack {
@@ -42,12 +43,13 @@ struct ContentView: View {
                 mainContent
             } else {
                 Text("loading...")
+                    .foregroundColor(Color.DesignSystem.primary100)
                     .font(Font.DesignSystem.headingH1)
             }
         }
         .ignoresSafeArea(.all, edges: .top)
         .navigationTitle("CryptoBytes")
-            .font(Font.DesignSystem.headingH1)
+        .font(Font.DesignSystem.headingH1)
         .task {
             do {
                 await self.app.categories.fetchCategories()
