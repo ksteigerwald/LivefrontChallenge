@@ -7,15 +7,19 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
+    let article = AIArticle(body: "XRP")
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+            VStack {
+                Image(systemName: "globe")
+                    .imageScale(.large)
+                    .foregroundColor(.accentColor)
+
+               NavigationLink(article.body, value: Route.detail(article))
+            }
+            .navigationTitle("Hello World")
+            .padding()
     }
 }
 

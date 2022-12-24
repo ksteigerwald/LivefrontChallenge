@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum Route: Hashable {
+    case home
+    case detail(AIArticle)
+}
+
 @main
 struct LivefrontChallengeApp: App {
     var body: some Scene {
@@ -15,7 +20,16 @@ struct LivefrontChallengeApp: App {
             if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
                 EmptyView()
             } else {
-                ContentView()
+                NavigationStack {
+                    ContentView()
+                        .navigationDestination(for: Route.self) { route in
+                            switch route {
+                            case .home: ContentView()
+                            case .detail(let article):
+                                ArticleView(article: article)
+                            }
+                        }
+                }
             }
         }
     }

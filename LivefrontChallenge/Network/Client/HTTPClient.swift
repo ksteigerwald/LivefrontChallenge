@@ -47,11 +47,12 @@ extension HTTPClient {
             }
             switch response.statusCode {
             case 200...299:
+                /*
                 guard let decodedResponse = try? JSONDecoder().decode(responseModel, from: data) else {
                     throw RequestError.decode
                 }
                 return .success(decodedResponse)
-                /*
+                 */
                 do {
                     let decoder = JSONDecoder()
                     // decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -61,7 +62,6 @@ extension HTTPClient {
                     print(error)
                     throw RequestError.decode
                 }
-                 */
             case 401:
                 throw RequestError.unauthorized
             default:
