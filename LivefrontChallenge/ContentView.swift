@@ -12,11 +12,11 @@ struct ContentView: View {
     @EnvironmentObject var app: AppEnvironment
     @State private var isCategoriesLoaded = false
     let article = AIArticle(body: "XRP")
-    var body: some View {
+
+    var mainContent: some View {
         VStack(alignment: .leading) {
-            if isCategoriesLoaded {
-                Text("Recommendations")
-                    .font(.system(.body, weight: .bold))
+            Text("Recommendations")
+                .font(.system(.body, weight: .bold))
             HStack {
                 LazyHGrid(rows: gridLayout, alignment: .center, spacing: columnSpacing, pinnedViews: []) {
                     HStack {
@@ -29,22 +29,22 @@ struct ContentView: View {
                 }
 
             }
-            List(app.categories.categories, id: \.name) { _ in
-                NavigationLink(article.body, value: Route.detail(article))
-                    .font(.body)
-                    .foregroundColor(.blue)
-
-            }
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
+        }
+    }
+    var body: some View {
+        ZStack {
+            Color.DesignSystem.greyscale900
+            if isCategoriesLoaded {
+                mainContent
             } else {
                 Text("loading...")
             }
-
         }
+        .ignoresSafeArea(.all, edges: .top)
         .navigationTitle("CryptoBytes")
-        .padding()
         .task {
             do {
                 try! await self.app.categories.fetchCategories()

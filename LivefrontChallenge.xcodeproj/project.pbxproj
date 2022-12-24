@@ -33,6 +33,7 @@
 		80C0A02829575299000D6E30 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A02729575299000D6E30 /* Environment.swift */; };
 		80C0A02A295753B4000D6E30 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A029295753B4000D6E30 /* AppEnvironment.swift */; };
 		80C0A02C29575591000D6E30 /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A02B29575591000D6E30 /* CategoryRepository.swift */; };
+		80C0A04529579703000D6E30 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 80C0A04429579703000D6E30 /* DesignSystem */; };
 		80C287DA2954E3E300067BBC /* LivefrontChallengeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */; };
 		80C287DC2954E3E300067BBC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287DB2954E3E300067BBC /* ContentView.swift */; };
 		80C287DE2954E3E700067BBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C287DD2954E3E700067BBC /* Assets.xcassets */; };
@@ -91,6 +92,7 @@
 		80C0A02729575299000D6E30 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		80C0A029295753B4000D6E30 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		80C0A02B29575591000D6E30 /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepository.swift; sourceTree = "<group>"; };
+		80C0A043295796F5000D6E30 /* DesignSystem */ = {isa = PBXFileReference; lastKnownFileType = text; name = DesignSystem; path = Sources/DesignSystem; sourceTree = SOURCE_ROOT; };
 		80C287D62954E3E300067BBC /* LivefrontChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LivefrontChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivefrontChallengeApp.swift; sourceTree = "<group>"; };
 		80C287DB2954E3E300067BBC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80C0A01829563E81000D6E30 /* BackedCodable in Frameworks */,
+				80C0A04529579703000D6E30 /* DesignSystem in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +216,7 @@
 		80C287D82954E3E300067BBC /* LivefrontChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				80C0A043295796F5000D6E30 /* DesignSystem */,
 				80C288032954E40400067BBC /* Network */,
 				80C0A0222956A800000D6E30 /* Repository */,
 				801C215E29552991008072D8 /* Helpers */,
@@ -350,6 +354,7 @@
 			name = LivefrontChallenge;
 			packageProductDependencies = (
 				80C0A01729563E81000D6E30 /* BackedCodable */,
+				80C0A04429579703000D6E30 /* DesignSystem */,
 			);
 			productName = LivefrontChallenge;
 			productReference = 80C287D62954E3E300067BBC /* LivefrontChallenge.app */;
@@ -865,6 +870,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 80C0A01629563E81000D6E30 /* XCRemoteSwiftPackageReference "BackedCodable" */;
 			productName = BackedCodable;
+		};
+		80C0A04429579703000D6E30 /* DesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DesignSystem;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

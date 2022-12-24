@@ -11,7 +11,7 @@ public enum Environment {
 
     enum Token: String {
         case openai = "123"
-        case cryptoCompare = "123"
+        case cryptoCompare = "a123"
     }
 
     enum Key {
