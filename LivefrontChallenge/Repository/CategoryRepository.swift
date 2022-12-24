@@ -35,7 +35,7 @@ class CategoryRepository: ObservableObject, CategoryInterface {
     }
 
     @MainActor
-    func fetchCategories() async  {
+    func fetchCategories() async {
         let result = try! await ccService.getNewsCategories()
 
         switch result {
@@ -47,7 +47,7 @@ class CategoryRepository: ObservableObject, CategoryInterface {
 
         case .failure(let error):
             print(error)
-            //TODO: handle error
+            // TODO: handle error
             return
         }
     }
