@@ -7,27 +7,11 @@
 
 import SwiftUI
 
-public enum Environment {
 
-    enum Token: String {
-        case openai = "123"
-        case cryptoCompare = "123"
-    }
 
-    enum Key {
-        case apikey(key: Token)
-        case bearer(key: Token)
-        case plain(Token)
-
-        var value: String {
-            switch self {
-            case .apikey(let token):
-                return "Apikey \(token.rawValue)"
-            case .bearer(let token):
-                return "Bearer \(token.rawValue)"
-            case .plain(let token):
-                return token.rawValue
-            }
-        }
-    }
+let columnSpacing: CGFloat = 10
+let rowSpacing: CGFloat = 10
+var gridLayout: [GridItem] {
+    return Array(repeating: GridItem(.flexible(), spacing: rowSpacing), count: 2)
 }
+

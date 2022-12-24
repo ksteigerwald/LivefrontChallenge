@@ -8,12 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var repository = CryptoCompareRepository()
 
+    @EnvironmentObject var app: AppEnvironment
+    @State private var isCategoriesLoaded = false
     let article = AIArticle(body: "XRP")
     var body: some View {
-        VStack {
-            List(repository.categories, id: \.categoryName) { _ in
+        VStack(alignment: .leading) {
+            if isCategoriesLoaded {
+                Text("Recommendations")
+                    .font(.system(.body, weight: .bold))
+            HStack {
+                LazyHGrid(rows: gridLayout, alignment: .center, spacing: columnSpacing, pinnedViews: []) {
+                    HStack {
+                        ForEach(app.categories.recommendations, id: \.name) { recomendation in
+                            Text(recomendation.name)
+                                .font(.body)
+                                .fontWeight(.heavy)
+                        }
+                    }
+                }
+
+            }
+            List(app.categories.categories, id: \.name) { _ in
                 NavigationLink(article.body, value: Route.detail(article))
                     .font(.body)
                     .foregroundColor(.blue)
@@ -22,14 +38,22 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
+            } else {
+                Text("loading...")
+            }
+
         }
-        .onAppear {
-            Task {
-                await self.repository.fetchCategories()
+        .navigationTitle("CryptoBytes")
+        .padding()
+        .task {
+            do {
+                try! await self.app.categories.fetchCategories()
+                self.isCategoriesLoaded = true
+            }
+            catch {
+                print("error...")
             }
         }
-        .navigationTitle("Hello World")
-        .padding()
     }
 }
 

@@ -22,6 +22,7 @@ struct LivefrontChallengeApp: App {
             } else {
                 NavigationStack {
                     ContentView()
+                        .environmentObject(AppEnvironment())
                         .navigationDestination(for: Route.self) { route in
                             switch route {
                             case .home: ContentView()

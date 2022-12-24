@@ -30,7 +30,9 @@
 		80C0A01829563E81000D6E30 /* BackedCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 80C0A01729563E81000D6E30 /* BackedCodable */; };
 		80C0A01C295658C9000D6E30 /* CryptoCompareNewsCategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 80C0A01B295658C9000D6E30 /* CryptoCompareNewsCategories.json */; };
 		80C0A02129566E56000D6E30 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A02029566E56000D6E30 /* ArticleView.swift */; };
-		80C0A0242956A819000D6E30 /* CryptoCompareRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A0232956A819000D6E30 /* CryptoCompareRepository.swift */; };
+		80C0A02829575299000D6E30 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A02729575299000D6E30 /* Environment.swift */; };
+		80C0A02A295753B4000D6E30 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A029295753B4000D6E30 /* AppEnvironment.swift */; };
+		80C0A02C29575591000D6E30 /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A02B29575591000D6E30 /* CategoryRepository.swift */; };
 		80C287DA2954E3E300067BBC /* LivefrontChallengeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */; };
 		80C287DC2954E3E300067BBC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287DB2954E3E300067BBC /* ContentView.swift */; };
 		80C287DE2954E3E700067BBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C287DD2954E3E700067BBC /* Assets.xcassets */; };
@@ -86,7 +88,9 @@
 		80C0A014295611D5000D6E30 /* CryptoCompareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCompareTests.swift; sourceTree = "<group>"; };
 		80C0A01B295658C9000D6E30 /* CryptoCompareNewsCategories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CryptoCompareNewsCategories.json; sourceTree = "<group>"; };
 		80C0A02029566E56000D6E30 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
-		80C0A0232956A819000D6E30 /* CryptoCompareRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCompareRepository.swift; sourceTree = "<group>"; };
+		80C0A02729575299000D6E30 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		80C0A029295753B4000D6E30 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		80C0A02B29575591000D6E30 /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepository.swift; sourceTree = "<group>"; };
 		80C287D62954E3E300067BBC /* LivefrontChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LivefrontChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivefrontChallengeApp.swift; sourceTree = "<group>"; };
 		80C287DB2954E3E300067BBC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				80C0A00829557634000D6E30 /* Constants.swift */,
+				80C0A02729575299000D6E30 /* Environment.swift */,
+				80C0A029295753B4000D6E30 /* AppEnvironment.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -178,7 +184,7 @@
 		80C0A0222956A800000D6E30 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				80C0A0232956A819000D6E30 /* CryptoCompareRepository.swift */,
+				80C0A02B29575591000D6E30 /* CategoryRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -207,11 +213,11 @@
 		80C287D82954E3E300067BBC /* LivefrontChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				80C288032954E40400067BBC /* Network */,
 				80C0A0222956A800000D6E30 /* Repository */,
+				801C215E29552991008072D8 /* Helpers */,
 				80C0A01D29566E23000D6E30 /* Views */,
 				80C0A00729557623000D6E30 /* Utility */,
-				801C215E29552991008072D8 /* Helpers */,
-				80C288032954E40400067BBC /* Network */,
 				80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */,
 				80C287DB2954E3E300067BBC /* ContentView.swift */,
 				80C287DD2954E3E700067BBC /* Assets.xcassets */,
@@ -479,18 +485,20 @@
 				80C0A02129566E56000D6E30 /* ArticleView.swift in Sources */,
 				801C216929554B98008072D8 /* OpenAIService.swift in Sources */,
 				80C28817295508B500067BBC /* JSONPlaceHolderEndpoint.swift in Sources */,
-				80C0A0242956A819000D6E30 /* CryptoCompareRepository.swift in Sources */,
 				80C0A00B2956091A000D6E30 /* CryptoCompareEndpoint.swift in Sources */,
 				80C288132954F06700067BBC /* RequestError.swift in Sources */,
 				80C0A01129560EBE000D6E30 /* CryptoCompareService.swift in Sources */,
 				801C216D29554C86008072D8 /* OpenAIEndpoint.swift in Sources */,
 				80C2880E2954EC8300067BBC /* Endpoint.swift in Sources */,
 				801C216529553BDC008072D8 /* GeckoEndpoint.swift in Sources */,
+				80C0A02C29575591000D6E30 /* CategoryRepository.swift in Sources */,
 				80C2881D29550C1100067BBC /* JSONPlaceHolderResponse.swift in Sources */,
 				80C2881A29550BA900067BBC /* JSONPlaceHolderService.swift in Sources */,
 				801C2160295529AA008072D8 /* JSONFile.swift in Sources */,
 				80C288112954EF7C00067BBC /* RequestMethod.swift in Sources */,
+				80C0A02829575299000D6E30 /* Environment.swift in Sources */,
 				801C21732955633E008072D8 /* Encodable.swift in Sources */,
+				80C0A02A295753B4000D6E30 /* AppEnvironment.swift in Sources */,
 				80C288062954E8A400067BBC /* HTTPClient.swift in Sources */,
 				801C216729553E7D008072D8 /* GeckoService.swift in Sources */,
 				80C0A00929557634000D6E30 /* Constants.swift in Sources */,
