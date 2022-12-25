@@ -19,18 +19,18 @@ struct ArticleView: View {
             Color.DesignSystem.greyscale900
             if isArticleLoaded {
                 VStack(alignment: .leading) {
-                    Text(document.headline ?? "no headline....")
+                    Text(document.headline)
                         .font(.headline)
                         .foregroundColor(Color.DesignSystem.secondaryBase)
                         .padding(.bottom, 20)
-                    Text(document.body ?? "no body....")
+                    Text(document.body)
                         .font(.body)
                         .foregroundColor(Color.DesignSystem.greyscale50)
                     Spacer()
                 }
             } else {
                 VStack(alignment: .leading) {
-                    Text(article.category!)
+                    Text(article.category)
                         .foregroundColor(Color.DesignSystem.secondaryBase)
                     Text("Our robots are working on summarizing many articles, list articles:")
                         .foregroundColor(Color.DesignSystem.secondaryBase)
@@ -54,14 +54,14 @@ struct ArticleView: View {
             }
         }
         .task {
-            _ = await app.categories.fetchNewsForCategory(category: article.category!)
+            _ = await app.categories.fetchNewsForCategory(category: article.category)
             app.categories.$newsForCategory
                 .sink(
                     receiveCompletion: { _ in},
                     receiveValue: { value in
                         Task {
                             await app.articles.generateSummaryArticle(
-                                category: article.category!,
+                                category: article.category,
                                 articles: value
                             )
                             guard let doc = app.articles.categorySummary.first else { return }
