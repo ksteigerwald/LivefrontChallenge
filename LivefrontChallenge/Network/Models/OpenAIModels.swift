@@ -34,33 +34,24 @@ struct OpenAIRequestParams: Encodable {
     let presence_penalty: Float
 }
 
-struct OpenAIResponse: BackedDecodable, Decodable {
-
-    /// Default init for Backed Framework
-    init(_: DeferredDecoder) {  }
+struct OpenAIResponse: Decodable {
 
     /// The unique identifier for the response
-    @Backed()
     var id: String
 
     /// The type of response object
-    @Backed()
     var object: String
 
     /// The timestamp of when the response was created
-    @Backed()
     var created: Int
 
     /// The name of the model used to generate the response
-    @Backed()
     var model: String
 
     /// An array of completion choices
-    @Backed(options: .lossy)
-    var choices: [Choice]
+    let choices: [Choice]
 
     /// Statistics about the usage of the response
-    @Backed()
     var usage: Usage
 }
 
@@ -77,12 +68,16 @@ struct Choice: BackedDecodable, Decodable {
     var index: Int
 
     /// An array of log probabilities for each token in the choice
-    @Backed()
-    var logprobs: [Float]
+    @Backed("logprobs", options: .lossy)
+    var logprobs: [Float]?
 
     /// The reason why the choice was generated
     @Backed("finish_reason")
     var finishReason: String
+
+    private enum CodingKeys: String, CodingKey {
+        case logprobs = "logprobs"
+    }
 }
 
 struct Usage: BackedDecodable, Decodable {

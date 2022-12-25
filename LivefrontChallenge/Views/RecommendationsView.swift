@@ -23,18 +23,17 @@ struct RecommendationsView: View {
                     alignment: .top,
                     spacing: 1,
                     pinnedViews: []) {
-                    ForEach(app.categories.recommendations, id: \.name) { recomendation in
-                        Button(action: {
+                        ForEach(app.categories.recommendations, id: \.name) { recomendation in
+                            Button(action: {
 
-                        }) {
-                        let article = Article(category: recomendation.name)
-                            NavigationLink(recomendation.name, value: Route.detail(recomendation.name))
-                                .font(Font.DesignSystem.bodySmallBold)
-                                .frame(width: 64, height: 24)
+                            }) {
+                                NavigationLink(recomendation.name, value: Route.detail(recomendation.name))
+                                    .font(Font.DesignSystem.bodySmallBold)
+                                    .frame(width: 64, height: 24)
+                            }
+                            .padding(0)
+                            .buttonStyle(SecondaryButtonStyle())
                         }
-                        .padding(0)
-                        .buttonStyle(SecondaryButtonStyle())
-                    }
                 }
             }
         }

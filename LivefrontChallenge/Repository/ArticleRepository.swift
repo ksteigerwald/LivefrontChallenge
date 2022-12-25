@@ -9,10 +9,11 @@ import Foundation
 
 struct Article {
     let category: String?
+    let document: String?
 }
 
 protocol ArticleInterface {
-    func generateSummaryArticle() async
+    func generateSummaryArticle(articles: [String]) async
 }
 
 typealias ArticleDataRepository = OpenAIServiceable
@@ -21,16 +22,19 @@ class ArticleRepository: ObservableObject, ArticleInterface {
 
     private let service: OpenAIService
 
+    @Published var categorySummary = [Article]()
+
     init(service: OpenAIService = OpenAIService()) {
         self.service = OpenAIService()
     }
 
-    func generateSummaryArticle() async {
+    public func generateSummaryArticle(articles: [String]) async {
+        let articles = articles.prefix(10).joined(separator: ",\n")
         let params = OpenAIRequestParams(
             model: "text-davinci-003",
-            prompt: "Summeraize these articles:\nhttps://www.coindesk.com/business/2022/12/22/ftx-ask-judge-for-help-in-fight-over-robinhood-shares-worth-about-450m/?utm_medium=referral&utm_source=rss&utm_campaign=headlines,\n    \"https://cointelegraph.com/news/the-most-eco-friendly-blockchain-networks-in-2022",
+            prompt: "Summeraize these articles with a headline: \(articles)",
             temperature: 0.5,
-            max_tokens: 120,
+            max_tokens: 2048,
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0
@@ -40,6 +44,9 @@ class ArticleRepository: ObservableObject, ArticleInterface {
         switch result {
         case .success(let article):
             print(article)
+            guard let summary = article.choices.first else { return }
+            print(summary)
+            self.categorySummary = [Article(category: "", document: summary.text)]
         case .failure(let error):
             print(error)
         }
