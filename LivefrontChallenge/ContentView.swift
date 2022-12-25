@@ -17,11 +17,7 @@ struct ContentView: View {
             MainHeadingView()
             RecommendationsView()
         }
-        .frame(
-            minWidth: 0, maxWidth: .infinity,
-            minHeight: 0, maxHeight: .infinity,
-            alignment: .topLeading
-        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .padding([.leading, .trailing], 20)
         .padding(.top, 100)
     }
@@ -45,12 +41,5 @@ struct ContentView: View {
                 self.isCategoriesLoaded = true
             }
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-            .preferredColorScheme(.dark)
     }
 }
