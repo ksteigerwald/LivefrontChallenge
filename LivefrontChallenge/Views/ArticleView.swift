@@ -12,20 +12,38 @@ struct ArticleView: View {
     @EnvironmentObject var app: AppEnvironment
     @State private var cancellables = [AnyCancellable]()
     @State private var isArticleLoaded = false
-    @State private var document: String = ""
+    @State private var document: Article = Article()
     let article: Article
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(article.category!)
+        ZStack(alignment: .leading) {
+            Color.DesignSystem.greyscale900
             if isArticleLoaded {
-                Text(document)
+                VStack(alignment: .leading) {
+                    Text(document.headline ?? "no headline....")
+                        .font(.headline)
+                        .foregroundColor(Color.DesignSystem.secondaryBase)
+                        .padding(.bottom, 20)
+                    Text(document.body ?? "no body....")
+                        .font(.body)
+                        .foregroundColor(Color.DesignSystem.greyscale50)
+                    Spacer()
+                }
             } else {
-                Text("Our robots are working on summarizing many articles, list articles:")
-                ForEach(app.categories.newsForCategory, id: \.self) { article in
-                    Text(article)
+                VStack(alignment: .leading) {
+                    Text(article.category!)
+                        .foregroundColor(Color.DesignSystem.secondaryBase)
+                    Text("Our robots are working on summarizing many articles, list articles:")
+                        .foregroundColor(Color.DesignSystem.secondaryBase)
+                    ForEach(app.categories.newsForCategory, id: \.self) { article in
+                        Text(article)
+                        .foregroundColor(Color.DesignSystem.secondaryBase)
+                    }
                 }
             }
+            Spacer()
         }
+        .padding([.leading, .trailing], 20)
+        .background(Color.DesignSystem.greyscale900)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 VStack {
@@ -42,9 +60,12 @@ struct ArticleView: View {
                     receiveCompletion: { _ in},
                     receiveValue: { value in
                         Task {
-                            await app.articles.generateSummaryArticle(articles: value)
+                            await app.articles.generateSummaryArticle(
+                                category: article.category!,
+                                articles: value
+                            )
                             guard let doc = app.articles.categorySummary.first else { return }
-                            self.document = doc.document ?? "should load but did not"
+                            self.document = doc
                             self.isArticleLoaded = true
                         }
                     })
