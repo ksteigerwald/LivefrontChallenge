@@ -35,6 +35,7 @@ extension HTTPClient {
         // urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.httpMethod = endpoint.method.rawValue
         urlRequest.allHTTPHeaderFields = endpoint.headers
+        urlRequest.cachePolicy = .returnCacheDataElseLoad
 
         if let body = endpoint.body {
             urlRequest.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .sortedKeys)

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ArticleView: View {
+    @EnvironmentObject var app: AppEnvironment
+
     let article: Article
     var body: some View {
         VStack(alignment: .leading) {
@@ -21,6 +23,9 @@ struct ArticleView: View {
                         .foregroundColor(Color.DesignSystem.secondaryBase)
                 }
             }
+        }
+        .task {
+            await app.categories.fetchNewsForCategory(category: article.category!)
         }
     }
 }

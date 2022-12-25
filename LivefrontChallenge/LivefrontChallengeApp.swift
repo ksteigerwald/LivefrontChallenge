@@ -15,6 +15,9 @@ enum Route: Hashable {
 
 @main
 struct LivefrontChallengeApp: App {
+
+    @EnvironmentObject var app: AppEnvironment
+
     var body: some Scene {
         WindowGroup {
             // When testing do not run the whole app in order to speed up things
@@ -29,6 +32,7 @@ struct LivefrontChallengeApp: App {
                             case .home: ContentView()
                             case .detail(let category):
                                 ArticleView(article: Article(category: category))
+                                    .environmentObject(AppEnvironment())
                             }
                         }
                 }

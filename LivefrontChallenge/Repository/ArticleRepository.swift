@@ -45,5 +45,4 @@ class ArticleRepository: ObservableObject, ArticleInterface {
         }
     }
 
-
 }
