@@ -1,5 +1,5 @@
 //
-//  ArticleView.swift
+//  ArticleSummaryView.swift
 //  LivefrontChallenge
 //
 //  Created by Kris Steigerwald on 12/23/22.
@@ -8,11 +8,13 @@
 import SwiftUI
 import Combine
 
-struct ArticleView: View {
+struct ArticleSummaryView: View {
+
     @EnvironmentObject var app: AppEnvironment
     @State private var cancellables = [AnyCancellable]()
     @State private var isArticleLoaded = false
     @State private var document: Article = Article()
+
     let article: Article
     var body: some View {
         ZStack(alignment: .leading) {

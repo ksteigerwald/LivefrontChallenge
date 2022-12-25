@@ -31,7 +31,7 @@ struct LivefrontChallengeApp: App {
                             switch route {
                             case .home: ContentView()
                             case .detail(let category):
-                                ArticleView(article: Article(category: category, document: ""))
+                                ArticleSummaryView(article: Article(category: category, document: ""))
                                     .environmentObject(AppEnvironment())
                             }
                         }
