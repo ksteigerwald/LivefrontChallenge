@@ -10,13 +10,12 @@ import Foundation
 extension String {
     func parseHeadlineAndBody() -> [String]? {
         let filtered = (self as NSString).components(separatedBy: "\n").filter { element in
-            return element.trimmingCharacters(in: .whitespacesAndNewlines).count > 0
+            element.trimmingCharacters(in: .whitespacesAndNewlines).count > 0
         }
         guard filtered.count >= 2 else { return nil }
         return filtered
     }
 }
-
 
 struct Article {
     let category: String?
