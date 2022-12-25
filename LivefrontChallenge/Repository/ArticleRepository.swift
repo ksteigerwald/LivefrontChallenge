@@ -68,8 +68,8 @@ class ArticleRepository: ObservableObject, ArticleInterface {
     public func generateSummaryArticle(category: String, articles: [String]) async {
         let articles = articles.prefix(10).joined(separator: ",\n")
         let params = OpenAIRequestParams(
-            model: "text-davinci-003",
-            prompt: "Summeraize these articles, include a headline for the summary: \(articles)",
+            model: Environment.AI.Models.davinci003.rawValue,
+            prompt: Environment.AI.Prompts.summarizeWithHeadline(context: articles).value,
             temperature: 0.5,
             max_tokens: 2048,
             top_p: 1,
@@ -80,7 +80,6 @@ class ArticleRepository: ObservableObject, ArticleInterface {
         let result = try! await service.getSummaries(requestParams: params)
         switch result {
         case .success(let article):
-            print(article)
             guard let summary = article.choices.first else { return }
             self.categorySummary = [Article(category: category, document: summary.text)]
         case .failure(let error):
