@@ -16,8 +16,18 @@ struct ArticleView: View {
     let article: AIArticle
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            .navigationTitle("XRP Baby")
+        VStack(alignment: .leading) {
+            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                VStack {
+                    Text("Crypto Summary")
+                        .font(Font.DesignSystem.headingH3)
+                        .foregroundColor(Color.DesignSystem.secondaryBase)
+                }
+            }
+        }
     }
 }
 

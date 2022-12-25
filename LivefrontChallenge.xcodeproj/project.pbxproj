@@ -19,6 +19,7 @@
 		801C216F29555B4A008072D8 /* OpenAITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C216E29555B4A008072D8 /* OpenAITests.swift */; };
 		801C217129555E97008072D8 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C217029555E97008072D8 /* Dictionary.swift */; };
 		801C21732955633E008072D8 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C21722955633E008072D8 /* Encodable.swift */; };
+		8082773F2957C7C700CCA40B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082773E2957C7C700CCA40B /* Button.swift */; };
 		80C0A00629556D6B000D6E30 /* completion.json in Resources */ = {isa = PBXBuildFile; fileRef = 80C0A00529556D6B000D6E30 /* completion.json */; };
 		80C0A00929557634000D6E30 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A00829557634000D6E30 /* Constants.swift */; };
 		80C0A00B2956091A000D6E30 /* CryptoCompareEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A00A29560919000D6E30 /* CryptoCompareEndpoint.swift */; };
@@ -81,6 +82,7 @@
 		801C217029555E97008072D8 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		801C21722955633E008072D8 /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		80216C6129579F9E001C9301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8082773E2957C7C700CCA40B /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		80C0A00529556D6B000D6E30 /* completion.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = completion.json; sourceTree = "<group>"; };
 		80C0A00829557634000D6E30 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		80C0A00A29560919000D6E30 /* CryptoCompareEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCompareEndpoint.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				80C0A00829557634000D6E30 /* Constants.swift */,
 				80C0A02729575299000D6E30 /* Environment.swift */,
 				80C0A029295753B4000D6E30 /* AppEnvironment.swift */,
+				8082773E2957C7C700CCA40B /* Button.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				801C216529553BDC008072D8 /* GeckoEndpoint.swift in Sources */,
 				80C0A02C29575591000D6E30 /* CategoryRepository.swift in Sources */,
 				80C2881D29550C1100067BBC /* JSONPlaceHolderResponse.swift in Sources */,
+				8082773F2957C7C700CCA40B /* Button.swift in Sources */,
 				80C2881A29550BA900067BBC /* JSONPlaceHolderService.swift in Sources */,
 				801C2160295529AA008072D8 /* JSONFile.swift in Sources */,
 				80C288112954EF7C00067BBC /* RequestMethod.swift in Sources */,

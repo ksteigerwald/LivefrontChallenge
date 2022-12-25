@@ -20,6 +20,7 @@ protocol CryptoCompareServiceable {
 }
 
 final class CryptoCompareService: HTTPClient, CryptoCompareServiceable {
+
     func getNewsCategories() async throws -> Result<[CryptoCompareNewsCategoriesResponse], RequestError> {
         try await sendRequest(
             endpoint: CryptoCompareEndpoint.newsCategories,
