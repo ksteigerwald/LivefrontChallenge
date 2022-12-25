@@ -70,7 +70,6 @@ class CategoryRepository: ObservableObject, CategoryInterface {
 
     private func assembleRecomendations() {
         // TODO: Store selected articles and related categories
-        print(categories)
         recommendations = categories.filter { ["XRP", "ETH", "ALGO", "BTC", "XLM"].contains($0.name) }
     }
 }

@@ -39,6 +39,9 @@ protocol ArticleInterface {
     ///   - category: The category for the summary article.
     ///   - articles: The list of articles to summarize.
     func generateSummaryArticle(category: String, articles: [String]) async
+
+    /// Fetches latest news articles
+    func getLatestArticles(limit: Int) async
 }
 
 /// Typealias for an OpenAI service that can be used by `ArticleRepository`
@@ -50,14 +53,23 @@ class ArticleRepository: ObservableObject, ArticleInterface {
     /// The OpenAI service to use for generating article summaries.
     private let service: OpenAIService
 
+    private let newsService: CryptoCompareService
+
     /// A published array of articles, which will be used to update views that are observing this object.
     @Published var categorySummary = [Article]()
+
+    /// latest news
+    @Published var news = [NewsArticle]()
 
     /// Initializes a new `ArticleRepository` with the given OpenAI service.
     ///
     /// - Parameter service: The OpenAI service to use for generating article summaries.
-    init(service: OpenAIService = OpenAIService()) {
-        self.service = OpenAIService()
+    init(
+        service: OpenAIService = OpenAIService(),
+        newsService: CryptoCompareService = CryptoCompareService()
+    ) {
+        self.service = service
+        self.newsService = newsService
     }
 
     /// Generates a summary article for the given category and list of articles.
@@ -87,4 +99,16 @@ class ArticleRepository: ObservableObject, ArticleInterface {
         }
     }
 
+    /// get the latest news articles
+    func getLatestArticles(limit: Int = 5) async {
+        let params = CryptoCompareRequestParams()
+        let result = try! await newsService.getNews(requestParams: params)
+
+        switch result {
+        case .success(let news):
+            self.news = Array(news.articles.prefix(limit))
+        case .failure(let error):
+            print(error)
+        }
+    }
 }
