@@ -9,7 +9,8 @@ import SwiftUI
 
 struct NewsFeed: View {
 
-    @EnvironmentObject var app: AppEnvironment
+    @EnvironmentObject private var app: AppEnvironment
+    @State private var isActive = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -29,7 +30,10 @@ struct NewsFeed: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
                         ForEach(app.articles.news, id: \.id) { article in
-                            NewsItem(article: article)
+                            NavigationLink(value: Route.article(article)) {
+                                NewsItem(article: article)
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                            }
                         }
                     }
                 }

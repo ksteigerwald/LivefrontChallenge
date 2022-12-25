@@ -8,9 +8,27 @@
 import SwiftUI
 
 struct ArticleView: View {
-    @EnvironmentObject var app: AppEnvironment
+    @EnvironmentObject private var app: AppEnvironment
+    let article: NewsArticle
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack(alignment: .topLeading) {
+            Color.DesignSystem.greyscale900
+            VStack(alignment: .leading) {
+                AsyncImage(url: URL(string: article.imageUrl)) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+
+                } placeholder: {
+                    Color.DesignSystem.greyscale50
+                }
+                .frame(maxWidth: .infinity, maxHeight: 180)
+                .cornerRadius(15)
+            }
+        }
+        .padding([.leading, .trailing], 20)
+        .background(Color.DesignSystem.greyscale900)
     }
 }

@@ -85,7 +85,7 @@ struct PromotedArticle: Decodable {
     // TODO: add properties
 }
 
-struct NewsArticle: Decodable {
+struct NewsArticle: Decodable, Hashable {
     /// The ID of the news article
     let id: String
     /// The globally unique identifier of the news article
@@ -114,6 +114,14 @@ struct NewsArticle: Decodable {
     let sourceInfo: SourceInfo?
     /// The source of the article
     let source: String
+
+    static func == (lhs: NewsArticle, rhs: NewsArticle) -> Bool {
+        lhs.title == rhs.title && lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 
     private enum CodingKeys: String, CodingKey {
             case id

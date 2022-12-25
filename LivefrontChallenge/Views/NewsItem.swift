@@ -20,9 +20,10 @@ struct NewsItem: View {
                 Text(article.title)
                     .font(Font.DesignSystem.headingH6)
                     .foregroundColor(Color.DesignSystem.greyscale50)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                     .fixedSize(horizontal: false, vertical: true)
                     .lineLimit(2)
+                    .multilineTextAlignment(.leading)
             }
             AsyncImage(url: URL(string: article.imageUrl)) { image in
                 image

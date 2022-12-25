@@ -8,11 +8,6 @@
 import SwiftUI
 import DesignSystem
 
-enum Route: Hashable {
-    case home
-    case detail(String)
-}
-
 @main
 struct LivefrontChallengeApp: App {
 
@@ -32,6 +27,9 @@ struct LivefrontChallengeApp: App {
                             case .home: ContentView()
                             case .detail(let category):
                                 ArticleSummaryView(article: Article(category: category, document: ""))
+                                    .environmentObject(AppEnvironment())
+                            case .article(let article):
+                               ArticleView(article: article)
                                     .environmentObject(AppEnvironment())
                             }
                         }

@@ -17,7 +17,6 @@ struct ContentView: View {
             MainHeadingView()
             RecommendationsView()
             NewsFeed()
-
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .padding([.leading, .trailing], 20)
@@ -36,6 +35,7 @@ struct ContentView: View {
                     .font(Font.DesignSystem.headingH1)
             }
         }
+        .navigationBarHidden(true)
         .background(Color.DesignSystem.greyscale900)
         .task {
             do {
