@@ -32,6 +32,24 @@ struct CryptoCompareRequestParams: Encodable, URLQueryItemConvertible {
 
     /// A boolean value indicating whether or not to sign the request.
     let sign: Bool?
+
+    init(
+        feeds: String? = nil,
+        categories: String? = nil,
+        excludeCategories: String? = nil,
+        lTs: Date? = nil,
+        sortOrder: String? = nil,
+        extraParams: String? = nil,
+        sign: Bool? = nil
+    ) {
+        self.feeds = feeds
+        self.categories = categories
+        self.excludeCategories = excludeCategories
+        self.lTs = lTs
+        self.sortOrder = sortOrder
+        self.extraParams = extraParams
+        self.sign = sign
+    }
 }
 
 struct CryptoCompareResponse: Decodable {

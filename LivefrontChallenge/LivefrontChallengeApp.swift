@@ -10,7 +10,7 @@ import DesignSystem
 
 enum Route: Hashable {
     case home
-    case detail(AIArticle)
+    case detail(String)
 }
 
 @main
@@ -27,8 +27,8 @@ struct LivefrontChallengeApp: App {
                         .navigationDestination(for: Route.self) { route in
                             switch route {
                             case .home: ContentView()
-                            case .detail(let article):
-                                ArticleView(article: article)
+                            case .detail(let category):
+                                ArticleView(article: Article(category: category))
                             }
                         }
                 }

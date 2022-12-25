@@ -14,6 +14,7 @@ struct NewsCategory {
 
 protocol CategoryInterface {
     func fetchCategories() async
+    func fetchNewsForCategory(category: String) async
 }
 
 typealias CategoryDataRepository = CryptoCompareServiceable
@@ -26,12 +27,27 @@ class CategoryRepository: ObservableObject, CategoryInterface {
         }
     }
     @Published var recommendations = [NewsCategory]()
+    @Published var newsForCategory = [String]()
 
     private let ccService: CryptoCompareService
     private var cancellables = [AnyCancellable]()
 
     init(ccService: CryptoCompareService = CryptoCompareService()) {
         self.ccService = ccService
+    }
+
+    @MainActor
+    func fetchNewsForCategory(category: String) async {
+        let params = CryptoCompareRequestParams(
+            categories: category
+        )
+        let result = try! await ccService.getNews(requestParams: params)
+        switch result {
+        case .success(let news):
+            self.newsForCategory = news.articles.map { $0.url }
+        case .failure(let error):
+            print(error)
+        }
     }
 
     @MainActor

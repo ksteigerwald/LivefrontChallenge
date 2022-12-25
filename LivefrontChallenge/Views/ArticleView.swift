@@ -7,17 +7,11 @@
 
 import SwiftUI
 
-struct AIArticle: Hashable {
-    let body: String
-}
-
 struct ArticleView: View {
-
-    let article: AIArticle
-
+    let article: Article
     var body: some View {
         VStack(alignment: .leading) {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Text(article.category!)
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -33,6 +27,6 @@ struct ArticleView: View {
 
 struct ArticleView_Previews: PreviewProvider {
     static var previews: some View {
-        ArticleView(article: .init(body: "foobar"))
+        ArticleView(article: .init(category: "XRP"))
     }
 }

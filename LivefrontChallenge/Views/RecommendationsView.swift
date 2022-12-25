@@ -10,8 +10,6 @@ import SwiftUI
 struct RecommendationsView: View {
     @EnvironmentObject var app: AppEnvironment
 
-    let article = AIArticle(body: "XRP")
-
     var body: some View {
         VStack(alignment: .leading) {
             Text("Recommendations")
@@ -29,7 +27,8 @@ struct RecommendationsView: View {
                         Button(action: {
 
                         }) {
-                        NavigationLink(recomendation.name, value: Route.detail(article))
+                        let article = Article(category: recomendation.name)
+                            NavigationLink(recomendation.name, value: Route.detail(recomendation.name))
                                 .font(Font.DesignSystem.bodySmallBold)
                                 .frame(width: 64, height: 24)
                         }
