@@ -25,6 +25,7 @@
 		808277452957D5A700CCA40B /* ArticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808277442957D5A700CCA40B /* ArticleRepository.swift */; };
 		808277482958C80B00CCA40B /* StringExtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808277472958C80B00CCA40B /* StringExtTests.swift */; };
 		8082774A2958CFA100CCA40B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808277492958CFA100CCA40B /* StringExtension.swift */; };
+		8082774C2958E0BE00CCA40B /* NewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082774B2958E0BE00CCA40B /* NewsFeed.swift */; };
 		80C0A00629556D6B000D6E30 /* completion.json in Resources */ = {isa = PBXBuildFile; fileRef = 80C0A00529556D6B000D6E30 /* completion.json */; };
 		80C0A00929557634000D6E30 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A00829557634000D6E30 /* Constants.swift */; };
 		80C0A00B2956091A000D6E30 /* CryptoCompareEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A00A29560919000D6E30 /* CryptoCompareEndpoint.swift */; };
@@ -93,6 +94,7 @@
 		808277442957D5A700CCA40B /* ArticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRepository.swift; sourceTree = "<group>"; };
 		808277472958C80B00CCA40B /* StringExtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtTests.swift; sourceTree = "<group>"; };
 		808277492958CFA100CCA40B /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		8082774B2958E0BE00CCA40B /* NewsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeed.swift; sourceTree = "<group>"; };
 		80C0A00529556D6B000D6E30 /* completion.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = completion.json; sourceTree = "<group>"; };
 		80C0A00829557634000D6E30 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		80C0A00A29560919000D6E30 /* CryptoCompareEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCompareEndpoint.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				80C0A02029566E56000D6E30 /* ArticleView.swift */,
 				808277402957D23000CCA40B /* RecommendationsView.swift */,
 				808277422957D30600CCA40B /* MainHeadingView.swift */,
+				8082774B2958E0BE00CCA40B /* NewsFeed.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 				801C21732955633E008072D8 /* Encodable.swift in Sources */,
 				80C0A02A295753B4000D6E30 /* AppEnvironment.swift in Sources */,
 				808277412957D23000CCA40B /* RecommendationsView.swift in Sources */,
+				8082774C2958E0BE00CCA40B /* NewsFeed.swift in Sources */,
 				80C288062954E8A400067BBC /* HTTPClient.swift in Sources */,
 				801C216729553E7D008072D8 /* GeckoService.swift in Sources */,
 				80C0A00929557634000D6E30 /* Constants.swift in Sources */,
