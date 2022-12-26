@@ -14,6 +14,7 @@ struct ArticleSummaryView: View {
     @State private var cancellables = [AnyCancellable]()
     @State private var isArticleLoaded = false
     @State private var document: Article = Article()
+    @Binding var path: NavigationPath
 
     let article: Article
     var body: some View {
@@ -38,7 +39,7 @@ struct ArticleSummaryView: View {
                         .foregroundColor(Color.DesignSystem.secondaryBase)
                     ForEach(app.categories.newsForCategory, id: \.self) { article in
                         Text(article)
-                        .foregroundColor(Color.DesignSystem.secondaryBase)
+                            .foregroundColor(Color.DesignSystem.secondaryBase)
                     }
                 }
             }
@@ -46,13 +47,21 @@ struct ArticleSummaryView: View {
         }
         .padding([.leading, .trailing], 20)
         .background(Color.DesignSystem.greyscale900)
+        .navigationBarBackButtonHidden()
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                VStack {
+                Button {
+                    path.removeLast()
+                } label: {
+                    Image(systemName: "arrow.left")
+                        .foregroundColor(Color.DesignSystem.greyscale50)
+                }
+            }
+            ToolbarItem(placement: .principal) {
                     Text("Crypto Summary")
                         .font(Font.DesignSystem.headingH3)
                         .foregroundColor(Color.DesignSystem.secondaryBase)
-                }
+                        .accessibilityAddTraits(.isHeader)
             }
         }
         .task {

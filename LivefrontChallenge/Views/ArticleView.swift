@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ArticleView: View {
     @EnvironmentObject private var app: AppEnvironment
+    @Binding var path: NavigationPath
+
     let article: NewsArticle
 
     var body: some View {
@@ -30,5 +32,15 @@ struct ArticleView: View {
         }
         .padding([.leading, .trailing], 20)
         .background(Color.DesignSystem.greyscale900)
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .cancellationAction) {
+                Button {
+                    path.removeLast()
+                } label: {
+                    Image(systemName: "arrow.left")
+                }
+            }
+        }
     }
 }

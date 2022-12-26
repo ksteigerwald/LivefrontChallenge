@@ -19,21 +19,9 @@ struct LivefrontChallengeApp: App {
             if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
                 EmptyView()
             } else {
-                NavigationStack {
-                    ContentView()
-                        .environmentObject(AppEnvironment())
-                        .navigationDestination(for: Route.self) { route in
-                            switch route {
-                            case .home: ContentView()
-                            case .detail(let category):
-                                ArticleSummaryView(article: Article(category: category, document: ""))
-                                    .environmentObject(AppEnvironment())
-                            case .article(let article):
-                               ArticleView(article: article)
-                                    .environmentObject(AppEnvironment())
-                            }
-                        }
-                }
+                RootView()
+                    .environmentObject(AppEnvironment())
+
             }
         }
     }
