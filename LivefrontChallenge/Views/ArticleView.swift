@@ -42,23 +42,13 @@ struct ArticleView: View {
                 Spacer()
             }
         }
+        .modifier(ToolbarModifier(
+            path: $path,
+            heading: "News Article")
+        )
         .padding([.leading, .trailing], 20)
         .background(Color.DesignSystem.greyscale900)
         .navigationBarBackButtonHidden()
-        .toolbar {
-            ToolbarItem(placement: .cancellationAction) {
-                Button {
-                    path.removeLast()
-                } label: {
-                    Image(systemName: "arrow.left")
-                        .foregroundColor(Color.DesignSystem.greyscale50)
-                }
-            }
-            ToolbarItem(placement: .principal) {
-                Text("News Article")
-                    .font(Font.DesignSystem.bodyLargeBold)
-                    .foregroundColor(Color.DesignSystem.greyscale50)
-            }
-        }
+
     }
 }

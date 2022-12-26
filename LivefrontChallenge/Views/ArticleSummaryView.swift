@@ -48,22 +48,10 @@ struct ArticleSummaryView: View {
         .padding([.leading, .trailing], 20)
         .background(Color.DesignSystem.greyscale900)
         .navigationBarBackButtonHidden()
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    path.removeLast()
-                } label: {
-                    Image(systemName: "arrow.left")
-                        .foregroundColor(Color.DesignSystem.greyscale50)
-                }
-            }
-            ToolbarItem(placement: .principal) {
-                    Text("Crypto Summary")
-                        .font(Font.DesignSystem.headingH3)
-                        .foregroundColor(Color.DesignSystem.secondaryBase)
-                        .accessibilityAddTraits(.isHeader)
-            }
-        }
+        .modifier(ToolbarModifier(
+            path: $path,
+            heading: "Summary Article")
+        )
         .task {
             _ = await app.categories.fetchNewsForCategory(category: article.category)
             app.categories.$newsForCategory
