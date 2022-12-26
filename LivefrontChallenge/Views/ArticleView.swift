@@ -17,6 +17,10 @@ struct ArticleView: View {
         ZStack(alignment: .topLeading) {
             Color.DesignSystem.greyscale900
             VStack(alignment: .leading) {
+                Text(article.title)
+                    .font(Font.DesignSystem.headingH3)
+                    .foregroundColor(Color.DesignSystem.greyscale50)
+                    .padding([.top, .bottom], 24)
                 AsyncImage(url: URL(string: article.imageUrl)) { image in
                     image
                         .resizable()
@@ -28,6 +32,14 @@ struct ArticleView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: 180)
                 .cornerRadius(15)
+                .padding(.bottom, 24)
+
+                Text(article.title)
+                    .font(Font.DesignSystem.bodyMediumMedium)
+                    .foregroundColor(Color.DesignSystem.greyscale50)
+                    .lineSpacing(8)
+
+                Spacer()
             }
         }
         .padding([.leading, .trailing], 20)
@@ -39,7 +51,13 @@ struct ArticleView: View {
                     path.removeLast()
                 } label: {
                     Image(systemName: "arrow.left")
+                        .foregroundColor(Color.DesignSystem.greyscale50)
                 }
+            }
+            ToolbarItem(placement: .principal) {
+                Text("News Article")
+                    .font(Font.DesignSystem.bodyLargeBold)
+                    .foregroundColor(Color.DesignSystem.greyscale50)
             }
         }
     }

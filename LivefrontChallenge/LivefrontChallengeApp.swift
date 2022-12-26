@@ -19,8 +19,13 @@ struct LivefrontChallengeApp: App {
             if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
                 EmptyView()
             } else {
-                RootView()
-                    .environmentObject(AppEnvironment())
+                ZStack {
+                    Color.DesignSystem.greyscale900
+                    RootView()
+                        .environmentObject(AppEnvironment())
+                }
+                .ignoresSafeArea(.all)
+
 
             }
         }

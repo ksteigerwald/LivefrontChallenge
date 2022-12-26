@@ -19,13 +19,19 @@ struct RootView: View {
             Color.DesignSystem.greyscale900
             if isCategoriesLoaded {
                 NavigationStack(path: $path) {
-                    mainContent
+                    ZStack(alignment: .topLeading) {
+                        mainContent
+                    }
+                    .ignoresSafeArea(.all)
                 }
-                Spacer()
             } else {
-                Text("loading...")
-                    .foregroundColor(Color.DesignSystem.primary100)
-                    .font(Font.DesignSystem.headingH1)
+                VStack {
+                    Text("loading...")
+                        .foregroundColor(Color.DesignSystem.primary100)
+                        .font(Font.DesignSystem.headingH1)
+                        .padding(.top, 200)
+
+                }
             }
         }
         .task {
@@ -59,7 +65,7 @@ struct RootView: View {
                         document: ""
                     )
                 )
-                    .environmentObject(AppEnvironment())
+                .environmentObject(AppEnvironment())
             case .article(let article):
                 ArticleView(path: $path, article: article)
                     .environmentObject(AppEnvironment())

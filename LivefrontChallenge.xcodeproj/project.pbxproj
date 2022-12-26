@@ -47,7 +47,6 @@
 		80C0A04529579703000D6E30 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 80C0A04429579703000D6E30 /* DesignSystem */; };
 		80C0A04C29579B39000D6E30 /* LibreBaskerville-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80C0A04929579B39000D6E30 /* LibreBaskerville-Bold.ttf */; };
 		80C287DA2954E3E300067BBC /* LivefrontChallengeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */; };
-		80C287DC2954E3E300067BBC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287DB2954E3E300067BBC /* ContentView.swift */; };
 		80C287DE2954E3E700067BBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C287DD2954E3E700067BBC /* Assets.xcassets */; };
 		80C287E12954E3E700067BBC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C287E02954E3E700067BBC /* Preview Assets.xcassets */; };
 		80C287EB2954E3E800067BBC /* LivefrontChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287EA2954E3E800067BBC /* LivefrontChallengeTests.swift */; };
@@ -120,7 +119,6 @@
 		80C0A04929579B39000D6E30 /* LibreBaskerville-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "LibreBaskerville-Bold.ttf"; path = "../../../../Dropbox (Personal)/My Mac (Velaru.cable.rcn.com)/Downloads/Libre_Baskerville/LibreBaskerville-Bold.ttf"; sourceTree = "<group>"; };
 		80C287D62954E3E300067BBC /* LivefrontChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LivefrontChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivefrontChallengeApp.swift; sourceTree = "<group>"; };
-		80C287DB2954E3E300067BBC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		80C287DD2954E3E700067BBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80C287E02954E3E700067BBC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		80C287E62954E3E800067BBC /* LivefrontChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LivefrontChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -276,7 +274,6 @@
 				80C0A00729557623000D6E30 /* Utility */,
 				80C0A04629579B18000D6E30 /* Fonts */,
 				80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */,
-				80C287DB2954E3E300067BBC /* ContentView.swift */,
 				80C287DD2954E3E700067BBC /* Assets.xcassets */,
 				80C287DF2954E3E700067BBC /* Preview Content */,
 			);
@@ -539,7 +536,6 @@
 			files = (
 				80C0A00D29560A46000D6E30 /* CryptoCompareModels.swift in Sources */,
 				8082774A2958CFA100CCA40B /* StringExtension.swift in Sources */,
-				80C287DC2954E3E300067BBC /* ContentView.swift in Sources */,
 				801C217129555E97008072D8 /* Dictionary.swift in Sources */,
 				801C216B29554BEE008072D8 /* OpenAIModels.swift in Sources */,
 				808277452957D5A700CCA40B /* ArticleRepository.swift in Sources */,
