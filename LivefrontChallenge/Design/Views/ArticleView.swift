@@ -15,7 +15,7 @@ struct ArticleView: View {
     @State private var isLoaded: Bool = false
     @State private var summarizedContent: Article = .init()
     @State private var loadingOrError: String = "Content is being fetched from a given URL, then summarized into 7 paragraphs"
-
+    @State private var articleCache: Article = .init()
     var body: some View {
 
         ZStack(alignment: .topLeading) {
@@ -68,6 +68,7 @@ struct ArticleView: View {
                 switch result {
                 case .success(let article):
                     self.summarizedContent = article
+                    self.articleCache = article
                     self.isLoaded = true
                 case .failure(let error):
                     self.loadingOrError = "Something happened \(error)"
@@ -105,6 +106,11 @@ struct ArticleView: View {
                         prompt: .toneAnalysis(context: article.body)
                     )
                     self.displayResults(result: result)
+                case .original:
+                    self.isLoaded = false
+                    self.loadingOrError = "Restoring original article"
+                    self.summarizedContent = self.articleCache
+                    self.isLoaded = true
                 default: print(val)
                 }
             }

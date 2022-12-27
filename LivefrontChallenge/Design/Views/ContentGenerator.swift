@@ -12,7 +12,7 @@ enum ToolButtonAction {
     case bulletPoints
     case sentiment
     case tone
-    case marketer
+    case original
     case none
 }
 
@@ -38,7 +38,7 @@ struct ContentGenerator: View {
                 current: $action)
             ToolButtonView(
                 label: "Mk",
-                id: .marketer,
+                id: .original,
                 current: $action)
 
             Spacer()
