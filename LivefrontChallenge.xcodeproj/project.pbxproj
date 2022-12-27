@@ -66,6 +66,8 @@
 		80F9E64A295A826B00222177 /* tech.riv in Resources */ = {isa = PBXBuildFile; fileRef = 80F9E649295A826B00222177 /* tech.riv */; };
 		80F9E64C295A8E1100222177 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E64B295A8E1100222177 /* SwiftUIView.swift */; };
 		80F9E64E295AD05600222177 /* ContentGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E64D295AD05600222177 /* ContentGenerator.swift */; };
+		80F9E650295ADE2500222177 /* HackerNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E64F295ADE2500222177 /* HackerNews.swift */; };
+		80F9E652295AE09F00222177 /* HackerNewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E651295AE09F00222177 /* HackerNewsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +148,8 @@
 		80F9E649295A826B00222177 /* tech.riv */ = {isa = PBXFileReference; lastKnownFileType = file; name = tech.riv; path = "../../../../../Dropbox (Personal)/My Mac (Velaru.cable.rcn.com)/Downloads/tech.riv"; sourceTree = "<group>"; };
 		80F9E64B295A8E1100222177 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		80F9E64D295AD05600222177 /* ContentGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGenerator.swift; sourceTree = "<group>"; };
+		80F9E64F295ADE2500222177 /* HackerNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerNews.swift; sourceTree = "<group>"; };
+		80F9E651295AE09F00222177 /* HackerNewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerNewsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -370,6 +374,7 @@
 				801C216429553BDC008072D8 /* GeckoEndpoint.swift */,
 				801C216C29554C86008072D8 /* OpenAIEndpoint.swift */,
 				80C0A00A29560919000D6E30 /* CryptoCompareEndpoint.swift */,
+				80F9E64F295ADE2500222177 /* HackerNews.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 				801C216629553E7D008072D8 /* GeckoService.swift */,
 				801C216829554B98008072D8 /* OpenAIService.swift */,
 				80C0A01029560EBE000D6E30 /* CryptoCompareService.swift */,
+				80F9E651295AE09F00222177 /* HackerNewsService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -606,8 +612,10 @@
 				80B2222E295A136600E3DA6F /* RootView.swift in Sources */,
 				808277502958E40400CCA40B /* NewsItem.swift in Sources */,
 				808277432957D30600CCA40B /* MainHeadingView.swift in Sources */,
+				80F9E652295AE09F00222177 /* HackerNewsService.swift in Sources */,
 				80F9E63F295A7EDC00222177 /* NewsListView.swift in Sources */,
 				80B22230295A1C9E00E3DA6F /* ToolbarModifier.swift in Sources */,
+				80F9E650295ADE2500222177 /* HackerNews.swift in Sources */,
 				80C0A01329561072000D6E30 /* URLQueryItemConvertable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

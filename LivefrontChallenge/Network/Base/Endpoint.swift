@@ -12,6 +12,7 @@ enum Networks {
     case gecko
     case openai
     case cryptoCompare
+    case hackerNews
 }
 /// A protocol that represents an endpoint in a REST API
 protocol Endpoint {
