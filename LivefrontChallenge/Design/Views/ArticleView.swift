@@ -68,11 +68,9 @@ struct ArticleView: View {
                 switch result {
                 case .success(let article):
                     self.summarizedContent = article
-                    print(summarizedContent.body)
                     self.isLoaded = true
                 case .failure(let error):
                     self.loadingOrError = "Something happened \(error)"
-                    print("handle error \(error)")
                 }
             }
         }
@@ -84,7 +82,24 @@ struct ArticleView: View {
         .padding([.leading, .trailing], 20)
         .background(Color.DesignSystem.greyscale900)
         .onChange(of: generator) { val in
-            print("top level: \(val)")
+            Task {
+                switch val {
+                case .designer:
+                    self.isLoaded = false
+                    self.loadingOrError = "Loading a set of bullet points from the article provided"
+                    let result = await self.app.articles.generateArticleFromSource(
+                        prompt: .summarizeIntoBulletPoints(context: article.body)
+                    )
+                    switch result {
+                    case .success(let article):
+                        self.summarizedContent = article
+                        self.isLoaded = true
+                    case .failure(let error):
+                        self.loadingOrError = "Something happened \(error)"
+                    }
+                default: print(val)
+                }
+            }
         }
     }
 
