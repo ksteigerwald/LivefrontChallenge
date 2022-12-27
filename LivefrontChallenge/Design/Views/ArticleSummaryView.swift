@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Combine
-import RiveRuntime
 
 struct ArticleSummaryView: View {
 
@@ -22,32 +21,37 @@ struct ArticleSummaryView: View {
         ZStack(alignment: .leading) {
             Color.DesignSystem.greyscale900
             if isArticleLoaded {
-                VStack(alignment: .leading) {
-                    Text(document.headline)
-                        .font(.headline)
-                        .foregroundColor(Color.DesignSystem.secondaryBase)
-                        .padding(.bottom, 20)
-                    Text(document.body)
-                        .font(.body)
-                        .foregroundColor(Color.DesignSystem.greyscale50)
-                    Spacer()
-                }
-                .padding([.leading, .trailing], 20)
-            } else {
-                ZStack {
-                    RiveViewModel(fileName: "tech").view()
-                        .ignoresSafeArea(.all)
+                ScrollView {
                     VStack(alignment: .leading) {
-                        Text("Our robots are working on summarizing many articles, list articles:")
+                        Text(document.headline)
+                            .lineLimit(3)
+                            .font(Font.DesignSystem.headingH3)
                             .foregroundColor(Color.DesignSystem.greyscale50)
-                            .padding([.leading, .trailing], 20)
-                        ForEach(app.categories.newsForCategory, id: \.self) { article in
-                            Text(article)
-                                .foregroundColor(Color.DesignSystem.secondaryBase)
+                            .padding([.top, .bottom], 24)
+
+                        AsyncImage(url: URL(string: "https://placeimg.com/320/240/any")) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(maxWidth: 327, maxHeight: 180)
+                                .cornerRadius(20)
+                                .padding(.bottom, 24)
+
+                        } placeholder: {
+                            Color.DesignSystem.greyscale50
                         }
+
+                        Text(document.body)
+                            .font(.body)
+                            .lineSpacing(8)
+                            .foregroundColor(Color.DesignSystem.greyscale50)
+                        Spacer()
                     }
-                    .padding(.top, 180)
+                    .padding([.leading, .trailing], 20)
+
                 }
+            } else {
+                SummaryLoadingView()
             }
             Spacer()
         }

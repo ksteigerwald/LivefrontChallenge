@@ -64,6 +64,7 @@
 		80F9E63F295A7EDC00222177 /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E63E295A7EDC00222177 /* NewsListView.swift */; };
 		80F9E642295A808300222177 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 80F9E641295A808300222177 /* RiveRuntime */; };
 		80F9E64A295A826B00222177 /* tech.riv in Resources */ = {isa = PBXBuildFile; fileRef = 80F9E649295A826B00222177 /* tech.riv */; };
+		80F9E64C295A8E1100222177 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E64B295A8E1100222177 /* SwiftUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,7 @@
 		80D4BE292955230C000DA3B5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		80F9E63E295A7EDC00222177 /* NewsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
 		80F9E649295A826B00222177 /* tech.riv */ = {isa = PBXFileReference; lastKnownFileType = file; name = tech.riv; path = "../../../../../Dropbox (Personal)/My Mac (Velaru.cable.rcn.com)/Downloads/tech.riv"; sourceTree = "<group>"; };
+		80F9E64B295A8E1100222177 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				80B2222D295A136600E3DA6F /* RootView.swift */,
 				80B2222F295A1C9E00E3DA6F /* ToolbarModifier.swift */,
 				80F9E63E295A7EDC00222177 /* NewsListView.swift */,
+				80F9E64B295A8E1100222177 /* SwiftUIView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				80C0A02A295753B4000D6E30 /* AppEnvironment.swift in Sources */,
 				808277412957D23000CCA40B /* RecommendationsView.swift in Sources */,
 				8082774C2958E0BE00CCA40B /* NewsFeed.swift in Sources */,
+				80F9E64C295A8E1100222177 /* SwiftUIView.swift in Sources */,
 				80C288062954E8A400067BBC /* HTTPClient.swift in Sources */,
 				801C216729553E7D008072D8 /* GeckoService.swift in Sources */,
 				80C0A00929557634000D6E30 /* Constants.swift in Sources */,
