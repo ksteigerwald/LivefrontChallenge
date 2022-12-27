@@ -9,6 +9,7 @@ import Foundation
 
 enum Route: Hashable {
     case home
+    case newsList
     case detail(String)
     case article(NewsArticle)
 }

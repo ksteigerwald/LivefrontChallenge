@@ -61,6 +61,9 @@
 		80C28817295508B500067BBC /* JSONPlaceHolderEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C28816295508B500067BBC /* JSONPlaceHolderEndpoint.swift */; };
 		80C2881A29550BA900067BBC /* JSONPlaceHolderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C2881929550BA900067BBC /* JSONPlaceHolderService.swift */; };
 		80C2881D29550C1100067BBC /* JSONPlaceHolderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C2881C29550C1100067BBC /* JSONPlaceHolderResponse.swift */; };
+		80F9E63F295A7EDC00222177 /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E63E295A7EDC00222177 /* NewsListView.swift */; };
+		80F9E642295A808300222177 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 80F9E641295A808300222177 /* RiveRuntime */; };
+		80F9E64A295A826B00222177 /* tech.riv in Resources */ = {isa = PBXBuildFile; fileRef = 80F9E649295A826B00222177 /* tech.riv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +140,8 @@
 		80C2881929550BA900067BBC /* JSONPlaceHolderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceHolderService.swift; sourceTree = "<group>"; };
 		80C2881C29550C1100067BBC /* JSONPlaceHolderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceHolderResponse.swift; sourceTree = "<group>"; };
 		80D4BE292955230C000DA3B5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		80F9E63E295A7EDC00222177 /* NewsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
+		80F9E649295A826B00222177 /* tech.riv */ = {isa = PBXFileReference; lastKnownFileType = file; name = tech.riv; path = "../../../../../Dropbox (Personal)/My Mac (Velaru.cable.rcn.com)/Downloads/tech.riv"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +151,7 @@
 			files = (
 				80C0A01829563E81000D6E30 /* BackedCodable in Frameworks */,
 				80C0A04529579703000D6E30 /* DesignSystem in Frameworks */,
+				80F9E642295A808300222177 /* RiveRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +229,7 @@
 				8082774F2958E40400CCA40B /* NewsItem.swift */,
 				80B2222D295A136600E3DA6F /* RootView.swift */,
 				80B2222F295A1C9E00E3DA6F /* ToolbarModifier.swift */,
+				80F9E63E295A7EDC00222177 /* NewsListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -273,9 +280,9 @@
 				80C288032954E40400067BBC /* Network */,
 				80C0A0222956A800000D6E30 /* Repository */,
 				801C215E29552991008072D8 /* Helpers */,
-				80C0A01D29566E23000D6E30 /* Views */,
 				80C0A00729557623000D6E30 /* Utility */,
 				80C0A04629579B18000D6E30 /* Fonts */,
+				80F9E643295A809900222177 /* Design */,
 				80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */,
 				80C287DD2954E3E700067BBC /* Assets.xcassets */,
 				80C287DF2954E3E700067BBC /* Preview Content */,
@@ -390,6 +397,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		80F9E643295A809900222177 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				80F9E644295A80B300222177 /* Rive */,
+				80C0A01D29566E23000D6E30 /* Views */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		80F9E644295A80B300222177 /* Rive */ = {
+			isa = PBXGroup;
+			children = (
+				80F9E649295A826B00222177 /* tech.riv */,
+			);
+			path = Rive;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -409,6 +433,7 @@
 			packageProductDependencies = (
 				80C0A01729563E81000D6E30 /* BackedCodable */,
 				80C0A04429579703000D6E30 /* DesignSystem */,
+				80F9E641295A808300222177 /* RiveRuntime */,
 			);
 			productName = LivefrontChallenge;
 			productReference = 80C287D62954E3E300067BBC /* LivefrontChallenge.app */;
@@ -489,6 +514,7 @@
 			packageReferences = (
 				801C215929552849008072D8 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
 				80C0A01629563E81000D6E30 /* XCRemoteSwiftPackageReference "BackedCodable" */,
+				80F9E640295A808300222177 /* XCRemoteSwiftPackageReference "rive-ios" */,
 			);
 			productRefGroup = 80C287D72954E3E300067BBC /* Products */;
 			projectDirPath = "";
@@ -509,6 +535,7 @@
 				80C0A00F29560B10000D6E30 /* CryptoCompare.json in Resources */,
 				801C21632955366C008072D8 /* JSONPlaceholder.json in Resources */,
 				80C0A00629556D6B000D6E30 /* completion.json in Resources */,
+				80F9E64A295A826B00222177 /* tech.riv in Resources */,
 				80C287E12954E3E700067BBC /* Preview Assets.xcassets in Resources */,
 				80C0A04C29579B39000D6E30 /* LibreBaskerville-Bold.ttf in Resources */,
 				80C0A01C295658C9000D6E30 /* CryptoCompareNewsCategories.json in Resources */,
@@ -571,6 +598,7 @@
 				80B2222E295A136600E3DA6F /* RootView.swift in Sources */,
 				808277502958E40400CCA40B /* NewsItem.swift in Sources */,
 				808277432957D30600CCA40B /* MainHeadingView.swift in Sources */,
+				80F9E63F295A7EDC00222177 /* NewsListView.swift in Sources */,
 				80B22230295A1C9E00E3DA6F /* ToolbarModifier.swift in Sources */,
 				80C0A01329561072000D6E30 /* URLQueryItemConvertable.swift in Sources */,
 			);
@@ -923,6 +951,14 @@
 				kind = branch;
 			};
 		};
+		80F9E640295A808300222177 /* XCRemoteSwiftPackageReference "rive-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rive-app/rive-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -944,6 +980,11 @@
 		80C0A04429579703000D6E30 /* DesignSystem */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DesignSystem;
+		};
+		80F9E641295A808300222177 /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80F9E640295A808300222177 /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

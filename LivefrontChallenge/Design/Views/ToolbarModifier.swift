@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct ToolbarModifier: ViewModifier {
 
     @Binding var path: NavigationPath

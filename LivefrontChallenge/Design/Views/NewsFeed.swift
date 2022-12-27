@@ -20,7 +20,7 @@ struct NewsFeed: View {
                         .font(Font.DesignSystem.bodyLargeBold)
                         .foregroundColor(Color.DesignSystem.greyscale50)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    NavigationLink("View More", destination: self)
+                    NavigationLink("View More", value: Route.newsList)
                         .font(Font.DesignSystem.bodyMediumMedium)
                         .foregroundColor(Color.DesignSystem.secondaryBase)
                         .frame(maxWidth: .infinity, alignment: .trailing)

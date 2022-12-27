@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import RiveRuntime
 
 struct ArticleSummaryView: View {
 
@@ -33,10 +34,12 @@ struct ArticleSummaryView: View {
                 }
             } else {
                 VStack(alignment: .leading) {
-                    Text(article.category)
-                        .foregroundColor(Color.DesignSystem.secondaryBase)
+
+                    RiveViewModel(fileName: "tech").view()
+                        .ignoresSafeArea()
                     Text("Our robots are working on summarizing many articles, list articles:")
-                        .foregroundColor(Color.DesignSystem.secondaryBase)
+                        .foregroundColor(Color.DesignSystem.greyscale50)
+                    Spacer()
                     ForEach(app.categories.newsForCategory, id: \.self) { article in
                         Text(article)
                             .foregroundColor(Color.DesignSystem.secondaryBase)

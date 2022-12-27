@@ -13,7 +13,7 @@ struct RootView: View {
     @EnvironmentObject var app: AppEnvironment
     @State private var isCategoriesLoaded = false
     @State private var path = NavigationPath()
-    
+
     var body: some View {
         ZStack(alignment: .top) {
             Color.DesignSystem.greyscale900
@@ -69,6 +69,8 @@ struct RootView: View {
             case .article(let article):
                 ArticleView(path: $path, article: article)
                     .environmentObject(AppEnvironment())
+            case .newsList:
+                NewsListView(path: $path)
             }
         }
     }

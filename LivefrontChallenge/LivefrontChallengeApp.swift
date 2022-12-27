@@ -26,7 +26,6 @@ struct LivefrontChallengeApp: App {
                 }
                 .ignoresSafeArea(.all)
 
-
             }
         }
     }

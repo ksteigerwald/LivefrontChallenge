@@ -12,7 +12,6 @@ struct Article {
     let document: String
     let headline: String
     let body: String
-
     /// Initializes an `Article` instance.
     /// - Parameters:
     ///   - category: The category of the article.
@@ -93,7 +92,11 @@ class ArticleRepository: ObservableObject, ArticleInterface {
         switch result {
         case .success(let article):
             guard let summary = article.choices.first else { return }
-            self.categorySummary = [Article(category: category, document: summary.text)]
+            self.categorySummary = [
+                Article(
+                    category: category,
+                    document: summary.text
+                )]
         case .failure(let error):
             print(error)
         }
