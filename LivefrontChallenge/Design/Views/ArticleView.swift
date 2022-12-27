@@ -14,7 +14,7 @@ struct ArticleView: View {
     @State private var generator: ToolButtonAction = .none
     @State private var isLoaded: Bool = false
     @State private var summarizedContent: Article = .init()
-    @State private var loadingOrError: String = "Loading content..."
+    @State private var loadingOrError: String = "Content is being fetched from a given URL, then summarized into 7 paragraphs"
 
     var body: some View {
 
@@ -84,23 +84,40 @@ struct ArticleView: View {
         .onChange(of: generator) { val in
             Task {
                 switch val {
-                case .designer:
+                case .bulletPoints:
                     self.isLoaded = false
                     self.loadingOrError = "Loading a set of bullet points from the article provided"
                     let result = await self.app.articles.generateArticleFromSource(
                         prompt: .summarizeIntoBulletPoints(context: article.body)
                     )
-                    switch result {
-                    case .success(let article):
-                        self.summarizedContent = article
-                        self.isLoaded = true
-                    case .failure(let error):
-                        self.loadingOrError = "Something happened \(error)"
-                    }
+                    self.displayResults(result: result)
+                case .sentiment:
+                    self.isLoaded = false
+                    self.loadingOrError = "Running sentiment analysis on the given article..."
+                    let result = await self.app.articles.generateArticleFromSource(
+                        prompt: .sentimentAnalysis(context: article.body)
+                    )
+                    self.displayResults(result: result)
+                case .tone:
+                    self.isLoaded = false
+                    self.loadingOrError = "Running tone (positive, negative, neutral) analysis on the given article..."
+                    let result = await self.app.articles.generateArticleFromSource(
+                        prompt: .toneAnalysis(context: article.body)
+                    )
+                    self.displayResults(result: result)
                 default: print(val)
                 }
             }
         }
     }
 
+    func displayResults(result: Result<Article, Error>) {
+        switch result {
+        case .success(let article):
+            self.summarizedContent = article
+            self.isLoaded = true
+        case .failure(let error):
+            self.loadingOrError = "Something happened \(error)"
+        }
+    }
 }

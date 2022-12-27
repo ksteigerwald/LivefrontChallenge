@@ -49,6 +49,8 @@ public enum Environment {
             case summarizeWithHeadline(context: String)
             case rewordArticle(context: String)
             case summarizeIntoBulletPoints(context: String)
+            case sentimentAnalysis(context: String)
+            case toneAnalysis(context: String)
             var value: String {
                 switch self {
                 case .summarizeWithHeadline(let context):
@@ -57,6 +59,10 @@ public enum Environment {
                     return "Summarize the following article into 7 of paragraphs, include a headline for the summary: \(context)"
                 case .summarizeIntoBulletPoints(let context):
                     return "Summarize the given content into a list of bullet points: \(context)"
+                case .sentimentAnalysis(let context):
+                    return "Provide sentiment analysis for the given content: \(context)"
+                case .toneAnalysis(let context):
+                    return "Identify the tone of the article (positive, negative, neutral) for the given content: \(context)"
                 }
             }
         }

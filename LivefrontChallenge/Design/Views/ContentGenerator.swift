@@ -9,9 +9,9 @@ import SwiftUI
 
 /// Enum representing the four types of tool buttons available.
 enum ToolButtonAction {
-    case designer
-    case developer
-    case projectManger
+    case bulletPoints
+    case sentiment
+    case tone
     case marketer
     case none
 }
@@ -25,15 +25,15 @@ struct ContentGenerator: View {
         HStack {
             ToolButtonView(
                 label: "Dz",
-                id: .designer,
+                id: .bulletPoints,
                 current: $generator)
             ToolButtonView(
                 label: "Dv",
-                id: .developer,
+                id: .sentiment,
                 current: $generator)
             ToolButtonView(
                 label: "Pm",
-                id: .projectManger,
+                id: .tone,
                 current: $generator)
             ToolButtonView(
                 label: "Mk",
