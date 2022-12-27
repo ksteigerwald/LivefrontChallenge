@@ -45,6 +45,7 @@ struct ArticleView: View {
                             .font(Font.DesignSystem.bodyMediumMedium)
                             .foregroundColor(Color.DesignSystem.greyscale50)
                             .lineSpacing(8)
+                        Spacer()
                     }
                 }
             } else {

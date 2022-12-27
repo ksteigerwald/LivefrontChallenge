@@ -48,12 +48,15 @@ public enum Environment {
         enum Prompts {
             case summarizeWithHeadline(context: String)
             case rewordArticle(context: String)
+            case summarizeIntoBulletPoints(context: String)
             var value: String {
                 switch self {
                 case .summarizeWithHeadline(let context):
                     return "Summeraize these aricles, include a headline for the summary: \(context)"
                 case .rewordArticle(let context):
                     return "Summarize the following article into 7 of paragraphs, include a headline for the summary: \(context)"
+                case .summarizeIntoBulletPoints(let context):
+                    return "Summarize the given content into a list of bullet points: \(context)"
                 }
             }
         }

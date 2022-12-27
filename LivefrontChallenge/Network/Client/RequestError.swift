@@ -43,6 +43,8 @@ enum RequestError: Error {
             return "Decode error"
         case .unauthorized:
             return "Session expired"
+        case .invalidRequest:
+            return "Unkown error likely due to exciding model's maximum context length "
         default:
             return "Unknown error"
         }
