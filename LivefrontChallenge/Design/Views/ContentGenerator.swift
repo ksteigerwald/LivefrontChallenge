@@ -20,29 +20,31 @@ enum ToolButtonAction {
 struct ContentGenerator: View {
 
     @Binding var generator: ToolButtonAction
-    @State private var action: ToolButtonAction = .bulletPoints
+    @State private var action: ToolButtonAction = .none
 
     var body: some View {
         HStack {
             ToolButtonView(
                 label: "Dz",
                 id: .bulletPoints,
-                current: $generator)
+                current: $action)
             ToolButtonView(
                 label: "Dv",
                 id: .sentiment,
-                current: $generator)
+                current: $action)
             ToolButtonView(
                 label: "Pm",
                 id: .tone,
-                current: $generator)
+                current: $action)
             ToolButtonView(
                 label: "Mk",
                 id: .marketer,
-                current: $generator)
+                current: $action)
 
             Spacer()
-            Button(action: {}) {
+            Button(action: {
+                generator = action
+            }) {
                 Text("Generate")
                     .padding([.leading, .trailing], 30)
                     .font(Font.DesignSystem.bodyMediumBold)
@@ -52,8 +54,8 @@ struct ContentGenerator: View {
             .background(Color.DesignSystem.secondaryBase)
             .clipShape(Capsule())
         }
-        .onChange(of: generator) { newVal in
-            generator = newVal
+        .onChange(of: generator) { setAction in
+            action = setAction
         }
         .padding(.top, 12)
         .background(Color.DesignSystem.greyscale900)

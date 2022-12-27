@@ -17,4 +17,12 @@ extension String {
         guard filtered.count >= 2 else { return ["Headline Error:", "Content Generation Error:"] }
         return filtered
     }
+
+    func truncate(maxLength: Int) -> String {
+        if self.count <= maxLength {
+            return self
+        } else {
+            return String(self[..<self.index(self.startIndex, offsetBy: maxLength)])
+        }
+    }
 }

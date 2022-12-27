@@ -88,6 +88,7 @@ class ArticleRepository: ObservableObject, ArticleInterface {
     /// - Parameters:
     ///   - category: The category of the articles.
     ///   - articles: The list of articles to summarize.
+    // TODO: update this to return data not assign to categories
     public func generateSummaryArticle(category: String, articles: [String]) async {
         let articles = articles.prefix(10).joined(separator: ",\n")
         let params = OpenAIRequestParams(
@@ -99,17 +100,20 @@ class ArticleRepository: ObservableObject, ArticleInterface {
             frequency_penalty: 0,
             presence_penalty: 0
         )
-
-        let result = try! await service.getSummaries(requestParams: params)
-        switch result {
-        case .success(let article):
-            guard let summary = article.choices.first else { return }
-            self.categorySummary = [
-                Article(
-                    category: category,
-                    document: summary.text
-                )]
-        case .failure(let error):
+        do {
+            let result = try await service.getSummaries(requestParams: params)
+            switch result {
+            case .success(let article):
+                guard let summary = article.choices.first else { return }
+                self.categorySummary = [
+                    Article(
+                        category: category,
+                        document: summary.text
+                    )]
+            case .failure(let error):
+                print(error)
+            }
+        } catch(let error) {
             print(error)
         }
     }
@@ -138,18 +142,22 @@ class ArticleRepository: ObservableObject, ArticleInterface {
             presence_penalty: 0
         )
 
-        let result = try! await service.getSummaries(requestParams: params)
-        switch result {
-        case .success(let article):
-            guard let summary = article.choices.first else {
-                return .failure(RequestError.decode)
-            }
+        do {
+            let result = try await service.getSummaries(requestParams: params)
+            switch result {
+            case .success(let article):
+                guard let summary = article.choices.first else {
+                    return .failure(RequestError.decode)
+                }
 
-            return .success(Article(
-                category: "Summary",
-                document: summary.text
-            ))
-        case .failure(let error):
+                return .success(Article(
+                    category: "Summary",
+                    document: summary.text
+                ))
+            case .failure(let error):
+                return .failure(error)
+            }
+        } catch(let error) {
             return .failure(error)
         }
     }
