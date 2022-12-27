@@ -12,6 +12,7 @@ struct Article {
     let document: String
     let headline: String
     let body: String
+    let imageURL: String
     /// Initializes an `Article` instance.
     /// - Parameters:
     ///   - category: The category of the article.
@@ -22,13 +23,16 @@ struct Article {
         category: String = "",
         document: String = "",
         headline: String? = nil,
-        body: String? = nil
+        body: String? = nil,
+        imageURL: String = "https://placeimg.com/320/240/any"
     ) {
+        var content: [String] = document.parseHeadlineAndBody()
+
         self.category = category
         self.document = document
-        let news = document.parseHeadlineAndBody()
-        self.headline = news?.first ?? document
-        self.body = news?.last ?? document
+        self.imageURL = imageURL
+        self.headline = content.remove(at: 0)
+        self.body = content.joined(separator: "\n\n")
     }
 }
 
@@ -37,10 +41,16 @@ protocol ArticleInterface {
     /// - Parameters:
     ///   - category: The category for the summary article.
     ///   - articles: The list of articles to summarize.
-    func generateSummaryArticle(category: String, articles: [String]) async
+    func generateSummaryArticle(
+        category: String,
+        articles: [String]
+    ) async
 
     /// Fetches latest news articles
     func getLatestArticles(limit: Int) async
+
+    /// Generate a new article from a source and selected prompt
+    func generateArticleFromSource(prompt: Environment.AI.Prompts) async -> Result<Article, Error>
 }
 
 /// Typealias for an OpenAI service that can be used by `ArticleRepository`
@@ -56,6 +66,8 @@ class ArticleRepository: ObservableObject, ArticleInterface {
 
     /// A published array of articles, which will be used to update views that are observing this object.
     @Published var categorySummary = [Article]()
+
+    @Published var summarizedArticle: Article?
 
     /// latest news
     @Published var news = [NewsArticle]()
@@ -112,6 +124,33 @@ class ArticleRepository: ObservableObject, ArticleInterface {
             self.news = Array(news.articles.prefix(limit))
         case .failure(let error):
             print(error)
+        }
+    }
+
+    func generateArticleFromSource(prompt: Environment.AI.Prompts) async -> Result<Article, Error> {
+        let params = OpenAIRequestParams(
+            model: Environment.AI.Models.davinci003.rawValue,
+            prompt: prompt.value,
+            temperature: 0.5,
+            max_tokens: 4000,
+            top_p: 1,
+            frequency_penalty: 0,
+            presence_penalty: 0
+        )
+
+        let result = try! await service.getSummaries(requestParams: params)
+        switch result {
+        case .success(let article):
+            guard let summary = article.choices.first else {
+                return .failure(RequestError.decode)
+            }
+
+            return .success(Article(
+                category: "Summary",
+                document: summary.text
+            ))
+        case .failure(let error):
+            return .failure(error)
         }
     }
 }

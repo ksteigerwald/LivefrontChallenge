@@ -48,6 +48,8 @@ extension Endpoint {
             return "https://api.openai.com/"
         case .cryptoCompare:
             return "https://min-api.cryptocompare.com/data/"
+        case .hackerNews:
+            return "https://hacker-news.firebaseio.com"
         }
     }
 

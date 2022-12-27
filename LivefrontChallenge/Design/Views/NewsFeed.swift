@@ -40,4 +40,5 @@ struct NewsFeed: View {
             }
         }
     }
+
 }

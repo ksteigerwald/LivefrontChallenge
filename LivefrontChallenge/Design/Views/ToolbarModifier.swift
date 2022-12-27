@@ -27,10 +27,6 @@ struct ToolbarModifier: ViewModifier {
                         .font(Font.DesignSystem.bodyLargeBold)
                         .foregroundColor(Color.DesignSystem.greyscale50)
                 }
-
-                ToolbarItemGroup(placement: .bottomBar) {
-
-                }
             }
             .toolbarBackground(Color.DesignSystem.greyscale900, for: .automatic)
     }

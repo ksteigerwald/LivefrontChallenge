@@ -18,7 +18,6 @@ struct NewsListView: View {
                 RiveViewModel(fileName: "tech").view()
                     .ignoresSafeArea()
             }
-
         }
         .ignoresSafeArea(.all)
     }

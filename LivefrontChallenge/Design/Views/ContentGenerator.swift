@@ -53,7 +53,6 @@ struct ContentGenerator: View {
         }
         .onChange(of: generator) { newVal in
             generator = newVal
-            print("has been set: \(newVal)")
         }
         .padding(.top, 12)
         .background(Color.DesignSystem.greyscale900)
@@ -70,6 +69,10 @@ struct ToolButtonView: View {
     @State private var isOn: Bool = false
     var body: some View {
         Button(action: {
+            guard $current.wrappedValue != id && !isOn else {
+                isOn = false
+                return
+            }
             current = id
             if $current.wrappedValue == id {
                 isOn = true

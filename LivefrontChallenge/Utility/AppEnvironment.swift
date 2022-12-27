@@ -11,5 +11,4 @@ class AppEnvironment: ObservableObject {
 
     @Published var categories = CategoryRepository()
     @Published var articles = ArticleRepository()
-    @Published var toolbarAction: ToolButtonAction = .designer
 }

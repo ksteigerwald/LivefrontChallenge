@@ -47,10 +47,13 @@ public enum Environment {
         /// Prompts passed to OpenAI
         enum Prompts {
             case summarizeWithHeadline(context: String)
+            case rewordArticle(context: String)
             var value: String {
                 switch self {
                 case .summarizeWithHeadline(let context):
-                    return "Summeraize these articles, include a headline for the summary: \(context)"
+                    return "Summeraize these aricles, include a headline for the summary: \(context)"
+                case .rewordArticle(let context):
+                    return "Summarize the following article into 7 of paragraphs, include a headline for the summary: \(context)"
                 }
             }
         }

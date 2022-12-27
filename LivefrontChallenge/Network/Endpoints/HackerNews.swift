@@ -26,7 +26,7 @@ extension HackerNewsEndpoint: Endpoint {
         .get
     }
 
-    var body: [String : Any]? {
+    var body: [String: Any]? {
         nil
     }
 
@@ -37,6 +37,5 @@ extension HackerNewsEndpoint: Endpoint {
     var network: Networks {
         .hackerNews
     }
-
 
 }
