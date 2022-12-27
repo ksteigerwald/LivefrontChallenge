@@ -71,11 +71,9 @@ public enum Environment {
                     let content = PromptModel(data: context)
                     return "Summarize the given content into a list of bullet points: \(content.data)"
                 case .sentimentAnalysis(let context):
-                    let content = PromptModel(data: context)
-                    return "Provide sentiment analysis for the given content: \(content.data)"
+                    return "Provide sentiment analysis for the given content: \(context)"
                 case .toneAnalysis(let context):
-                    let content = PromptModel(data: context)
-                    return "Identify the tone of the article (positive, negative, neutral) for the given content: \(content.data)"
+                    return "Identify the tone of the article (positive, negative, neutral) for the given content: \(context)"
                 }
             }
         }

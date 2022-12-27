@@ -27,7 +27,6 @@ struct Article {
         imageURL: String = "https://placeimg.com/320/240/any"
     ) {
         var content: [String] = document.parseHeadlineAndBody()
-
         self.category = category
         self.document = document
         self.imageURL = imageURL

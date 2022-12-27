@@ -14,7 +14,11 @@ extension String {
         let filtered = (self as NSString).components(separatedBy: "\n").filter { element in
             element.trimmingCharacters(in: .whitespacesAndNewlines).count > 0
         }
-        guard filtered.count >= 2 else { return ["Headline Error:", "Content Generation Error:"] }
+
+        guard filtered.count >= 2 else {
+            let seed = filtered.last ?? ""
+            return ["Headline Error:", seed]
+        }
         return filtered
     }
 
