@@ -32,23 +32,25 @@ struct ArticleSummaryView: View {
                         .foregroundColor(Color.DesignSystem.greyscale50)
                     Spacer()
                 }
+                .padding([.leading, .trailing], 20)
             } else {
-                VStack(alignment: .leading) {
-
+                ZStack {
                     RiveViewModel(fileName: "tech").view()
-                        .ignoresSafeArea()
-                    Text("Our robots are working on summarizing many articles, list articles:")
-                        .foregroundColor(Color.DesignSystem.greyscale50)
-                    Spacer()
-                    ForEach(app.categories.newsForCategory, id: \.self) { article in
-                        Text(article)
-                            .foregroundColor(Color.DesignSystem.secondaryBase)
+                        .ignoresSafeArea(.all)
+                    VStack(alignment: .leading) {
+                        Text("Our robots are working on summarizing many articles, list articles:")
+                            .foregroundColor(Color.DesignSystem.greyscale50)
+                            .padding([.leading, .trailing], 20)
+                        ForEach(app.categories.newsForCategory, id: \.self) { article in
+                            Text(article)
+                                .foregroundColor(Color.DesignSystem.secondaryBase)
+                        }
                     }
+                    .padding(.top, 180)
                 }
             }
             Spacer()
         }
-        .padding([.leading, .trailing], 20)
         .background(Color.DesignSystem.greyscale900)
         .navigationBarBackButtonHidden()
         .modifier(ToolbarModifier(
