@@ -20,6 +20,7 @@ enum ToolButtonAction {
 struct ContentGenerator: View {
 
     @Binding var generator: ToolButtonAction
+    @State private var action: ToolButtonAction = .bulletPoints
 
     var body: some View {
         HStack {

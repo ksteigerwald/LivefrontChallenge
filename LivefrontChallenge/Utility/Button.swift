@@ -21,6 +21,6 @@ struct SecondaryButtonStyle: ButtonStyle {
                 Color.DesignSystem.secondaryBase
             )
             .cornerRadius(12.0)
-            .padding()
+            .padding([.trailing], 20)
     }
 }

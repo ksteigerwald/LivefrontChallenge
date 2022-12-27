@@ -19,9 +19,9 @@ struct RecommendationsView: View {
 
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(
-                    rows: [GridItem(.flexible())],
+                    rows: [GridItem(.flexible(minimum: 64))],
                     alignment: .top,
-                    spacing: 1,
+                    spacing: 0,
                     pinnedViews: []) {
                         ForEach(app.categories.recommendations, id: \.name) { recomendation in
                             Button(action: {
@@ -30,12 +30,14 @@ struct RecommendationsView: View {
                                 NavigationLink(recomendation.name, value: Route.detail(recomendation.name))
                                     .font(Font.DesignSystem.bodySmallBold)
                                     .frame(width: 64, height: 24)
+                                    .padding(0)
                             }
                             .padding(0)
                             .buttonStyle(SecondaryButtonStyle())
                         }
-                }
+                    }
             }
+            .frame(height: 60)
         }
     }
 }
