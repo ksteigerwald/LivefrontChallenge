@@ -18,12 +18,12 @@ The value of cryptocurrency is determined by supply and demand on exchanges, sim
 Overall, cryptocurrency is a complex and rapidly evolving field that has the potential to change the way we think about money and financial systems. It is important to do thorough research and carefully consider the risks before investing in or using cryptocurrency.
 """
 
-
 struct ArticleView: View {
     @EnvironmentObject private var app: AppEnvironment
     @Binding var path: NavigationPath
-
     let article: NewsArticle
+
+    @State private var generator: ToolButtonAction = .none
 
     var body: some View {
 
@@ -55,7 +55,7 @@ struct ArticleView: View {
                 }
             }
             .overlay(
-                ContentGenerator(),
+                ContentGenerator(generator: $generator),
                 alignment: .bottom)
         }
         .modifier(ToolbarModifier(
@@ -65,7 +65,9 @@ struct ArticleView: View {
         .navigationBarBackButtonHidden()
         .padding([.leading, .trailing], 20)
         .background(Color.DesignSystem.greyscale900)
+        .onChange(of: generator) { val in
+            print("top level: \(val)")
+        }
     }
 
 }
-

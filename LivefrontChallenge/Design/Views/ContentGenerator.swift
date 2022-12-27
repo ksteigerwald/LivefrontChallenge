@@ -13,30 +13,32 @@ enum ToolButtonAction {
     case developer
     case projectManger
     case marketer
+    case none
 }
 
 /// The ContentGenerator view is a horizontal stack of four ToolButtonViews and a "Generate" button.
 struct ContentGenerator: View {
 
-    @State var action: ToolButtonAction = .designer
+    @Binding var generator: ToolButtonAction
+
     var body: some View {
         HStack {
             ToolButtonView(
                 label: "Dz",
                 id: .designer,
-                current: $action)
+                current: $generator)
             ToolButtonView(
                 label: "Dv",
                 id: .developer,
-                current: $action)
+                current: $generator)
             ToolButtonView(
                 label: "Pm",
                 id: .projectManger,
-                current: $action)
+                current: $generator)
             ToolButtonView(
                 label: "Mk",
                 id: .marketer,
-                current: $action)
+                current: $generator)
 
             Spacer()
             Button(action: {}) {
@@ -49,7 +51,8 @@ struct ContentGenerator: View {
             .background(Color.DesignSystem.secondaryBase)
             .clipShape(Capsule())
         }
-        .onChange(of: action) { newVal in
+        .onChange(of: generator) { newVal in
+            generator = newVal
             print("has been set: \(newVal)")
         }
         .padding(.top, 12)
@@ -57,7 +60,6 @@ struct ContentGenerator: View {
         .ignoresSafeArea(.all)
     }
 }
-
 
 /// A view that represents a button in the app's toolbar. The button consists of a circle with text overlaid on top. The button's state can be changed by binding it to a ToolButtonAction value.
 struct ToolButtonView: View {
