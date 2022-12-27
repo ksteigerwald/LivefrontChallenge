@@ -1,6 +1,8 @@
 import SwiftUI
 
 public extension Color {
+
+    static let background = Color(red: 0.06666667014360428, green: 0.0941176488995552, blue: 0.15294118225574493, opacity: 1)
     /// Namespace to prevent naming collisions with static accessors on
     /// SwiftUI's Color.
     ///

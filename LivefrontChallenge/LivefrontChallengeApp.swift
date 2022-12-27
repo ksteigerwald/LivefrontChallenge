@@ -22,10 +22,11 @@ struct LivefrontChallengeApp: App {
                 ZStack {
                     Color.DesignSystem.greyscale900
                     RootView()
+                        .environment(\.colorScheme, .dark)
+                        .background(Color.DesignSystem.greyscale900)
                         .environmentObject(AppEnvironment())
                 }
                 .ignoresSafeArea(.all)
-
             }
         }
     }
