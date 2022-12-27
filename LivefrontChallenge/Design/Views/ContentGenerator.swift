@@ -25,19 +25,19 @@ struct ContentGenerator: View {
     var body: some View {
         HStack {
             ToolButtonView(
-                label: "Dz",
+                label: Image(systemName: "list.bullet"),
                 id: .bulletPoints,
                 current: $action)
             ToolButtonView(
-                label: "Dv",
+                label: Image(systemName: "gauge.medium"),
                 id: .sentiment,
                 current: $action)
             ToolButtonView(
-                label: "Pm",
+                label: Image(systemName: "water.waves"),
                 id: .tone,
                 current: $action)
             ToolButtonView(
-                label: "Mk",
+                label: Image(systemName: "newspaper"),
                 id: .original,
                 current: $action)
 
@@ -66,7 +66,7 @@ struct ContentGenerator: View {
 /// A view that represents a button in the app's toolbar. The button consists of a circle with text overlaid on top. The button's state can be changed by binding it to a ToolButtonAction value.
 struct ToolButtonView: View {
 
-    let label: String
+    let label: Image
     let id: ToolButtonAction
     @Binding var current: ToolButtonAction
     @State private var isOn: Bool = false
