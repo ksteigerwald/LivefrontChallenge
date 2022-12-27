@@ -29,34 +29,9 @@ struct ToolbarModifier: ViewModifier {
                 }
 
                 ToolbarItemGroup(placement: .bottomBar) {
-                    HStack {
-                        Button(action: {}) {
-                            Circle()
-                                .fill(Color.DesignSystem.greyscale800)
-                                .frame(width: 40, height: 40)
-                        }
-                        Button(action: {}) {
-                            Circle()
-                                .fill(Color.DesignSystem.greyscale800)
-                                .frame(width: 40, height: 40)
-                        }
-                        Button(action: {}) {
-                            Circle()
-                                .fill(Color.DesignSystem.greyscale800)
-                                .frame(width: 40, height: 40)
-                        }
-                        Spacer()
-                        Button(action: {}) {
-                            Text("Generate")
-                                .padding([.leading, .trailing], 30)
-                                .font(Font.DesignSystem.bodyMediumBold)
-                                .foregroundColor(Color.DesignSystem.greyscale50)
-                        }
-                        .frame(width: 80, height: 40)
-                        .background(Color.DesignSystem.secondaryBase)
-                        .clipShape(Capsule())
-                    }
+
                 }
             }
+            .toolbarBackground(Color.DesignSystem.greyscale900, for: .automatic)
     }
 }
