@@ -12,7 +12,7 @@ extension String {
     /// - Returns: An array containing the headline and body, or `nil` if there are fewer than 2 lines in the string.
     func parseHeadlineAndBody() -> [String] {
         let filtered = (self as NSString).components(separatedBy: "\n").filter { element in
-            return element.trimmingCharacters(in: .whitespacesAndNewlines).count > 0
+            element.trimmingCharacters(in: .whitespacesAndNewlines).count > 0
         }
         guard filtered.count >= 2 else { return ["Headline Error:", "Content Generation Error:"] }
         return filtered

@@ -35,7 +35,7 @@ struct RecommendationsView: View {
                             .padding(0)
                             .buttonStyle(SecondaryButtonStyle())
                         }
-                    }
+                }
             }
             .frame(height: 60)
         }

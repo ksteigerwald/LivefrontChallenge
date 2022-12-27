@@ -113,7 +113,7 @@ class ArticleRepository: ObservableObject, ArticleInterface {
             case .failure(let error):
                 print(error)
             }
-        } catch(let error) {
+        } catch let error {
             print(error)
         }
     }
@@ -157,7 +157,7 @@ class ArticleRepository: ObservableObject, ArticleInterface {
             case .failure(let error):
                 return .failure(error)
             }
-        } catch(let error) {
+        } catch let error {
             return .failure(error)
         }
     }

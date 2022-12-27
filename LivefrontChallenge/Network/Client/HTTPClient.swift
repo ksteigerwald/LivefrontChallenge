@@ -68,7 +68,7 @@ extension HTTPClient {
             case 400:
                 throw RequestError.invalidRequest
             default:
-                //TODO: HANDLER MODEL MAXIMUM
+                // TODO: HANDLER MODEL MAXIMUM
                 throw RequestError.unknown
             }
         } catch URLError.Code.notConnectedToInternet {
