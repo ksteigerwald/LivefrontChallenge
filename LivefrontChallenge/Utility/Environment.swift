@@ -73,7 +73,7 @@ public enum Environment {
                 case .sentimentAnalysis(let context):
                     return "Provide sentiment analysis for the given content: \(context)"
                 case .toneAnalysis(let context):
-                    return "Identify the tone of the article (positive, negative, neutral) for the given content: \(context)"
+                    return "Identify the tone of the article (positive, negative, neutral) for the given content, respond only with (positive, negative, neutral): \(context)"
                 }
             }
         }

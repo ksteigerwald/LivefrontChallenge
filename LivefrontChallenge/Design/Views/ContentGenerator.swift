@@ -34,6 +34,17 @@ enum ToolButtonAction {
         case .none: return ""
         }
     }
+
+    var loadingMessage: String {
+        switch self {
+        case .bulletPoints: return "Loading a set of bullet points from the article provided"
+        case .sentiment: return "Running sentiment analysis on the given article..."
+        case .tone: return "Running tone (positive, negative, neutral) analysis on the given article..."
+        case .original: return "Content is being fetched from a given URL, then summarized into 7 paragraphs"
+        case .none: return ""
+        }
+    }
+
 }
 
 /// The ContentGenerator view is a horizontal stack of four ToolButtonViews and a "Generate" button.
