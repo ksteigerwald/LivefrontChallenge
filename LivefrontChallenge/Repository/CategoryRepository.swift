@@ -8,76 +8,64 @@
 import Foundation
 import Combine
 
-struct NewsCategory {
+extension Future where Failure == Error {
+    convenience init(asyncFunc: @escaping () async throws -> Output) {
+        self.init { promise in
+            Task {
+                do {
+                    let result = try await asyncFunc()
+                    promise(.success(result))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+    }
+}
+
+struct NewsCategory: Hashable {
     let name: String
 }
 
 protocol CategoryInterface {
-    func fetchCategories() async
-    func fetchNewsForCategory(category: String) async
+    func fetchCategories() async -> Result<[NewsCategory], Error>
+    func fetchNewsForCategory(category: String) async -> Future<CryptoCompareResponse, Error>
 }
 
 typealias CategoryDataRepository = CryptoCompareServiceable
 
-class CategoryRepository: ObservableObject, CategoryInterface {
-
-    @Published var categories = [NewsCategory]() {
-        didSet {
-            assembleRecomendations()
-        }
-    }
-    @Published var recommendations = [NewsCategory]()
-    @Published var newsForCategory = [String]()
-
+class CategoryRepository: CategoryInterface {
     private let ccService: CryptoCompareService
-    private var cancellables = [AnyCancellable]()
 
     init(ccService: CryptoCompareService = CryptoCompareService()) {
         self.ccService = ccService
     }
 
-    @MainActor
-    func fetchNewsForCategory(category: String) async {
-        do {
-            let params = CryptoCompareRequestParams(
-                categories: category
-            )
-            let result = try await ccService.getNews(requestParams: params)
-            switch result {
-            case .success(let news):
-                self.newsForCategory = news.articles.map { $0.url }
-            case .failure(let error):
-                print(error)
-            }
-        } catch let error {
-            print(error)
-        }
+    func fetchNewsForCategory(category: String) -> Future<CryptoCompareResponse, Error> {
+        let params = CryptoCompareRequestParams(
+            categories: category
+        )
+        return Future(asyncFunc: {
+            try await self.ccService.getNews(requestParams: params).get()
+        })
     }
 
     @MainActor
-    func fetchCategories() async {
+    func fetchCategories() async -> Result<[NewsCategory], Error> {
         do {
             let result = try await ccService.getNewsCategories()
 
             switch result {
             case .success(let data):
-                self.categories = data.map {
-                    let val = NewsCategory(name: $0.categoryName)
-                    return val
+                let categories = data.map {
+                    NewsCategory(name: $0.categoryName)
                 }
-
+                return .success(categories)
             case .failure(let error):
-                print(error)
-                // TODO: handle error
-                return
+                return .failure(error)
             }
         } catch let error {
-            print(error)
+            return .failure(error)
         }
-    }
-
-    private func assembleRecomendations() {
-        // TODO: Store selected articles and related categories
-        recommendations = categories.filter { ["XRP", "ETH", "ALGO", "BTC", "XLM"].contains($0.name) }
     }
 }

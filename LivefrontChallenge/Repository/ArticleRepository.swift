@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 struct Article {
     let category: String
@@ -40,13 +41,10 @@ protocol ArticleInterface {
     /// - Parameters:
     ///   - category: The category for the summary article.
     ///   - articles: The list of articles to summarize.
-    func generateSummaryArticle(
-        category: String,
-        articles: [String]
-    ) async
+    func generateSummaryArticle(category: String, articles: [String]) -> Future<OpenAIResponse, Error>
 
     /// Fetches latest news articles
-    func getLatestArticles(limit: Int) async
+    func getLatestArticles(limit: Int) async -> Result<[NewsArticle], Error>
 
     /// Generate a new article from a source and selected prompt
     func generateArticleFromSource(prompt: Prompts) async -> Result<Article, Error>
@@ -57,7 +55,6 @@ typealias ArticleDataRepository = OpenAIServiceable
 
 /// A class for storing and managing articles.
 class ArticleRepository: ObservableObject, ArticleInterface {
-
     /// The OpenAI service to use for generating article summaries.
     private let service: OpenAIService
 
@@ -86,8 +83,7 @@ class ArticleRepository: ObservableObject, ArticleInterface {
     /// - Parameters:
     ///   - category: The category of the articles.
     ///   - articles: The list of articles to summarize.
-    public func generateSummaryArticle(category: String, articles: [String]) async {
-        // TODO: update this to return data not assign to categories
+    public func generateSummaryArticle(category: String, articles: [String]) -> Future<OpenAIResponse, Error> {
         let articles = articles.prefix(10).joined(separator: ",\n")
         let params = OpenAIRequestParams(
             model: Prompts.Models.davinci003.rawValue,
@@ -98,39 +94,25 @@ class ArticleRepository: ObservableObject, ArticleInterface {
             frequency_penalty: 0,
             presence_penalty: 0
         )
-        do {
-            let result = try await service.getSummaries(requestParams: params)
-            switch result {
-            case .success(let article):
-                guard let summary = article.choices.first else { return }
-                self.categorySummary = [
-                    Article(
-                        category: category,
-                        document: summary.text
-                    )]
-            case .failure(let error):
-                print(error)
-            }
-        } catch let error {
-            print(error)
-        }
+        return Future(asyncFunc: {
+            try await self.service.getSummaries(requestParams: params).get()
+        })
     }
 
     /// get the latest news articles
-    func getLatestArticles(limit: Int = 5) async {
+    func getLatestArticles(limit: Int = 5) async -> Result<[NewsArticle], Error> {
         do {
             let params = CryptoCompareRequestParams()
             let result = try await newsService.getNews(requestParams: params)
 
             switch result {
             case .success(let news):
-                self.news = Array(news.articles.prefix(limit))
+                return .success(Array(news.articles.prefix(limit)))
             case .failure(let error):
-                print(error)
+                return .failure(error)
             }
         } catch let error {
-            // TODO: return vs storing in published object
-            print(error)
+            return .failure(error)
         }
     }
 

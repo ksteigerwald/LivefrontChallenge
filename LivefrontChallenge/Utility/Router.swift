@@ -10,6 +10,6 @@ import Foundation
 enum Route: Hashable {
     case home
     case newsList
-    case detail(String)
+    case summaryView(NewsCategory)
     case article(NewsArticle)
 }

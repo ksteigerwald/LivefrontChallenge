@@ -13,6 +13,7 @@ struct RootView: View {
     @EnvironmentObject var app: AppEnvironment
     @State private var isCategoriesLoaded = false
     @State private var path = NavigationPath()
+    @State var articles: [NewsArticle]
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -30,16 +31,19 @@ struct RootView: View {
                         .foregroundColor(Color.DesignSystem.primary100)
                         .font(Font.DesignSystem.headingH1)
                         .padding(.top, 200)
-
                 }
             }
         }
         .task {
-            do {
-                await self.app.categories.fetchCategories()
-                await self.app.articles.getLatestArticles()
-                self.isCategoriesLoaded = true
+            let result = await self.app.articles.getLatestArticles()
+            switch result {
+            case .success(let articles):
+                self.articles = articles
+            case .failure(let error):
+                // TODO: Setup toast or something...
+                print(error)
             }
+            self.isCategoriesLoaded = true
         }
     }
 
@@ -47,7 +51,7 @@ struct RootView: View {
         VStack(alignment: .leading) {
             MainHeadingView()
             RecommendationsView()
-            NewsFeed()
+            NewsFeed(articles: $articles)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .padding([.leading, .trailing], 20)
@@ -56,12 +60,12 @@ struct RootView: View {
         .background(Color.DesignSystem.greyscale900)
         .navigationDestination(for: Route.self) { route in
             switch route {
-            case .home: RootView()
-            case .detail(let category):
+            case .home: RootView(articles: [])
+            case .summaryView(let category):
                 ArticleSummaryView(
                     path: $path,
                     article: Article(
-                        category: category,
+                        category: category.name,
                         document: ""
                     )
                 )

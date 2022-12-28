@@ -16,6 +16,8 @@ struct ArticleSummaryView: View {
     @State private var document: Article = Article()
     @Binding var path: NavigationPath
 
+    @State private var tempCategories: [NewsCategory] = [NewsCategory(name: "XRP")]
+
     let article: Article
     var body: some View {
         ZStack(alignment: .leading) {
@@ -51,7 +53,8 @@ struct ArticleSummaryView: View {
 
                 }
             } else {
-                SummaryLoadingView()
+                SummaryLoadingView(categories: $tempCategories )
+                    .environmentObject(AppEnvironment())
             }
             Spacer()
         }
@@ -62,20 +65,27 @@ struct ArticleSummaryView: View {
             heading: "Summary Article")
         )
         .task {
-            _ = await app.categories.fetchNewsForCategory(category: article.category)
-            app.categories.$newsForCategory
+            app.categories.fetchNewsForCategory(category: article.category)
+                .mapError { $0 as Error }
+                .flatMap { response in
+                    app.articles.generateSummaryArticle(
+                        category: article.category,
+                        articles: response.articles.map { $0.url }
+                    )
+                }
                 .sink(
                     receiveCompletion: { _ in},
-                    receiveValue: { value in
-                        Task {
-                            await app.articles.generateSummaryArticle(
-                                category: article.category,
-                                articles: value
-                            )
-                            guard let doc = app.articles.categorySummary.first else { return }
-                            self.document = doc
-                            self.isArticleLoaded = true
+                    receiveValue: { response in
+                        guard let choice = response.choices.first else {
+                            return
                         }
+
+                        let article = Article(
+                            category: "XRP",
+                            document: choice.text
+                        )
+                        self.document = article
+                        self.isArticleLoaded = true
                     })
                 .store(in: &cancellables)
         }

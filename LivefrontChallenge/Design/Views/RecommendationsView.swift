@@ -10,6 +10,13 @@ import SwiftUI
 struct RecommendationsView: View {
     @EnvironmentObject var app: AppEnvironment
 
+    @State private var recomendations = [
+        NewsCategory(name: "XRP"),
+        NewsCategory(name: "ALGO"),
+        NewsCategory(name: "ETH"),
+        NewsCategory(name: "BTC"),
+        NewsCategory(name: "XLM")
+    ]
     var body: some View {
         VStack(alignment: .leading) {
             Text("Recommendations")
@@ -23,11 +30,9 @@ struct RecommendationsView: View {
                     alignment: .top,
                     spacing: 0,
                     pinnedViews: []) {
-                        ForEach(app.categories.recommendations, id: \.name) { recomendation in
-                            Button(action: {
-                            }
-                            ) {
-                                NavigationLink(recomendation.name, value: Route.detail(recomendation.name))
+                        ForEach(recomendations, id: \.name) { recomendation in
+                            Button(action: {}) {
+                                NavigationLink(recomendation.name, value: Route.summaryView(recomendation))
                                     .font(Font.DesignSystem.bodySmallBold)
                                     .frame(width: 64, height: 24)
                                     .padding(0)

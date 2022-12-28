@@ -49,7 +49,7 @@ struct OpenAIResponse: Decodable {
     var model: String
 
     /// An array of completion choices
-    let choices: [Choice]
+    var choices: [Choice]
 
     /// Statistics about the usage of the response
     var usage: Usage

@@ -65,7 +65,7 @@
 		80F9E63F295A7EDC00222177 /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E63E295A7EDC00222177 /* NewsListView.swift */; };
 		80F9E642295A808300222177 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 80F9E641295A808300222177 /* RiveRuntime */; };
 		80F9E64A295A826B00222177 /* tech.riv in Resources */ = {isa = PBXBuildFile; fileRef = 80F9E649295A826B00222177 /* tech.riv */; };
-		80F9E64C295A8E1100222177 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E64B295A8E1100222177 /* SwiftUIView.swift */; };
+		80F9E64C295A8E1100222177 /* SummaryLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E64B295A8E1100222177 /* SummaryLoadingView.swift */; };
 		80F9E64E295AD05600222177 /* ContentGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E64D295AD05600222177 /* ContentGenerator.swift */; };
 		80F9E650295ADE2500222177 /* HackerNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E64F295ADE2500222177 /* HackerNews.swift */; };
 		80F9E652295AE09F00222177 /* HackerNewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E651295AE09F00222177 /* HackerNewsService.swift */; };
@@ -149,7 +149,7 @@
 		80D4BE292955230C000DA3B5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		80F9E63E295A7EDC00222177 /* NewsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
 		80F9E649295A826B00222177 /* tech.riv */ = {isa = PBXFileReference; lastKnownFileType = file; name = tech.riv; path = "../../../../../Dropbox (Personal)/My Mac (Velaru.cable.rcn.com)/Downloads/tech.riv"; sourceTree = "<group>"; };
-		80F9E64B295A8E1100222177 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		80F9E64B295A8E1100222177 /* SummaryLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryLoadingView.swift; sourceTree = "<group>"; };
 		80F9E64D295AD05600222177 /* ContentGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGenerator.swift; sourceTree = "<group>"; };
 		80F9E64F295ADE2500222177 /* HackerNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerNews.swift; sourceTree = "<group>"; };
 		80F9E651295AE09F00222177 /* HackerNewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerNewsService.swift; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 				80B2222D295A136600E3DA6F /* RootView.swift */,
 				80B2222F295A1C9E00E3DA6F /* ToolbarModifier.swift */,
 				80F9E63E295A7EDC00222177 /* NewsListView.swift */,
-				80F9E64B295A8E1100222177 /* SwiftUIView.swift */,
+				80F9E64B295A8E1100222177 /* SummaryLoadingView.swift */,
 				80F9E64D295AD05600222177 /* ContentGenerator.swift */,
 				80F9E653295BBBFC00222177 /* ContentGeneratorRevealView.swift */,
 			);
@@ -440,7 +440,6 @@
 			buildConfigurationList = 80C287FA2954E3E800067BBC /* Build configuration list for PBXNativeTarget "LivefrontChallenge" */;
 			buildPhases = (
 				80C287D22954E3E300067BBC /* Sources */,
-				80F9E655295C021C00222177 /* ShellScript */,
 				80C287D32954E3E300067BBC /* Frameworks */,
 				80C287D42954E3E300067BBC /* Resources */,
 			);
@@ -578,26 +577,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		80F9E655295C021C00222177 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		80C287D22954E3E300067BBC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -633,7 +612,7 @@
 				80C0A02A295753B4000D6E30 /* AppEnvironment.swift in Sources */,
 				808277412957D23000CCA40B /* RecommendationsView.swift in Sources */,
 				8082774C2958E0BE00CCA40B /* NewsFeed.swift in Sources */,
-				80F9E64C295A8E1100222177 /* SwiftUIView.swift in Sources */,
+				80F9E64C295A8E1100222177 /* SummaryLoadingView.swift in Sources */,
 				80C288062954E8A400067BBC /* HTTPClient.swift in Sources */,
 				801C216729553E7D008072D8 /* GeckoService.swift in Sources */,
 				80C0A00929557634000D6E30 /* Constants.swift in Sources */,
