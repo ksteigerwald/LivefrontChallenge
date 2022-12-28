@@ -68,6 +68,7 @@
 		80F9E64E295AD05600222177 /* ContentGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E64D295AD05600222177 /* ContentGenerator.swift */; };
 		80F9E650295ADE2500222177 /* HackerNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E64F295ADE2500222177 /* HackerNews.swift */; };
 		80F9E652295AE09F00222177 /* HackerNewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E651295AE09F00222177 /* HackerNewsService.swift */; };
+		80F9E654295BBBFD00222177 /* ContentGeneratorRevealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E653295BBBFC00222177 /* ContentGeneratorRevealView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +151,7 @@
 		80F9E64D295AD05600222177 /* ContentGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGenerator.swift; sourceTree = "<group>"; };
 		80F9E64F295ADE2500222177 /* HackerNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerNews.swift; sourceTree = "<group>"; };
 		80F9E651295AE09F00222177 /* HackerNewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackerNewsService.swift; sourceTree = "<group>"; };
+		80F9E653295BBBFC00222177 /* ContentGeneratorRevealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGeneratorRevealView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +242,7 @@
 				80F9E63E295A7EDC00222177 /* NewsListView.swift */,
 				80F9E64B295A8E1100222177 /* SwiftUIView.swift */,
 				80F9E64D295AD05600222177 /* ContentGenerator.swift */,
+				80F9E653295BBBFC00222177 /* ContentGeneratorRevealView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				801C216729553E7D008072D8 /* GeckoService.swift in Sources */,
 				80C0A00929557634000D6E30 /* Constants.swift in Sources */,
 				80B2222E295A136600E3DA6F /* RootView.swift in Sources */,
+				80F9E654295BBBFD00222177 /* ContentGeneratorRevealView.swift in Sources */,
 				808277502958E40400CCA40B /* NewsItem.swift in Sources */,
 				808277432957D30600CCA40B /* MainHeadingView.swift in Sources */,
 				80F9E652295AE09F00222177 /* HackerNewsService.swift in Sources */,
