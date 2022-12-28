@@ -21,7 +21,7 @@ struct LivefrontChallengeApp: App {
             } else {
                 ZStack {
                     Color.DesignSystem.greyscale900
-                    RootView(articles: [])
+                    RootView(articleFeedItems: [])
                         .environment(\.colorScheme, .dark)
                         .background(Color.DesignSystem.greyscale900)
                         .environmentObject(AppEnvironment())

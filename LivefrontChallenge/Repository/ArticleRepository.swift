@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-struct Article {
+struct Article: Hashable {
     let category: String
     let document: String
     let headline: String
@@ -27,9 +27,15 @@ struct Article {
         headline: String? = nil,
         body: String? = nil,
         articleURL: String = "",
-        imageURL: String = "https://placeimg.com/320/240/any"
+        imageURL: String = "https://placeimg.com/320/240/any",
+        parse: Bool = true
     ) {
-        var content: [String] = document.parseHeadlineAndBody()
+        var content: [String]
+        if parse {
+            content = document.parseHeadlineAndBody()
+        } else {
+            content = [headline ?? "-", body ?? "+"]
+        }
         self.category = category
         self.document = document
         self.imageURL = imageURL
@@ -47,7 +53,7 @@ protocol ArticleInterface {
     func generateSummaryArticle(category: String, articles: [String]) -> Future<OpenAIResponse, Error>
 
     /// Fetches latest news articles
-    func getLatestArticles(limit: Int) async -> AnyPublisher<Result<[NewsArticle], Error>, Error>
+    func getLatestArticles(limit: Int) async -> AnyPublisher<Result<[ArticleFeedItem], Error>, Error>
 
     /// Generate a new article from a source and selected prompt
     func generateArticleFromSource(prompt: Prompts) async -> Result<Article, Error>
@@ -101,7 +107,7 @@ class ArticleRepository: ObservableObject, ArticleInterface {
         })
     }
     /// get the latest news articles
-    func getLatestArticles(limit: Int = 5) -> AnyPublisher<Result<[NewsArticle], Error>, Error> {
+    func getLatestArticles(limit: Int = 5) -> AnyPublisher<Result<[ArticleFeedItem], Error>, Error> {
         queryForArticles()
             .map { Result.success($0.articles) }
             .mapError { $0 as Error }

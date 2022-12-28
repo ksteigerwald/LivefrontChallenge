@@ -11,5 +11,5 @@ enum Route: Hashable {
     case home
     case newsList
     case summaryView(NewsCategory)
-    case article(NewsArticle)
+    case article(ArticleFeedItem)
 }

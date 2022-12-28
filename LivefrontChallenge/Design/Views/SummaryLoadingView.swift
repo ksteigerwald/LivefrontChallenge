@@ -55,7 +55,7 @@ struct SummaryLoadingView_Previews: PreviewProvider {
             Article(articleURL: "https://ambcrypto.com/algorand-algo-price-prediction-13/"),
             Article(articleURL: "https://coinedition.com/apecoin-ape-surpasses-algorand-in-market-capitalization/"),
             Article(articleURL: "https://www.cryptopolitan.com/bitcoin-ethereum-algorand-and-vechain-daily-price-analyses-20-december-roundup/"),
-            Article(articleURL: "https://www.cryptopolitan.com/ark-price-prediction-2022-2031-is-ark-a-good-investment/"),
+            Article(articleURL: "https://www.cryptopolitan.com/ark-price-prediction-2022-2031-is-ark-a-good-investment/")
         ]))
 
     }

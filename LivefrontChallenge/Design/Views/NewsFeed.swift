@@ -11,7 +11,7 @@ struct NewsFeed: View {
 
     @EnvironmentObject private var app: AppEnvironment
     @State private var isActive = false
-    @Binding var articles: [NewsArticle]
+    @Binding var articleFeedItems: [ArticleFeedItem]
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -30,10 +30,15 @@ struct NewsFeed: View {
             Section {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 20) {
-                        ForEach(articles, id: \.id) { article in
+                        ForEach(articleFeedItems, id: \.hashValue) { article in
                             NavigationLink(value: Route.article(article)) {
-                                NewsItem(article: article)
+                                NewsItem(articleFeedItem: article)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
+                                    .task {
+                                        print(article.title)
+                                        print(article.body)
+                                        print("*******")
+                                    }
                             }
                         }
                     }

@@ -9,15 +9,15 @@ import SwiftUI
 
 struct NewsItem: View {
 
-    let article: NewsArticle
+    let articleFeedItem: ArticleFeedItem
 
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(article.categories)
+                Text(articleFeedItem.categories)
                     .font(Font.DesignSystem.bodySmallMedium)
                     .foregroundColor(Color.DesignSystem.greyscale500)
-                Text(article.title)
+                Text(articleFeedItem.title)
                     .font(Font.DesignSystem.headingH6)
                     .foregroundColor(Color.DesignSystem.greyscale50)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -25,7 +25,7 @@ struct NewsItem: View {
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
             }
-            AsyncImage(url: URL(string: article.imageUrl)) { image in
+            AsyncImage(url: URL(string: articleFeedItem.imageUrl)) { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)

@@ -60,7 +60,7 @@ struct CryptoCompareResponse: Decodable {
     /// A list of promoted articles
     let promoted: [PromotedArticle]
     /// A list of news articles
-    let articles: [NewsArticle]
+    let articles: [ArticleFeedItem]
     /// The rate limit for the response
     let rateLimit: RateLimit
     /// A boolean value indicating if the response has a warning
@@ -85,7 +85,7 @@ struct PromotedArticle: Decodable {
     // TODO: add properties
 }
 
-struct NewsArticle: Decodable, Hashable {
+struct ArticleFeedItem: Decodable, Hashable {
     /// The ID of the news article
     let id: String
     /// The globally unique identifier of the news article
@@ -115,7 +115,7 @@ struct NewsArticle: Decodable, Hashable {
     /// The source of the article
     let source: String
 
-    static func == (lhs: NewsArticle, rhs: NewsArticle) -> Bool {
+    static func == (lhs: ArticleFeedItem, rhs: ArticleFeedItem) -> Bool {
         lhs.title == rhs.title && lhs.id == rhs.id
     }
 
@@ -123,6 +123,15 @@ struct NewsArticle: Decodable, Hashable {
         hasher.combine(id)
     }
 
+    func convertTo(body: String = "") -> Article {
+        Article(
+            category: self.categories,
+            document: body.isEmpty ? self.body : body,
+            headline: self.title,
+            imageURL: self.imageUrl,
+            parse: false
+        )
+    }
     private enum CodingKeys: String, CodingKey {
         case id
         case guid

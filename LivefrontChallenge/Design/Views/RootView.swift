@@ -15,7 +15,7 @@ struct RootView: View {
     @State private var isCategoriesLoaded = false
     @State private var loadingOrError: String = "Loading..."
     @State private var path = NavigationPath()
-    @State var articles: [NewsArticle]
+    @State var articleFeedItems: [ArticleFeedItem]
     @State private var cancellables = [AnyCancellable]()
 
     @State private var recomendations = [
@@ -52,7 +52,7 @@ struct RootView: View {
                     receiveValue: { result in
                         switch result {
                         case .success(let articles):
-                            self.articles = articles
+                            self.articleFeedItems = articles
                             self.isCategoriesLoaded = true
                         case .failure(let error):
                             self.loadingOrError = "Failed to fetch latest articles: \(error)"
@@ -66,7 +66,7 @@ struct RootView: View {
         VStack(alignment: .leading) {
             MainHeadingView()
             RecommendationsView(recomendations: $recomendations)
-            NewsFeed(articles: $articles)
+            NewsFeed(articleFeedItems: $articleFeedItems)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .padding([.leading, .trailing], 20)
@@ -75,15 +75,15 @@ struct RootView: View {
         .background(Color.DesignSystem.greyscale900)
         .navigationDestination(for: Route.self) { route in
             switch route {
-            case .home: RootView(articles: [])
+            case .home: RootView(articleFeedItems: [])
             case .summaryView(let category):
                 ArticleSummaryView(
                     path: $path,
                     category: category
                 )
                 .environmentObject(AppEnvironment())
-            case .article(let article):
-                ArticleView(path: $path, article: article)
+            case .article(let articleFeedItem):
+                ArticleView(path: $path, articleFeedItem: articleFeedItem)
                     .environmentObject(AppEnvironment())
             case .newsList:
                 NewsListView(path: $path)
