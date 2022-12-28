@@ -16,7 +16,7 @@ struct RecommendationsView: View {
             Text("Recommendations")
                 .foregroundColor(Color.DesignSystem.greyscale50)
                 .font(Font.DesignSystem.bodyLargeBold)
-                .padding(0)
+                .padding(.bottom, 16)
 
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(
@@ -37,6 +37,7 @@ struct RecommendationsView: View {
                 }
             }
             .frame(height: 60)
+            .padding(.bottom, 24)
         }
     }
 }
