@@ -5,6 +5,23 @@ This application pulls news streams from CryptoCompare and analyzes the results 
 
 The app utilizes many of the latest features available on iOS 16. Build and run this application using XCode 14.2; there is no guarantee that it will work with any earlier version.
 
+## How to run
+API Key's for CryptoCompare and OpenAI must be included in the Environment file under the Token enum. For the intended audience, I will share the API keys with you. 
+
+This project makes use of swiftlint, to install it on your system:
+```
+brew install swiftlint
+```
+For further instructions go here:[SwiftLint](https://github.com/realm/SwiftLint)
+
+#### Other Dependencies
+- Backend Decodable
+- OHTTPStubs for testing
+- RiveRuntime for aniations
+
+## Features
+List and describe the key features of the app
+
 ### Networking
 - Abstract networking layer that is optimized for use with multiple API's
 - Generalized HTTPClient for low overhead and flexibility as needed
@@ -26,8 +43,7 @@ Provide instructions on how to build and run the app
 ## Credits and Inspiration
 - https://developer.apple.com/forums/thread/699003
 - https://betterprogramming.pub/async-await-generic-network-layer-with-swift-5-5-2bdd51224ea9
+- https://www.figma.com/community/plugin/1041038879576667317/Swift-Package-Exporter (Love this)
 
-## Features
-List and describe the key features of the app
 ## Screenshots
 Include a few screenshots of the app in action
