@@ -13,9 +13,18 @@ struct RootView: View {
 
     @EnvironmentObject var app: AppEnvironment
     @State private var isCategoriesLoaded = false
+    @State private var loadingOrError: String = "Loading..."
     @State private var path = NavigationPath()
     @State var articles: [NewsArticle]
     @State private var cancellables = [AnyCancellable]()
+
+    @State private var recomendations = [
+        NewsCategory(name: "XRP"),
+        NewsCategory(name: "ALGO"),
+        NewsCategory(name: "ETH"),
+        NewsCategory(name: "BTC"),
+        NewsCategory(name: "XLM")
+    ]
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -46,7 +55,7 @@ struct RootView: View {
                             self.articles = articles
                             self.isCategoriesLoaded = true
                         case .failure(let error):
-                            print(error)
+                            self.loadingOrError = "Failed to fetch latest articles: \(error)"
                         }
                     }
                 ).store(in: &cancellables)
@@ -56,7 +65,7 @@ struct RootView: View {
     var mainContent: some View {
         VStack(alignment: .leading) {
             MainHeadingView()
-            RecommendationsView()
+            RecommendationsView(recomendations: $recomendations)
             NewsFeed(articles: $articles)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
@@ -70,10 +79,7 @@ struct RootView: View {
             case .summaryView(let category):
                 ArticleSummaryView(
                     path: $path,
-                    article: Article(
-                        category: category.name,
-                        document: ""
-                    )
+                    category: category
                 )
                 .environmentObject(AppEnvironment())
             case .article(let article):

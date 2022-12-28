@@ -13,6 +13,7 @@ struct Article {
     let document: String
     let headline: String
     let body: String
+    let articleURL: String
     let imageURL: String
     /// Initializes an `Article` instance.
     /// - Parameters:
@@ -25,12 +26,14 @@ struct Article {
         document: String = "",
         headline: String? = nil,
         body: String? = nil,
+        articleURL: String = "",
         imageURL: String = "https://placeimg.com/320/240/any"
     ) {
         var content: [String] = document.parseHeadlineAndBody()
         self.category = category
         self.document = document
         self.imageURL = imageURL
+        self.articleURL = articleURL
         self.headline = content.remove(at: 0)
         self.body = content.joined(separator: "\n\n")
     }
@@ -59,14 +62,6 @@ class ArticleRepository: ObservableObject, ArticleInterface {
     private let service: OpenAIService
 
     private let newsService: CryptoCompareService
-
-    /// A published array of articles, which will be used to update views that are observing this object.
-    @Published var categorySummary = [Article]()
-
-    @Published var summarizedArticle: Article?
-
-    /// latest news
-    @Published var news = [NewsArticle]()
 
     /// Initializes a new `ArticleRepository` with the given OpenAI service.
     ///

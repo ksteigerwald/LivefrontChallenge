@@ -8,17 +8,20 @@
 import SwiftUI
 import Combine
 
+class ArticleList: ObservableObject {
+    @Published var articles = [Article]()
+}
+
 struct ArticleSummaryView: View {
 
-    @EnvironmentObject var app: AppEnvironment
+    @EnvironmentObject private var app: AppEnvironment
     @State private var cancellables = [AnyCancellable]()
     @State private var isArticleLoaded = false
     @State private var document: Article = Article()
     @Binding var path: NavigationPath
+    @StateObject private var newsSources: ArticleList = .init()
+    @State var category: NewsCategory
 
-    @State private var tempCategories: [NewsCategory] = [NewsCategory(name: "XRP")]
-
-    let article: Article
     var body: some View {
         ZStack(alignment: .leading) {
             Color.DesignSystem.greyscale900
@@ -53,41 +56,52 @@ struct ArticleSummaryView: View {
 
                 }
             } else {
-                SummaryLoadingView(categories: $tempCategories )
+                SummaryLoadingView(newsSources: $newsSources.articles)
                     .environmentObject(AppEnvironment())
             }
             Spacer()
         }
         .background(Color.DesignSystem.greyscale900)
         .navigationBarBackButtonHidden()
+        .onReceive(newsSources.$articles) { sources in
+            guard !sources.isEmpty else { return }
+            let urls: [String] = Array(sources.map { $0.articleURL }.prefix(10))
+            guard let source = sources.first else { return }
+            app.articles.generateSummaryArticle(category: source.category, articles: urls)
+                .sink(receiveCompletion: {_ in }, receiveValue: { response in
+                    guard let choice = response.choices.first else { return }
+                    let article = Article(
+                        category: source.category,
+                        document: choice.text
+                    )
+                    self.document = article
+                    self.isArticleLoaded = true
+                })
+                .store(in: &cancellables)
+
+        }
         .modifier(ToolbarModifier(
             path: $path,
             heading: "Summary Article")
         )
         .task {
-            app.categories.fetchNewsForCategory(category: article.category)
+            app.categories.fetchNewsForCategory(category: category.name)
                 .mapError { $0 as Error }
-                .flatMap { response in
-                    app.articles.generateSummaryArticle(
-                        category: article.category,
-                        articles: response.articles.map { $0.url }
-                    )
-                }
-                .sink(
-                    receiveCompletion: { _ in},
-                    receiveValue: { response in
-                        guard let choice = response.choices.first else {
-                            return
-                        }
-
-                        let article = Article(
-                            category: "XRP",
-                            document: choice.text
+                .map { response in
+                    response.articles.map {
+                        Article(
+                            category: category.name,
+                            headline: $0.title,
+                            articleURL: $0.url
                         )
-                        self.document = article
-                        self.isArticleLoaded = true
-                    })
+                    }
+                }
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { _ in}, receiveValue: { articles in
+                        self.newsSources.articles = articles
+                })
                 .store(in: &cancellables)
         }
+
     }
 }

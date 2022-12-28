@@ -9,14 +9,8 @@ import SwiftUI
 
 struct RecommendationsView: View {
     @EnvironmentObject var app: AppEnvironment
+    @Binding var recomendations: [NewsCategory]
 
-    @State private var recomendations = [
-        NewsCategory(name: "XRP"),
-        NewsCategory(name: "ALGO"),
-        NewsCategory(name: "ETH"),
-        NewsCategory(name: "BTC"),
-        NewsCategory(name: "XLM")
-    ]
     var body: some View {
         VStack(alignment: .leading) {
             Text("Recommendations")

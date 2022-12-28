@@ -10,7 +10,8 @@ import RiveRuntime
 
 struct SummaryLoadingView: View {
     @EnvironmentObject var app: AppEnvironment
-    @Binding var categories: [NewsCategory]
+    @Binding var newsSources: [Article]
+
     var body: some View {
         ZStack {
             RiveViewModel(fileName: "tech").view()
@@ -20,8 +21,9 @@ struct SummaryLoadingView: View {
                     .foregroundColor(Color.DesignSystem.greyscale50)
                     .padding([.leading, .trailing], 20)
                 /// load news article from fetched categories
-                ForEach(categories, id: \.self) { category in
-                    Text(category.name)
+                ForEach(newsSources, id: \.articleURL) { item in
+                    Text(item.articleURL)
+                        .font(Font.DesignSystem.bodyXsmallRegular)
                         .foregroundColor(Color.DesignSystem.secondaryBase)
                 }
             }

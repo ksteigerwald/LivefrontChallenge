@@ -36,7 +36,7 @@ class CategoryRepository: CategoryInterface {
     }
 
     func fetchCategories() async -> Future<[CryptoCompareNewsCategoriesResponse], Error> {
-        return Future(asyncFunc: {
+        Future(asyncFunc: {
             try await self.ccService.getNewsCategories().get()
         })
     }
