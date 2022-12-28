@@ -132,6 +132,7 @@ struct ArticleFeedItem: Decodable, Hashable {
             parse: false
         )
     }
+
     private enum CodingKeys: String, CodingKey {
         case id
         case guid

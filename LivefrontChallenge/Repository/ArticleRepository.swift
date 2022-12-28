@@ -106,6 +106,7 @@ class ArticleRepository: ObservableObject, ArticleInterface {
             try await self.newsService.getNews(requestParams: params).get()
         })
     }
+
     /// get the latest news articles
     func getLatestArticles(limit: Int = 5) -> AnyPublisher<Result<[ArticleFeedItem], Error>, Error> {
         queryForArticles()

@@ -16,6 +16,7 @@ struct ArticleView: View {
     @State private var summarizedContent: Article = .init()
     @State private var cachedArticle: Article = .init()
     @State private var loadingOrError: String = ToolButtonAction.original.loadingMessage
+
     let articleFeedItem: ArticleFeedItem
     var body: some View {
 
@@ -90,7 +91,6 @@ struct ArticleView: View {
             Task {
                 self.isLoaded = false
                 self.loadingOrError = generator.loadingMessage
-
                 switch val {
                 case .bulletPoints:
                     self.displayResults(prompt: .summarizeIntoBulletPoints(context: articleFeedItem.body))
@@ -115,7 +115,15 @@ struct ArticleView: View {
                 )
                 switch result {
                 case .success(let article):
-                    self.summarizedContent = article
+                    // This is needed to ensure we keep the same heading
+                    // as new content is generated.
+                    let data = Article(
+                        headline: self.cachedArticle.headline,
+                        body: article.body,
+                        parse: false
+                    )
+
+                    self.summarizedContent = data
                     self.isLoaded = true
                 case .failure(let error):
                     self.loadingOrError = "Something happened \(error)"
