@@ -61,6 +61,7 @@
 		80C28817295508B500067BBC /* JSONPlaceHolderEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C28816295508B500067BBC /* JSONPlaceHolderEndpoint.swift */; };
 		80C2881A29550BA900067BBC /* JSONPlaceHolderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C2881929550BA900067BBC /* JSONPlaceHolderService.swift */; };
 		80C2881D29550C1100067BBC /* JSONPlaceHolderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C2881C29550C1100067BBC /* JSONPlaceHolderResponse.swift */; };
+		80C28D2E295C0AFC002349C8 /* Prompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C28D2D295C0AFC002349C8 /* Prompts.swift */; };
 		80F9E63F295A7EDC00222177 /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E63E295A7EDC00222177 /* NewsListView.swift */; };
 		80F9E642295A808300222177 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 80F9E641295A808300222177 /* RiveRuntime */; };
 		80F9E64A295A826B00222177 /* tech.riv in Resources */ = {isa = PBXBuildFile; fileRef = 80F9E649295A826B00222177 /* tech.riv */; };
@@ -144,6 +145,7 @@
 		80C28816295508B500067BBC /* JSONPlaceHolderEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceHolderEndpoint.swift; sourceTree = "<group>"; };
 		80C2881929550BA900067BBC /* JSONPlaceHolderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceHolderService.swift; sourceTree = "<group>"; };
 		80C2881C29550C1100067BBC /* JSONPlaceHolderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceHolderResponse.swift; sourceTree = "<group>"; };
+		80C28D2D295C0AFC002349C8 /* Prompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompts.swift; sourceTree = "<group>"; };
 		80D4BE292955230C000DA3B5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		80F9E63E295A7EDC00222177 /* NewsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
 		80F9E649295A826B00222177 /* tech.riv */ = {isa = PBXFileReference; lastKnownFileType = file; name = tech.riv; path = "../../../../../Dropbox (Personal)/My Mac (Velaru.cable.rcn.com)/Downloads/tech.riv"; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				8082773E2957C7C700CCA40B /* Button.swift */,
 				808277492958CFA100CCA40B /* StringExtension.swift */,
 				80827753295903E100CCA40B /* Router.swift */,
+				80C28D2D295C0AFC002349C8 /* Prompts.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 			buildConfigurationList = 80C287FA2954E3E800067BBC /* Build configuration list for PBXNativeTarget "LivefrontChallenge" */;
 			buildPhases = (
 				80C287D22954E3E300067BBC /* Sources */,
+				80F9E655295C021C00222177 /* ShellScript */,
 				80C287D32954E3E300067BBC /* Frameworks */,
 				80C287D42954E3E300067BBC /* Resources */,
 			);
@@ -574,6 +578,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		80F9E655295C021C00222177 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		80C287D22954E3E300067BBC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -603,6 +627,7 @@
 				80C2881A29550BA900067BBC /* JSONPlaceHolderService.swift in Sources */,
 				801C2160295529AA008072D8 /* JSONFile.swift in Sources */,
 				80C288112954EF7C00067BBC /* RequestMethod.swift in Sources */,
+				80C28D2E295C0AFC002349C8 /* Prompts.swift in Sources */,
 				80C0A02829575299000D6E30 /* Environment.swift in Sources */,
 				801C21732955633E008072D8 /* Encodable.swift in Sources */,
 				80C0A02A295753B4000D6E30 /* AppEnvironment.swift in Sources */,

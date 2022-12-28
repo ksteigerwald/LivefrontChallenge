@@ -38,33 +38,41 @@ class CategoryRepository: ObservableObject, CategoryInterface {
 
     @MainActor
     func fetchNewsForCategory(category: String) async {
-        let params = CryptoCompareRequestParams(
-            categories: category
-        )
-        let result = try! await ccService.getNews(requestParams: params)
-        switch result {
-        case .success(let news):
-            self.newsForCategory = news.articles.map { $0.url }
-        case .failure(let error):
+        do {
+            let params = CryptoCompareRequestParams(
+                categories: category
+            )
+            let result = try await ccService.getNews(requestParams: params)
+            switch result {
+            case .success(let news):
+                self.newsForCategory = news.articles.map { $0.url }
+            case .failure(let error):
+                print(error)
+            }
+        } catch let error {
             print(error)
         }
     }
 
     @MainActor
     func fetchCategories() async {
-        let result = try! await ccService.getNewsCategories()
+        do {
+            let result = try await ccService.getNewsCategories()
 
-        switch result {
-        case .success(let data):
-            self.categories = data.map {
-                let val = NewsCategory(name: $0.categoryName)
-                return val
+            switch result {
+            case .success(let data):
+                self.categories = data.map {
+                    let val = NewsCategory(name: $0.categoryName)
+                    return val
+                }
+
+            case .failure(let error):
+                print(error)
+                // TODO: handle error
+                return
             }
-
-        case .failure(let error):
+        } catch let error {
             print(error)
-            // TODO: handle error
-            return
         }
     }
 

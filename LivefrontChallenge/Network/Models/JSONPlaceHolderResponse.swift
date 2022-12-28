@@ -13,12 +13,12 @@ import Foundation
 /// - `title`: The title of the post.
 /// - `body`: The body of the post.
 struct JSONPlaceHolderResponse: Decodable {
-  /// The unique identifier for the post.
-  let id: Int
-  /// The unique identifier for the user who created the post.
-  let userId: Int
-  /// The title of the post.
-  let title: String
-  /// The body of the post.
-  let body: String
+    /// The unique identifier for the post.
+    let id: Int
+    /// The unique identifier for the user who created the post.
+    let userId: Int
+    /// The title of the post.
+    let title: String
+    /// The body of the post.
+    let body: String
 }

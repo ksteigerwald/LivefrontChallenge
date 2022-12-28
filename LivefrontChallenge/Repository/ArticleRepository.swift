@@ -49,7 +49,7 @@ protocol ArticleInterface {
     func getLatestArticles(limit: Int) async
 
     /// Generate a new article from a source and selected prompt
-    func generateArticleFromSource(prompt: Environment.AI.Prompts) async -> Result<Article, Error>
+    func generateArticleFromSource(prompt: Prompts) async -> Result<Article, Error>
 }
 
 /// Typealias for an OpenAI service that can be used by `ArticleRepository`
@@ -83,16 +83,15 @@ class ArticleRepository: ObservableObject, ArticleInterface {
     }
 
     /// Generates a summary article for the given category and list of articles.
-    ///
     /// - Parameters:
     ///   - category: The category of the articles.
     ///   - articles: The list of articles to summarize.
-    // TODO: update this to return data not assign to categories
     public func generateSummaryArticle(category: String, articles: [String]) async {
+        // TODO: update this to return data not assign to categories
         let articles = articles.prefix(10).joined(separator: ",\n")
         let params = OpenAIRequestParams(
-            model: Environment.AI.Models.davinci003.rawValue,
-            prompt: Environment.AI.Prompts.summarizeWithHeadline(context: articles).value,
+            model: Prompts.Models.davinci003.rawValue,
+            prompt: Prompts.summarizeWithHeadline(context: articles).value,
             temperature: 0.5,
             max_tokens: 2048,
             top_p: 1,
@@ -135,9 +134,9 @@ class ArticleRepository: ObservableObject, ArticleInterface {
         }
     }
 
-    func generateArticleFromSource(prompt: Environment.AI.Prompts) async -> Result<Article, Error> {
+    func generateArticleFromSource(prompt: Prompts) async -> Result<Article, Error> {
         let params = OpenAIRequestParams(
-            model: Environment.AI.Models.davinci003.rawValue,
+            model: Prompts.Models.davinci003.rawValue,
             prompt: prompt.value,
             temperature: 0.5,
             max_tokens: 4000,

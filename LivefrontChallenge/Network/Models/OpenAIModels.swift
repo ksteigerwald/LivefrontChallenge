@@ -74,10 +74,6 @@ struct Choice: BackedDecodable, Decodable {
     /// The reason why the choice was generated
     @Backed("finish_reason")
     var finishReason: String
-
-    private enum CodingKeys: String, CodingKey {
-        case logprobs = "logprobs"
-    }
 }
 
 struct Usage: BackedDecodable, Decodable {

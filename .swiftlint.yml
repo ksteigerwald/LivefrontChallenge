@@ -4,11 +4,9 @@ opt_in_rules:
   - convenience_type
   - toggle_bool
   - modifier_order
-  - file_name
   - implicitly_unwrapped_optional
   - weak_delegate
   - missing_docs
-  - force_unwrapping
   - closure_end_indentation
   - fatal_error_message
   - indentation_width
@@ -90,7 +88,4 @@ function_parameter_count: 20
 function_body_length: 600
 
 identifier_name:
-  min_length: # only min_length
-    warning: 0
-    error: 0
-
+  allowed_symbols: "_"

@@ -12,15 +12,15 @@ struct HNTopStoriesResponse: Decodable {
 }
 
 struct HNGetNewsItemResponse: Codable {
-  let by: String
-  let descendants: Int
-  let id: Int
-  let kids: [Int]
-  let score: Int
-  let time: Int
-  let title: String
-  let type: String
-  let url: String
+    let by: String
+    let descendants: Int
+    let id: Int
+    let kids: [Int]
+    let score: Int
+    let time: Int
+    let title: String
+    let type: String
+    let url: String
 }
 
 protocol HackerNewsServiceable {

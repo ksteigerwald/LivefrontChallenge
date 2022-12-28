@@ -8,15 +8,15 @@
 import SwiftUI
 
 /*
- let loremHead: String = "Headline: Dogecoin Expected to Be a Top Crypto in 2023"
- let lorem: String = "Paragraph 1: According to a recent report from crypto analytics firm Santiment, Dogecoin (DOGE) is expected to be one of the top crypto assets by 2023.\n\nParagraph 2: The report states that DOGE is “one of the few coins that have held a steady spot in the top 10 crypto assets since its launch in 2013.”\n\nParagraph 3: The report also notes that DOGE has seen an increase in search volume from Google and Twitter, with the number of searches increasing by over 200% since the beginning of 2021.\n\nParagraph 4: The report also states that DOGE has seen an increase in its social media presence, with the number of wallet addresses holding DOGE increasing by over 28% since the beginning of 2021.\n\nParagraph 5: The report also notes that DOGE has seen a surge in its trading volume, with the volume increasing by over 200% since the beginning of 2021.\n\nParagraph 6: The report concludes that “it’s likely that Dogecoin will remain a top crypto asset in 2023 and beyond.”\n\nParagraph 7: The report also highlights the potential for DOGE to become a major player in the crypto space, as it has already established itself as a popular asset among investors and traders"
+    let loremHead: String = "Headline: Dogecoin Expected to Be a Top Crypto in 2023"
+    let lorem: String = "Paragraph 1: According to a recent report from crypto analytics firm Santiment, Dogecoin (DOGE) is expected to be one of the top crypto assets by 2023.\n\nParagraph 2: The report states that DOGE is “one of the few coins that have held a steady spot in the top 10 crypto assets since its launch in 2013.”\n\nParagraph 3: The report also notes that DOGE has seen an increase in search volume from Google and Twitter, with the number of searches increasing by over 200% since the beginning of 2021.\n\nParagraph 4: The report also states that DOGE has seen an increase in its social media presence, with the number of wallet addresses holding DOGE increasing by over 28% since the beginning of 2021.\n\nParagraph 5: The report also notes that DOGE has seen a surge in its trading volume, with the volume increasing by over 200% since the beginning of 2021.\n\nParagraph 6: The report concludes that “it’s likely that Dogecoin will remain a top crypto asset in 2023 and beyond.”\n\nParagraph 7: The report also highlights the potential for DOGE to become a major player in the crypto space, as it has already established itself as a popular asset among investors and traders"
 
- Article(
- headline: loremHead,
- body: lorem,
- imageURL: "https://placeimg.com/320/240/any"
- )
- */
+    Article(
+    headline: loremHead,
+    body: lorem,
+    imageURL: "https://placeimg.com/320/240/any"
+    )
+*/
 
 struct ArticleView: View {
     @EnvironmentObject private var app: AppEnvironment
@@ -118,7 +118,7 @@ struct ArticleView: View {
         }
     }
 
-    func displayResults(prompt: Environment.AI.Prompts) {
+    func displayResults(prompt: Prompts) {
         Task {
             do {
                 let result = await self.app.articles.generateArticleFromSource(

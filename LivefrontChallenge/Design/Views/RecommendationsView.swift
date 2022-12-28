@@ -25,8 +25,8 @@ struct RecommendationsView: View {
                     pinnedViews: []) {
                         ForEach(app.categories.recommendations, id: \.name) { recomendation in
                             Button(action: {
-
-                            }) {
+                            }
+                            ) {
                                 NavigationLink(recomendation.name, value: Route.detail(recomendation.name))
                                     .font(Font.DesignSystem.bodySmallBold)
                                     .frame(width: 64, height: 24)
