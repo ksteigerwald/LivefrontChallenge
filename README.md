@@ -17,10 +17,9 @@ For further instructions go here:[SwiftLint](https://github.com/realm/SwiftLint)
 #### Other Dependencies
 - Backend Decodable
 - OHTTPStubs for testing
-- RiveRuntime for aniations
+- RiveRuntime for animations
 
 ## Features
-List and describe the key features of the app
 
 ### Networking
 - Abstract networking layer that is optimized for use with multiple API's
