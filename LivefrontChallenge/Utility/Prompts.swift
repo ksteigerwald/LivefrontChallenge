@@ -7,13 +7,14 @@
 
 import Foundation
 
-/// Prompts passed to OpenAI
+/// Prompts passed to OpenAI representing different prompts for text analysis
 enum Prompts {
     /// OpenAI Models
     enum Models: String {
         case davinci003 = "text-davinci-003"
     }
 
+    /// Takes in content to ensure we avoid hitting max token limit on OpenAI
     struct PromptModel {
         let data: String
 
@@ -21,11 +22,15 @@ enum Prompts {
             self.data = data.truncate(maxLength: maxLength)
         }
     }
-
+    /// summarizeWithHeadline: Summarize articles into 5 paragraphs and include a headline for the summary
     case summarizeWithHeadline(context: String)
+    /// rewordArticle: Rewrite an article in your own words and summarize it into 7 paragraphs
     case rewordArticle(context: String)
+    /// summarizeIntoBulletPoints: Summarize the given content into a list of bullet points
     case summarizeIntoBulletPoints(context: String)
+    /// sentimentAnalysis: Provide sentiment analysis for the given content
     case sentimentAnalysis(context: String)
+    /// toneAnalysis: Identify the tone of the article (positive, negative, neutral) for the given
     case toneAnalysis(context: String)
     var value: String {
         switch self {
