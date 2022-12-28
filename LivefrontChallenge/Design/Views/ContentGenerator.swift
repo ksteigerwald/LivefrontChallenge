@@ -24,6 +24,16 @@ enum ToolButtonAction {
         case .none: return "x.square.fill"
         }
     }
+
+    var decription: String {
+        switch self {
+        case .bulletPoints: return "Choose this option to render the given article as a set of bullet points"
+        case .sentiment: return "Choose this option to generate AI baseed sentiment analysis"
+        case .tone: return "Choose this option to have the AI score the article either Positive, Negative or Neutral"
+        case .original: return "Show the original AI generated summary article"
+        case .none: return ""
+        }
+    }
 }
 
 /// The ContentGenerator view is a horizontal stack of four ToolButtonViews and a "Generate" button.
@@ -42,7 +52,11 @@ struct ContentGenerator: View {
                     .frame(maxWidth: .infinity, maxHeight: 180)
                     .transition(.move(edge: .bottom))
                     .task { await hideContentGeneratorRevealView() }
+                    .onTapGesture {
+                        showGeneratorView = false
+                    }
             }
+
             HStack {
                 ToolButtonView(
                     label: Image(systemName: ToolButtonAction.bulletPoints.image),
@@ -57,7 +71,7 @@ struct ContentGenerator: View {
                     id: .tone,
                     current: $action)
                 ToolButtonView(
-                    label: Image(systemName: ToolButtonAction.tone.image),
+                    label: Image(systemName: ToolButtonAction.original.image),
                     id: .original,
                     current: $action)
 
@@ -82,6 +96,7 @@ struct ContentGenerator: View {
             action = setAction
         }
         .onChange(of: action) { delievery in
+            showGeneratorView = false
             withAnimation {
                 showGeneratorView = true
                 print("showing details for: \(delievery)")
@@ -108,11 +123,11 @@ struct ToolButtonView: View {
 
     var body: some View {
         Button(action: {
+            current = id
             guard $current.wrappedValue != id && !isOn else {
                 isOn = false
                 return
             }
-            current = id
             if $current.wrappedValue == id {
                 isOn = true
             }

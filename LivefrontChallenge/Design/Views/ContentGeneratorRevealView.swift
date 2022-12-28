@@ -19,16 +19,7 @@ struct ContentGeneratorRevealView: View {
                         .foregroundColor(Color.DesignSystem.greyscale50)
                 )
                 .padding([.top], 12)
-            switch actionType {
-            case .bulletPoints:
-                Text("Choose this option to render the given article as a set of bullet points")
-                    .multilineTextAlignment(.center)
-                    .font(Font.DesignSystem.bodyMediumMedium)
-                    .foregroundColor(Color.DesignSystem.greyscale900)
-                    .padding([.leading, .trailing], 48)
-            default:
-                Text("default...")
-            }
+            CaptionText(content: actionType.decription)
             Spacer()
         }
         .background(Color.DesignSystem.greyscale50)
@@ -39,5 +30,17 @@ struct ContentGeneratorRevealView: View {
 struct ContentGeneratorRevealView_Previews: PreviewProvider {
     static var previews: some View {
         ContentGeneratorRevealView(actionType: .bulletPoints)
+    }
+}
+
+struct CaptionText: View {
+    let content: String
+
+    var body: some View {
+        Text(content)
+            .multilineTextAlignment(.center)
+            .font(Font.DesignSystem.bodyMediumMedium)
+            .foregroundColor(Color.DesignSystem.greyscale900)
+            .padding([.leading, .trailing], 48)
     }
 }
