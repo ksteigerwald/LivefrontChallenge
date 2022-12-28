@@ -54,26 +54,26 @@ struct CryptoCompareRequestParams: Encodable, URLQueryItemConvertible {
 
 struct CryptoCompareResponse: Decodable {
     /// The type of response
-      let type: Int
-      /// The message of the response
-      let message: String
-      /// A list of promoted articles
-      let promoted: [PromotedArticle]
-      /// A list of news articles
-      let articles: [NewsArticle]
-      /// The rate limit for the response
-      let rateLimit: RateLimit
-      /// A boolean value indicating if the response has a warning
-      let hasWarning: Bool
+    let type: Int
+    /// The message of the response
+    let message: String
+    /// A list of promoted articles
+    let promoted: [PromotedArticle]
+    /// A list of news articles
+    let articles: [NewsArticle]
+    /// The rate limit for the response
+    let rateLimit: RateLimit
+    /// A boolean value indicating if the response has a warning
+    let hasWarning: Bool
 
-      private enum CodingKeys: String, CodingKey {
-          case type = "Type"
-          case message = "Message"
-          case promoted = "Promoted"
-          case articles = "Data"
-          case rateLimit = "RateLimit"
-          case hasWarning = "HasWarning"
-      }
+    private enum CodingKeys: String, CodingKey {
+    case type = "Type"
+    case message = "Message"
+    case promoted = "Promoted"
+    case articles = "Data"
+    case rateLimit = "RateLimit"
+    case hasWarning = "HasWarning"
+    }
 
 }
 
@@ -124,21 +124,21 @@ struct NewsArticle: Decodable, Hashable {
     }
 
     private enum CodingKeys: String, CodingKey {
-            case id
-            case guid
-            case publishedOn = "published_on"
-            case imageUrl = "imageurl"
-            case title
-            case url
-            case body
-            case tags
-            case lang
-            case upvotes
-            case downvotes
-            case categories
-            case sourceInfo = "source_info"
-            case source
-        }
+        case id
+        case guid
+        case publishedOn = "published_on"
+        case imageUrl = "imageurl"
+        case title
+        case url
+        case body
+        case tags
+        case lang
+        case upvotes
+        case downvotes
+        case categories
+        case sourceInfo = "source_info"
+        case source
+    }
 }
 
 struct SourceInfo: Decodable {
@@ -159,11 +159,4 @@ struct CryptoCompareNewsCategoriesResponse: Decodable {
 
     /// A list of phrases that are excluded from the category
     let excludedPhrases: [String]?
-
-    private enum CodingKeys: String, CodingKey {
-        case categoryName = "categoryName"
-        case wordsAssociatedWithCategory = "wordsAssociatedWithCategory"
-        case includedPhrases = "includedPhrases"
-        case excludedPhrases = "excludedPhrases"
-    }
 }

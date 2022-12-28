@@ -119,13 +119,18 @@ class ArticleRepository: ObservableObject, ArticleInterface {
 
     /// get the latest news articles
     func getLatestArticles(limit: Int = 5) async {
-        let params = CryptoCompareRequestParams()
-        let result = try! await newsService.getNews(requestParams: params)
+        do {
+            let params = CryptoCompareRequestParams()
+            let result = try await newsService.getNews(requestParams: params)
 
-        switch result {
-        case .success(let news):
-            self.news = Array(news.articles.prefix(limit))
-        case .failure(let error):
+            switch result {
+            case .success(let news):
+                self.news = Array(news.articles.prefix(limit))
+            case .failure(let error):
+                print(error)
+            }
+        } catch let error {
+            // TODO: return vs storing in published object
             print(error)
         }
     }
