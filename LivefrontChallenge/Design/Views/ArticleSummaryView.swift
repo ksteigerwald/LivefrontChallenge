@@ -15,13 +15,13 @@ class ArticleList: ObservableObject {
 struct ArticleSummaryView: View {
 
     @EnvironmentObject private var app: AppEnvironment
-    @State private var cancellables = [AnyCancellable]()
     @State private var isArticleLoaded = false
-    @State private var document: Article = Article()
-    @Binding var path: NavigationPath
+    @State private var document: Article = .init()
     @StateObject private var newsSources: ArticleList = .init()
+    @Binding var path: NavigationPath
     @State var category: NewsCategory
 
+    @State private var cancellables = [AnyCancellable]()
     var body: some View {
         ZStack(alignment: .leading) {
             Color.DesignSystem.greyscale900
@@ -63,9 +63,33 @@ struct ArticleSummaryView: View {
         }
         .background(Color.DesignSystem.greyscale900)
         .navigationBarBackButtonHidden()
+
+        .modifier(ToolbarModifier(
+            path: $path,
+            heading: "Summary Article")
+        )
+        .task {
+            // Figure out how to do this in one take vs task, then onRecieve
+            app.categories.fetchNewsForCategory(category: category.name)
+                .mapError { $0 as Error }
+                .map { response in
+                    response.articles.map {
+                        Article(
+                            category: category.name,
+                            headline: $0.title,
+                            articleURL: $0.url
+                        )
+                    }
+                }
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { _ in}, receiveValue: { articles in
+                    self.newsSources.articles = Array(articles.prefix(10))
+                })
+                .store(in: &cancellables)
+        }
         .onReceive(newsSources.$articles) { sources in
             guard !sources.isEmpty else { return }
-            let urls: [String] = Array(sources.map { $0.articleURL }.prefix(10))
+            let urls: [String] = sources.map { $0.articleURL }
             guard let source = sources.first else { return }
             app.articles.generateSummaryArticle(category: source.category, articles: urls)
                 .sink(receiveCompletion: {_ in }, receiveValue: { response in
@@ -80,28 +104,5 @@ struct ArticleSummaryView: View {
                 .store(in: &cancellables)
 
         }
-        .modifier(ToolbarModifier(
-            path: $path,
-            heading: "Summary Article")
-        )
-        .task {
-            app.categories.fetchNewsForCategory(category: category.name)
-                .mapError { $0 as Error }
-                .map { response in
-                    response.articles.map {
-                        Article(
-                            category: category.name,
-                            headline: $0.title,
-                            articleURL: $0.url
-                        )
-                    }
-                }
-                .receive(on: DispatchQueue.main)
-                .sink(receiveCompletion: { _ in}, receiveValue: { articles in
-                        self.newsSources.articles = articles
-                })
-                .store(in: &cancellables)
-        }
-
     }
 }
