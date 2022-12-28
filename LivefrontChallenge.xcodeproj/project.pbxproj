@@ -19,6 +19,8 @@
 		801C216F29555B4A008072D8 /* OpenAITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C216E29555B4A008072D8 /* OpenAITests.swift */; };
 		801C217129555E97008072D8 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C217029555E97008072D8 /* Dictionary.swift */; };
 		801C21732955633E008072D8 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C21722955633E008072D8 /* Encodable.swift */; };
+		806A62AE295CA84B00E909AE /* FutureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A62AD295CA84B00E909AE /* FutureExtension.swift */; };
+		806A62B0295CA92B00E909AE /* FutureExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A62AF295CA92B00E909AE /* FutureExtensionTest.swift */; };
 		8082773F2957C7C700CCA40B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082773E2957C7C700CCA40B /* Button.swift */; };
 		808277412957D23000CCA40B /* RecommendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808277402957D23000CCA40B /* RecommendationsView.swift */; };
 		808277432957D30600CCA40B /* MainHeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808277422957D30600CCA40B /* MainHeadingView.swift */; };
@@ -101,6 +103,8 @@
 		801C217029555E97008072D8 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		801C21722955633E008072D8 /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		80216C6129579F9E001C9301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		806A62AD295CA84B00E909AE /* FutureExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtension.swift; sourceTree = "<group>"; };
+		806A62AF295CA92B00E909AE /* FutureExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtensionTest.swift; sourceTree = "<group>"; };
 		8082773E2957C7C700CCA40B /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		808277402957D23000CCA40B /* RecommendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsView.swift; sourceTree = "<group>"; };
 		808277422957D30600CCA40B /* MainHeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeadingView.swift; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				808277472958C80B00CCA40B /* StringExtTests.swift */,
+				806A62AF295CA92B00E909AE /* FutureExtensionTest.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 				808277492958CFA100CCA40B /* StringExtension.swift */,
 				80827753295903E100CCA40B /* Router.swift */,
 				80C28D2D295C0AFC002349C8 /* Prompts.swift */,
+				806A62AD295CA84B00E909AE /* FutureExtension.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -618,6 +624,7 @@
 				80C0A00929557634000D6E30 /* Constants.swift in Sources */,
 				80B2222E295A136600E3DA6F /* RootView.swift in Sources */,
 				80F9E654295BBBFD00222177 /* ContentGeneratorRevealView.swift in Sources */,
+				806A62AE295CA84B00E909AE /* FutureExtension.swift in Sources */,
 				808277502958E40400CCA40B /* NewsItem.swift in Sources */,
 				808277432957D30600CCA40B /* MainHeadingView.swift in Sources */,
 				80F9E652295AE09F00222177 /* HackerNewsService.swift in Sources */,
@@ -636,6 +643,7 @@
 				801C216F29555B4A008072D8 /* OpenAITests.swift in Sources */,
 				80C0A015295611D5000D6E30 /* CryptoCompareTests.swift in Sources */,
 				80C287EB2954E3E800067BBC /* LivefrontChallengeTests.swift in Sources */,
+				806A62B0295CA92B00E909AE /* FutureExtensionTest.swift in Sources */,
 				808277482958C80B00CCA40B /* StringExtTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
