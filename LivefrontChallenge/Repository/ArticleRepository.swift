@@ -44,7 +44,7 @@ protocol ArticleInterface {
     func generateSummaryArticle(category: String, articles: [String]) -> Future<OpenAIResponse, Error>
 
     /// Fetches latest news articles
-    func getLatestArticles(limit: Int) async -> Result<[NewsArticle], Error>
+    func getLatestArticles(limit: Int) async -> AnyPublisher<Result<[NewsArticle], Error>, Error>
 
     /// Generate a new article from a source and selected prompt
     func generateArticleFromSource(prompt: Prompts) async -> Result<Article, Error>
@@ -99,21 +99,18 @@ class ArticleRepository: ObservableObject, ArticleInterface {
         })
     }
 
-    /// get the latest news articles
-    func getLatestArticles(limit: Int = 5) async -> Result<[NewsArticle], Error> {
-        do {
+    func queryForArticles(limit: Int = 5) -> Future<CryptoCompareResponse, Error> {
             let params = CryptoCompareRequestParams()
-            let result = try await newsService.getNews(requestParams: params)
-
-            switch result {
-            case .success(let news):
-                return .success(Array(news.articles.prefix(limit)))
-            case .failure(let error):
-                return .failure(error)
-            }
-        } catch let error {
-            return .failure(error)
-        }
+        return Future(asyncFunc: {
+            try await self.newsService.getNews(requestParams: params).get()
+        })
+    }
+    /// get the latest news articles
+    func getLatestArticles(limit: Int = 5) -> AnyPublisher<Result<[NewsArticle], Error>, Error> {
+        queryForArticles()
+            .map { Result.success($0.articles) }
+            .mapError { $0 as Error }
+            .eraseToAnyPublisher()
     }
 
     func generateArticleFromSource(prompt: Prompts) async -> Result<Article, Error> {

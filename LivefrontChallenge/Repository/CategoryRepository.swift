@@ -13,7 +13,7 @@ struct NewsCategory: Hashable {
 }
 
 protocol CategoryInterface {
-    func fetchCategories() async -> Result<[NewsCategory], Error>
+    func fetchCategories() async -> Future<[CryptoCompareNewsCategoriesResponse], Error>
     func fetchNewsForCategory(category: String) async -> Future<CryptoCompareResponse, Error>
 }
 
@@ -35,22 +35,9 @@ class CategoryRepository: CategoryInterface {
         })
     }
 
-    @MainActor
-    func fetchCategories() async -> Result<[NewsCategory], Error> {
-        do {
-            let result = try await ccService.getNewsCategories()
-
-            switch result {
-            case .success(let data):
-                let categories = data.map {
-                    NewsCategory(name: $0.categoryName)
-                }
-                return .success(categories)
-            case .failure(let error):
-                return .failure(error)
-            }
-        } catch let error {
-            return .failure(error)
-        }
+    func fetchCategories() async -> Future<[CryptoCompareNewsCategoriesResponse], Error> {
+        return Future(asyncFunc: {
+            try await self.ccService.getNewsCategories().get()
+        })
     }
 }

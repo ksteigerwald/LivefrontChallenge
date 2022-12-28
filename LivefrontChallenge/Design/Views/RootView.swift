@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 struct RootView: View {
 
@@ -14,6 +15,7 @@ struct RootView: View {
     @State private var isCategoriesLoaded = false
     @State private var path = NavigationPath()
     @State var articles: [NewsArticle]
+    @State private var cancellables = [AnyCancellable]()
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -35,15 +37,19 @@ struct RootView: View {
             }
         }
         .task {
-            let result = await self.app.articles.getLatestArticles()
-            switch result {
-            case .success(let articles):
-                self.articles = articles
-            case .failure(let error):
-                // TODO: Setup toast or something...
-                print(error)
-            }
-            self.isCategoriesLoaded = true
+            self.app.articles.getLatestArticles()
+                .sink(
+                    receiveCompletion: { _ in},
+                    receiveValue: { result in
+                        switch result {
+                        case .success(let articles):
+                            self.articles = articles
+                            self.isCategoriesLoaded = true
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
+                ).store(in: &cancellables)
         }
     }
 
