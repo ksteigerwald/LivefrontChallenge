@@ -14,6 +14,7 @@ enum OpenAIEndpoint {
 }
 
 extension OpenAIEndpoint: Endpoint {
+
     var network: Networks {
         .openai
     }
