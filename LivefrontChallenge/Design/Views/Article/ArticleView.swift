@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ArticleView: View {
     @EnvironmentObject private var app: AppEnvironment
     @Binding var path: NavigationPath
 
+    @State private var cancellables = [AnyCancellable]()
     @State private var generator: ToolButtonAction = .none
     @State private var isLoaded: Bool = false
     @State private var summarizedContent: Article = .init()
@@ -22,7 +24,6 @@ struct ArticleView: View {
 
         ZStack(alignment: .topLeading) {
             Color.DesignSystem.greyscale900
-
             if isLoaded {
                 ScrollView {
                     VStack(alignment: .leading) {
@@ -50,7 +51,6 @@ struct ArticleView: View {
                             .padding(.bottom, 80)
                         Spacer()
                         Spacer()
-
                     }
                 }
             } else {
@@ -66,19 +66,20 @@ struct ArticleView: View {
             ContentGenerator(generator: $generator),
             alignment: .bottom)
         .task {
-            do {
-                let result = await self.app.articles.generateArticleFromSource(
-                    prompt: .rewordArticle(context: articleFeedItem.url)
-                )
-                switch result {
-                case .success(let article):
-                    self.cachedArticle = article
-                    self.summarizedContent = article
-                    self.isLoaded = true
-                case .failure(let error):
-                    self.loadingOrError = "Something happened \(error)"
-                }
-            }
+            app.articles.getAIContent(prompt: .rewordArticle(context: articleFeedItem.url))
+                .sink(
+                    receiveCompletion: { _ in },
+                    receiveValue: { result in
+                        switch result {
+                        case .success(let article):
+                            self.cachedArticle = article
+                            self.summarizedContent = article
+                            self.isLoaded = true
+                        case .failure(let error):
+                            print(error)
+                        }
+                    })
+                .store(in: &cancellables)
         }
         .modifier(ToolbarModifier(
             path: $path,
@@ -88,47 +89,44 @@ struct ArticleView: View {
         .padding([.leading, .trailing], 20)
         .background(Color.DesignSystem.greyscale900)
         .onChange(of: generator) { val in
-            Task {
-                self.isLoaded = false
-                self.loadingOrError = generator.loadingMessage
-                switch val {
-                case .bulletPoints:
-                    self.displayResults(prompt: .summarizeIntoBulletPoints(context: articleFeedItem.body))
-                case .sentiment:
-                    self.displayResults(prompt: .sentimentAnalysis(context: articleFeedItem.body))
-                case .tone:
-                    self.displayResults(prompt: .toneAnalysis(context: articleFeedItem.body))
-                case .original:
-                    self.summarizedContent = self.cachedArticle
-                    self.isLoaded = true
-                default: print(val)
-                }
+            self.isLoaded = false
+            self.loadingOrError = generator.loadingMessage
+            switch val {
+            case .bulletPoints:
+                self.displayResults(prompt: .summarizeIntoBulletPoints(context: articleFeedItem.body))
+            case .sentiment:
+                self.displayResults(prompt: .sentimentAnalysis(context: articleFeedItem.body))
+            case .tone:
+                self.displayResults(prompt: .toneAnalysis(context: articleFeedItem.body))
+            case .original:
+                self.summarizedContent = self.cachedArticle
+                self.isLoaded = true
+            default: print(val)
             }
         }
     }
 
     func displayResults(prompt: Prompts) {
-        Task {
-            do {
-                let result = await self.app.articles.generateArticleFromSource(
-                    prompt: prompt
-                )
-                switch result {
-                case .success(let article):
-                    // This is needed to ensure we keep the same heading
-                    // as new content is generated.
-                    let data = Article(
-                        headline: self.cachedArticle.headline,
-                        body: article.body,
-                        parse: false
-                    )
+        app.articles.getAIContent(prompt: prompt)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { result in
+                    switch result {
+                    case .success(let article):
+                        // This is needed to ensure we keep the same heading
+                        // as new content is generated.
+                        let data = Article(
+                            headline: self.cachedArticle.headline,
+                            body: article.body,
+                            parse: false
+                        )
 
-                    self.summarizedContent = data
-                    self.isLoaded = true
-                case .failure(let error):
-                    self.loadingOrError = "Something happened \(error)"
-                }
-            }
+                        self.summarizedContent = data
+                        self.isLoaded = true
+                    case .failure(let error):
+                        self.loadingOrError = "Something happened \(error)"
+                    }
+                })
+            .store(in: &cancellables)
         }
-    }
 }

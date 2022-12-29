@@ -40,20 +40,5 @@ struct ContentGeneratorViewModifier: ViewModifier {
             }
     }
 
-    func displayResults(prompt: Prompts) {
-        Task {
-            do {
-                let result = await self.app.articles.generateArticleFromSource(
-                    prompt: prompt
-                )
-                switch result {
-                case .success(let article):
-                    self.summarizedContent = article
-                    self.isLoaded = true
-                case .failure(let error):
-                    self.loadingOrError = "Something happened \(error)"
-                }
-            }
-        }
-    }
+    func displayResults(prompt: Prompts) {}
 }

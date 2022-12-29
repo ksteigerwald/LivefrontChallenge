@@ -60,7 +60,7 @@ struct ContentGenerator: View {
             if showGeneratorView {
                 ContentGeneratorRevealView(actionType: action)
                     .cornerRadius(20, corners: [.topLeft, .topRight])
-                    .frame(maxWidth: .infinity, maxHeight: 180)
+                    .frame(maxWidth: .infinity, maxHeight: 220)
                     .transition(.move(edge: .bottom))
                     .task { await hideContentGeneratorRevealView() }
                     .onTapGesture {
@@ -106,11 +106,10 @@ struct ContentGenerator: View {
         .onChange(of: generator) { setAction in
             action = setAction
         }
-        .onChange(of: action) { delievery in
+        .onChange(of: action) { _ in
             showGeneratorView = false
             withAnimation {
                 showGeneratorView = true
-                print("showing details for: \(delievery)")
             }
         }
         .padding(.top, 12)

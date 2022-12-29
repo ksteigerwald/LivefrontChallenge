@@ -1,5 +1,5 @@
 //
-//  Button.swift
+//  SecondaryButtonStyle.swift
 //  LivefrontChallenge
 //
 //  Created by Kris Steigerwald on 12/24/22.

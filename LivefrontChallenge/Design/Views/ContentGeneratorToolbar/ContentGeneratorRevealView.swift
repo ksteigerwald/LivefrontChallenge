@@ -20,8 +20,11 @@ struct ContentGeneratorRevealView: View {
                 )
                 .padding([.top], 12)
             CaptionText(content: actionType.decription)
+                .frame(maxWidth: .infinity)
+                .padding([.leading, .trailing], 12)
             Spacer()
         }
+        .frame(maxWidth: .infinity)
         .background(Color.DesignSystem.greyscale50)
         .opacity(0.9)
     }
@@ -41,6 +44,5 @@ struct CaptionText: View {
             .multilineTextAlignment(.center)
             .font(Font.DesignSystem.bodyMediumMedium)
             .foregroundColor(Color.DesignSystem.greyscale900)
-            .padding([.leading, .trailing], 48)
     }
 }

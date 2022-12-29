@@ -56,7 +56,7 @@ protocol ArticleInterface {
     func getLatestArticles(limit: Int) async -> AnyPublisher<Result<[ArticleFeedItem], Error>, Error>
 
     /// Generate a new article from a source and selected prompt
-    func generateArticleFromSource(prompt: Prompts) async -> Result<Article, Error>
+    func generateArticleFromSource(prompt: Prompts) async -> Future<OpenAIResponse, Error>
 }
 
 /// Typealias for an OpenAI service that can be used by `ArticleRepository`
@@ -115,7 +115,16 @@ class ArticleRepository: ObservableObject, ArticleInterface {
             .eraseToAnyPublisher()
     }
 
-    func generateArticleFromSource(prompt: Prompts) async -> Result<Article, Error> {
+    func getAIContent(prompt: Prompts) -> AnyPublisher<Result<Article, Error>, Error> {
+        generateArticleFromSource(prompt: prompt)
+            .map { $0.choices[0] }
+            .map { Article(category: "Summary", document: $0.text)}
+            .map { Result.success($0)}
+            .mapError { $0 as Error }
+            .eraseToAnyPublisher()
+    }
+
+    func generateArticleFromSource(prompt: Prompts) -> Future<OpenAIResponse, Error> {
         let params = OpenAIRequestParams(
             model: Prompts.Models.davinci003.rawValue,
             prompt: prompt.value,
@@ -125,24 +134,8 @@ class ArticleRepository: ObservableObject, ArticleInterface {
             frequency_penalty: 0,
             presence_penalty: 0
         )
-
-        do {
-            let result = try await service.getSummaries(requestParams: params)
-            switch result {
-            case .success(let article):
-                guard let summary = article.choices.first else {
-                    return .failure(RequestError.decode)
-                }
-
-                return .success(Article(
-                    category: "Summary",
-                    document: summary.text
-                ))
-            case .failure(let error):
-                return .failure(error)
-            }
-        } catch let error {
-            return .failure(error)
-        }
+        return Future(asyncFunc: {
+            try await self.service.getSummaries(requestParams: params).get()
+        })
     }
 }

@@ -23,7 +23,8 @@
 		806A62B0295CA92B00E909AE /* FutureExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A62AF295CA92B00E909AE /* FutureExtensionTest.swift */; };
 		806A62B2295CAB2F00E909AE /* EncodableExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A62B1295CAB2F00E909AE /* EncodableExtensionTest.swift */; };
 		807FB39C295CEB7600C0D07E /* ContentGeneratorViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FB39B295CEB7500C0D07E /* ContentGeneratorViewModifier.swift */; };
-		8082773F2957C7C700CCA40B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082773E2957C7C700CCA40B /* Button.swift */; };
+		807FB3A5295D092300C0D07E /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807FB3A4295D08DE00C0D07E /* NewsListView.swift */; };
+		8082773F2957C7C700CCA40B /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082773E2957C7C700CCA40B /* SecondaryButtonStyle.swift */; };
 		808277412957D23000CCA40B /* RecommendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808277402957D23000CCA40B /* RecommendationsView.swift */; };
 		808277432957D30600CCA40B /* MainHeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808277422957D30600CCA40B /* MainHeadingView.swift */; };
 		808277452957D5A700CCA40B /* ArticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808277442957D5A700CCA40B /* ArticleRepository.swift */; };
@@ -66,7 +67,6 @@
 		80C2881A29550BA900067BBC /* JSONPlaceHolderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C2881929550BA900067BBC /* JSONPlaceHolderService.swift */; };
 		80C2881D29550C1100067BBC /* JSONPlaceHolderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C2881C29550C1100067BBC /* JSONPlaceHolderResponse.swift */; };
 		80C28D2E295C0AFC002349C8 /* Prompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C28D2D295C0AFC002349C8 /* Prompts.swift */; };
-		80F9E63F295A7EDC00222177 /* NewsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E63E295A7EDC00222177 /* NewsListView.swift */; };
 		80F9E642295A808300222177 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 80F9E641295A808300222177 /* RiveRuntime */; };
 		80F9E64A295A826B00222177 /* tech.riv in Resources */ = {isa = PBXBuildFile; fileRef = 80F9E649295A826B00222177 /* tech.riv */; };
 		80F9E64C295A8E1100222177 /* SummaryLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E64B295A8E1100222177 /* SummaryLoadingView.swift */; };
@@ -109,7 +109,8 @@
 		806A62AF295CA92B00E909AE /* FutureExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtensionTest.swift; sourceTree = "<group>"; };
 		806A62B1295CAB2F00E909AE /* EncodableExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableExtensionTest.swift; sourceTree = "<group>"; };
 		807FB39B295CEB7500C0D07E /* ContentGeneratorViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGeneratorViewModifier.swift; sourceTree = "<group>"; };
-		8082773E2957C7C700CCA40B /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		807FB3A4295D08DE00C0D07E /* NewsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
+		8082773E2957C7C700CCA40B /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
 		808277402957D23000CCA40B /* RecommendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsView.swift; sourceTree = "<group>"; };
 		808277422957D30600CCA40B /* MainHeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHeadingView.swift; sourceTree = "<group>"; };
 		808277442957D5A700CCA40B /* ArticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRepository.swift; sourceTree = "<group>"; };
@@ -155,7 +156,6 @@
 		80C2881C29550C1100067BBC /* JSONPlaceHolderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceHolderResponse.swift; sourceTree = "<group>"; };
 		80C28D2D295C0AFC002349C8 /* Prompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompts.swift; sourceTree = "<group>"; };
 		80D4BE292955230C000DA3B5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		80F9E63E295A7EDC00222177 /* NewsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListView.swift; sourceTree = "<group>"; };
 		80F9E649295A826B00222177 /* tech.riv */ = {isa = PBXFileReference; lastKnownFileType = file; name = tech.riv; path = "../../../../../Dropbox (Personal)/My Mac (Velaru.cable.rcn.com)/Downloads/tech.riv"; sourceTree = "<group>"; };
 		80F9E64B295A8E1100222177 /* SummaryLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryLoadingView.swift; sourceTree = "<group>"; };
 		80F9E64D295AD05600222177 /* ContentGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGenerator.swift; sourceTree = "<group>"; };
@@ -217,6 +217,61 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		807FB39D295D07A900C0D07E /* ContentGeneratorToolbar */ = {
+			isa = PBXGroup;
+			children = (
+				80F9E64D295AD05600222177 /* ContentGenerator.swift */,
+				80F9E653295BBBFC00222177 /* ContentGeneratorRevealView.swift */,
+				807FB39B295CEB7500C0D07E /* ContentGeneratorViewModifier.swift */,
+			);
+			path = ContentGeneratorToolbar;
+			sourceTree = "<group>";
+		};
+		807FB39E295D07C500C0D07E /* SummarizeNewsAricles */ = {
+			isa = PBXGroup;
+			children = (
+				80F9E64B295A8E1100222177 /* SummaryLoadingView.swift */,
+				80C0A02029566E56000D6E30 /* ArticleSummaryView.swift */,
+			);
+			path = SummarizeNewsAricles;
+			sourceTree = "<group>";
+		};
+		807FB39F295D07F900C0D07E /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				80B2222F295A1C9E00E3DA6F /* ToolbarModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		807FB3A0295D084400C0D07E /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				80B2222D295A136600E3DA6F /* RootView.swift */,
+				8082774F2958E40400CCA40B /* NewsItem.swift */,
+				8082774B2958E0BE00CCA40B /* NewsFeed.swift */,
+				808277422957D30600CCA40B /* MainHeadingView.swift */,
+				808277402957D23000CCA40B /* RecommendationsView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		807FB3A1295D087600C0D07E /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				8082774D2958E30D00CCA40B /* ArticleView.swift */,
+			);
+			path = Article;
+			sourceTree = "<group>";
+		};
+		807FB3A6295D0B4A00C0D07E /* ViewHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				8082773E2957C7C700CCA40B /* SecondaryButtonStyle.swift */,
+			);
+			path = ViewHelpers;
+			sourceTree = "<group>";
+		};
 		808277462958C7F100CCA40B /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,7 +288,6 @@
 				80C0A00829557634000D6E30 /* Constants.swift */,
 				80C0A02729575299000D6E30 /* Environment.swift */,
 				80C0A029295753B4000D6E30 /* AppEnvironment.swift */,
-				8082773E2957C7C700CCA40B /* Button.swift */,
 				808277492958CFA100CCA40B /* StringExtension.swift */,
 				80827753295903E100CCA40B /* Router.swift */,
 				80C28D2D295C0AFC002349C8 /* Prompts.swift */,
@@ -245,19 +299,13 @@
 		80C0A01D29566E23000D6E30 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				80C0A02029566E56000D6E30 /* ArticleSummaryView.swift */,
-				808277402957D23000CCA40B /* RecommendationsView.swift */,
-				808277422957D30600CCA40B /* MainHeadingView.swift */,
-				8082774B2958E0BE00CCA40B /* NewsFeed.swift */,
-				8082774D2958E30D00CCA40B /* ArticleView.swift */,
-				8082774F2958E40400CCA40B /* NewsItem.swift */,
-				80B2222D295A136600E3DA6F /* RootView.swift */,
-				80B2222F295A1C9E00E3DA6F /* ToolbarModifier.swift */,
-				80F9E63E295A7EDC00222177 /* NewsListView.swift */,
-				80F9E64B295A8E1100222177 /* SummaryLoadingView.swift */,
-				80F9E64D295AD05600222177 /* ContentGenerator.swift */,
-				80F9E653295BBBFC00222177 /* ContentGeneratorRevealView.swift */,
-				807FB39B295CEB7500C0D07E /* ContentGeneratorViewModifier.swift */,
+				807FB3A6295D0B4A00C0D07E /* ViewHelpers */,
+				807FB3A4295D08DE00C0D07E /* NewsListView.swift */,
+				807FB3A1295D087600C0D07E /* Article */,
+				807FB3A0295D084400C0D07E /* Root */,
+				807FB39F295D07F900C0D07E /* Modifiers */,
+				807FB39E295D07C500C0D07E /* SummarizeNewsAricles */,
+				807FB39D295D07A900C0D07E /* ContentGeneratorToolbar */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -601,6 +649,7 @@
 				808277452957D5A700CCA40B /* ArticleRepository.swift in Sources */,
 				80C287DA2954E3E300067BBC /* LivefrontChallengeApp.swift in Sources */,
 				80C0A02129566E56000D6E30 /* ArticleSummaryView.swift in Sources */,
+				807FB3A5295D092300C0D07E /* NewsListView.swift in Sources */,
 				801C216929554B98008072D8 /* OpenAIService.swift in Sources */,
 				807FB39C295CEB7600C0D07E /* ContentGeneratorViewModifier.swift in Sources */,
 				80C28817295508B500067BBC /* JSONPlaceHolderEndpoint.swift in Sources */,
@@ -615,7 +664,7 @@
 				80827754295903E100CCA40B /* Router.swift in Sources */,
 				80C0A02C29575591000D6E30 /* CategoryRepository.swift in Sources */,
 				80C2881D29550C1100067BBC /* JSONPlaceHolderResponse.swift in Sources */,
-				8082773F2957C7C700CCA40B /* Button.swift in Sources */,
+				8082773F2957C7C700CCA40B /* SecondaryButtonStyle.swift in Sources */,
 				80C2881A29550BA900067BBC /* JSONPlaceHolderService.swift in Sources */,
 				801C2160295529AA008072D8 /* JSONFile.swift in Sources */,
 				80C288112954EF7C00067BBC /* RequestMethod.swift in Sources */,
@@ -635,7 +684,6 @@
 				808277502958E40400CCA40B /* NewsItem.swift in Sources */,
 				808277432957D30600CCA40B /* MainHeadingView.swift in Sources */,
 				80F9E652295AE09F00222177 /* HackerNewsService.swift in Sources */,
-				80F9E63F295A7EDC00222177 /* NewsListView.swift in Sources */,
 				80B22230295A1C9E00E3DA6F /* ToolbarModifier.swift in Sources */,
 				80F9E650295ADE2500222177 /* HackerNews.swift in Sources */,
 				80C0A01329561072000D6E30 /* URLQueryItemConvertable.swift in Sources */,
