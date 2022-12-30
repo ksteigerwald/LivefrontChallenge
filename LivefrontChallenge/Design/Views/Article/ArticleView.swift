@@ -107,7 +107,13 @@ struct ArticleView: View {
         app.articles.getAIContent(prompt: prompt)
             .sink(
                 receiveCompletion: { completion in
-                    print(completion)
+                    switch completion {
+                    case .finished:
+                        print(completion)
+                    case .failure(let error):
+                        print(error)
+                        handleTokenError()
+                    }
                 },
                 receiveValue: { result in
                     switch result {
@@ -126,15 +132,19 @@ struct ArticleView: View {
                         self.zStackAlignment = .topLeading
                     case .failure(let error):
                         print(".failure: \(error)")
-                        self.generator = ToolButtonAction.tokenError
-                        self.zStackAlignment = .center
-                        // Show the error for 5 seconds, then reset
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                            self.generator = .original
-                            self.isLoaded = true
-                        }
+                        handleTokenError()
                     }
                 })
             .store(in: &cancellables)
+    }
+
+    func handleTokenError() {
+        self.generator = ToolButtonAction.tokenError
+        self.zStackAlignment = .center
+        // Show the error for 5 seconds, then reset
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.generator = .original
+            self.isLoaded = true
+        }
     }
 }
