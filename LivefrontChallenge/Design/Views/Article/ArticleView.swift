@@ -17,12 +17,13 @@ struct ArticleView: View {
     @State private var isLoaded: Bool = false
     @State private var summarizedContent: Article = .init()
     @State private var cachedArticle: Article = .init()
+    @State private var zStackAlignment: Alignment = .center
 
     let articleFeedItem: ArticleFeedItem
 
     var body: some View {
 
-        ZStack(alignment: .topLeading) {
+        ZStack(alignment: zStackAlignment) {
             Color.DesignSystem.greyscale900
             if isLoaded {
                 ScrollView {
@@ -49,20 +50,15 @@ struct ArticleView: View {
                             .foregroundColor(Color.DesignSystem.greyscale50)
                             .lineSpacing(8)
                             .padding(.bottom, 80)
-                        Spacer()
-                        Spacer()
                     }
                 }
             } else {
-                ZStack(alignment: .center) {
-                    VStack(alignment: .center) {
-                        ArticleLoadingView(loadingOrError: $generator)
-                    }
-                }
+                ArticleLoadingView(loadingOrError: $generator)
+                    .frame(maxWidth: .infinity)
             }
         }
         .overlay(
-            ContentGenerator(generator: $generator),
+            ContentGenerator(generator: $generator, isParentLoaded: $isLoaded),
             alignment: .bottom)
         .task {
             app.articles.getAIContent(prompt: .rewordArticle(context: articleFeedItem.url))
@@ -74,6 +70,7 @@ struct ArticleView: View {
                             self.cachedArticle = article
                             self.summarizedContent = article
                             self.isLoaded = true
+                            self.zStackAlignment = .topLeading
                         case .failure(let error):
                             print(error)
                         }
@@ -89,6 +86,7 @@ struct ArticleView: View {
         .background(Color.DesignSystem.greyscale900)
         .onChange(of: generator) { val in
             self.isLoaded = false
+            self.zStackAlignment = .center
             switch val {
             case .bulletPoints:
                 self.displayResults(prompt: .summarizeIntoBulletPoints(context: articleFeedItem.body))
@@ -99,6 +97,7 @@ struct ArticleView: View {
             case .original:
                 self.summarizedContent = self.cachedArticle
                 self.isLoaded = true
+                self.zStackAlignment = .topLeading
             default: print(val)
             }
         }
@@ -107,7 +106,15 @@ struct ArticleView: View {
     func displayResults(prompt: Prompts) {
         app.articles.getAIContent(prompt: prompt)
             .sink(
-                receiveCompletion: { _ in },
+                receiveCompletion: { completion in
+                    self.generator = ToolButtonAction.tokenError
+                    self.zStackAlignment = .center
+                    // Show the error for 5 seconds, then reset
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                        self.generator = .original
+                        self.isLoaded = true
+                    }
+                },
                 receiveValue: { result in
                     switch result {
                     case .success(let article):
@@ -121,8 +128,10 @@ struct ArticleView: View {
 
                         self.summarizedContent = data
                         self.isLoaded = true
+                        self.zStackAlignment = .topLeading
                     case .failure(let error):
                         self.generator = ToolButtonAction.tokenError
+                        self.zStackAlignment = .center
                         print(error)
                     }
                 })

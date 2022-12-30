@@ -34,11 +34,6 @@ struct NewsFeed: View {
                             NavigationLink(value: Route.article(article)) {
                                 NewsItem(articleFeedItem: article)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
-                                    .task {
-                                        print(article.title)
-                                        print(article.body)
-                                        print("*******")
-                                    }
                             }
                         }
                     }

@@ -70,75 +70,74 @@ enum ToolButtonAction {
 struct ContentGenerator: View {
 
     @Binding var generator: ToolButtonAction
+    @Binding var isParentLoaded: Bool
     @State private var action: ToolButtonAction = .none
-    @State private var showGeneratorView: Bool = false
+    @State private var showGeneratorRevealView: Bool = false
 
     var body: some View {
-        ZStack(alignment: .bottomTrailing) {
+        if isParentLoaded {
+            ZStack(alignment: .bottomTrailing) {
 
-            if showGeneratorView {
-                ContentGeneratorRevealView(actionType: action)
-                    .cornerRadius(20, corners: [.topLeft, .topRight])
-                    .frame(maxWidth: .infinity, maxHeight: 220)
-                    .transition(.move(edge: .bottom))
-                    .task { await hideContentGeneratorRevealView() }
-                    .onTapGesture {
-                        showGeneratorView = false
-                    }
-            }
-
-            HStack {
-                ToolButtonView(
-                    label: Image(systemName: ToolButtonAction.bulletPoints.image),
-                    id: .bulletPoints,
-                    current: $action)
-                ToolButtonView(
-                    label: Image(systemName: ToolButtonAction.sentiment.image),
-                    id: .sentiment,
-                    current: $action)
-                ToolButtonView(
-                    label: Image(systemName: ToolButtonAction.tone.image),
-                    id: .tone,
-                    current: $action)
-                ToolButtonView(
-                    label: Image(systemName: ToolButtonAction.original.image),
-                    id: .original,
-                    current: $action)
-
-                Spacer()
-                Button(action: {
-                    generator = action
-                }) {
-                    Text("Generate")
-                        .padding([.leading, .trailing], 30)
-                        .font(Font.DesignSystem.bodyMediumBold)
-                        .foregroundColor(Color.DesignSystem.greyscale50)
+                if showGeneratorRevealView {
+                    ContentGeneratorRevealView(actionType: action)
+                        .transition(.move(edge: .bottom))
+                        .task { await hideContentGeneratorRevealView() }
+                        .onTapGesture {
+                            showGeneratorRevealView = false
+                        }
                 }
-                .frame(width: 140, height: 40)
-                .background(Color.DesignSystem.secondaryBase)
-                .clipShape(Capsule())
-                .padding([.top, .bottom], 12)
+
+                HStack {
+                    ToolButtonView(
+                        label: Image(systemName: ToolButtonAction.bulletPoints.image),
+                        id: .bulletPoints,
+                        current: $action)
+                    ToolButtonView(
+                        label: Image(systemName: ToolButtonAction.sentiment.image),
+                        id: .sentiment,
+                        current: $action)
+                    ToolButtonView(
+                        label: Image(systemName: ToolButtonAction.tone.image),
+                        id: .tone,
+                        current: $action)
+                    ToolButtonView(
+                        label: Image(systemName: ToolButtonAction.original.image),
+                        id: .original,
+                        current: $action)
+
+                    Spacer()
+                    Button(action: {
+                        generator = action
+                    }) {
+                        Text("Generate")
+                            .padding([.leading, .trailing], 30)
+                            .font(Font.DesignSystem.bodyMediumBold)
+                            .foregroundColor(Color.DesignSystem.greyscale50)
+                    }
+                    .frame(width: 140, height: 40)
+                    .background(Color.DesignSystem.secondaryBase)
+                    .clipShape(Capsule())
+                    .padding([.top, .bottom], 12)
+                }
+                .background(Color.DesignSystem.greyscale900)
             }
-            .background(Color.DesignSystem.greyscale900)
-            .frame(maxWidth: .infinity)
-        }
-        .onChange(of: generator) { setAction in
-            action = setAction
-        }
-        .onChange(of: action) { _ in
-            showGeneratorView = false
-            withAnimation {
-                showGeneratorView = true
+            .onChange(of: generator) { setAction in
+                action = setAction
             }
+            .onChange(of: action) { _ in
+                showGeneratorRevealView = false
+                withAnimation {
+                    showGeneratorRevealView = true
+                }
+            }
+        } else {
+            EmptyView()
         }
-        .padding(.top, 12)
-        .background(Color.DesignSystem.greyscale900)
-        .ignoresSafeArea(.all)
     }
 
     private func hideContentGeneratorRevealView() async {
         try? await Task.sleep(nanoseconds: 7_500_000_000)
-        showGeneratorView = false
+        showGeneratorRevealView = false
     }
 }
 
@@ -179,6 +178,21 @@ struct ToolButtonView: View {
         }
     }
 }
+
+
+struct CContentGenerator_Previews: PreviewProvider {
+
+    static var previews: some View {
+        ZStack(alignment: .bottomLeading) {
+            Color.DesignSystem.greyscale900
+            ContentGenerator(generator: .constant(.bulletPoints), isParentLoaded: .constant(true))
+                .padding([.leading, .trailing], 24)
+                .padding(.bottom, 16)
+        }
+        .ignoresSafeArea()
+    }
+}
+
 
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {

@@ -8,31 +8,58 @@
 import SwiftUI
 
 struct ContentGeneratorRevealView: View {
-    let actionType: ToolButtonAction
+    @State var actionType: ToolButtonAction
     var body: some View {
-        VStack(alignment: .center) {
-            Circle()
-                .frame(width: 50, height: 50, alignment: .center)
-                .foregroundColor(Color.DesignSystem.secondaryBase)
-                .overlay(
-                    Image(systemName: actionType.image)
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(alignment: .top ,spacing: 10) {
+                Circle()
+                    .frame(width: 48, height: 48, alignment: .center)
+                    .foregroundColor(
+                        Color.DesignSystem.greyscale900
+                    )
+                    .overlay(
+                        Image(systemName: actionType.image)
+                            .foregroundColor(
+                                Color.DesignSystem.othersCamaron
+                            )
+                            .font(Font.DesignSystem.bodySmallBold)
+                    )
+
+                VStack(alignment: .leading) {
+                    Text(actionType.loadingHeading)
                         .foregroundColor(Color.DesignSystem.greyscale50)
-                )
-                .padding([.top], 12)
-            CaptionText(content: actionType.decription)
+                        .font(Font.DesignSystem.bodySmallBold)
+                        .padding(.bottom, 4)
+                    Text(actionType.loadingMessage)
+                        .foregroundColor(Color.DesignSystem.greyscale500)
+                        .font(Font.DesignSystem.bodyXsmallMedium)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(2)
+                }
+                .padding(.all, 0)
                 .frame(maxWidth: .infinity)
-                .padding([.leading, .trailing], 12)
+                Spacer()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(.all, 16)
             Spacer()
+                .padding(.bottom, 100)
         }
-        .frame(maxWidth: .infinity)
-        .background(Color.DesignSystem.greyscale50)
-        .opacity(0.9)
+        .frame(maxWidth: .infinity, maxHeight: 140, alignment: .top)
+        .background(Color.DesignSystem.greyscale800)
+        .cornerRadius(12, corners: [.topLeft, .topRight])
     }
 }
 
 struct ContentGeneratorRevealView_Previews: PreviewProvider {
+
     static var previews: some View {
-        ContentGeneratorRevealView(actionType: .bulletPoints)
+        ZStack(alignment: .bottom) {
+            Color.DesignSystem.greyscale900
+            Spacer()
+            ContentGeneratorRevealView(actionType: ToolButtonAction.bulletPoints)
+        }
+        .ignoresSafeArea(.all)
     }
 }
 

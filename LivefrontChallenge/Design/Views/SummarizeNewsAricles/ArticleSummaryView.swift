@@ -64,7 +64,7 @@ struct ArticleSummaryView: View {
             Spacer()
         }
         .overlay(
-            ContentGenerator(generator: $generator),
+            ContentGenerator(generator: $generator, isParentLoaded: $isArticleLoaded),
             alignment: .bottom)
         .background(Color.DesignSystem.greyscale900)
         .navigationBarBackButtonHidden()
