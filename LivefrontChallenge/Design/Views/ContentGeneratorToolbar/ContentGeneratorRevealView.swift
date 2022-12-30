@@ -11,7 +11,7 @@ struct ContentGeneratorRevealView: View {
     @Binding var actionType: ToolButtonAction
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack(alignment: .top ,spacing: 10) {
+            HStack(alignment: .top, spacing: 10) {
                 Circle()
                     .frame(width: 48, height: 48, alignment: .center)
                     .foregroundColor(

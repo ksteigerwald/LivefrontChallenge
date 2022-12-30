@@ -106,7 +106,7 @@ struct ArticleView: View {
     func displayResults(prompt: Prompts) {
         app.articles.getAIContent(prompt: prompt)
             .sink(
-                receiveCompletion: { completion in
+                receiveCompletion: { _ in
                     self.generator = ToolButtonAction.tokenError
                     self.zStackAlignment = .center
                     // Show the error for 5 seconds, then reset

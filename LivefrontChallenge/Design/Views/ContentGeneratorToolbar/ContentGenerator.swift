@@ -79,14 +79,16 @@ struct ContentGenerator: View {
             ZStack(alignment: .bottomTrailing) {
 
                 if showGeneratorRevealView {
-                    ContentGeneratorRevealView(actionType: $action)
-                        .transition(.move(edge: .bottom))
-                        .task { await hideContentGeneratorRevealView() }
-                        .onTapGesture {
-                            withAnimation {
-                                showGeneratorRevealView = false
+                    if action != .none {
+                        ContentGeneratorRevealView(actionType: $action)
+                            .transition(.move(edge: .bottom))
+                            .task { await hideContentGeneratorRevealView() }
+                            .onTapGesture {
+                                withAnimation {
+                                    showGeneratorRevealView = false
+                                }
                             }
-                        }
+                    }
                 }
 
                 HStack {
@@ -127,9 +129,11 @@ struct ContentGenerator: View {
                 action = setAction
             }
             .onChange(of: action) { _ in
-                print(action)
-                if action == generator {
-                    print("action == gene \(action) \(generator)")
+                if action == .none {
+                    withAnimation {
+                        showGeneratorRevealView = false
+                    }
+                    return
                 }
                 showGeneratorRevealView = false
                 withAnimation {
@@ -158,8 +162,11 @@ struct ToolButtonView: View {
     var body: some View {
         Button(action: {
             current = id
-            print("ToolButonView.Button.id: \(current)")
-            print("ToolButonView.Button.id: \(id)")
+            if current == id && isOn {
+                isOn = false
+                current = .none
+                return
+            }
             guard current != id && !isOn else {
                 isOn = false
                 return
@@ -188,7 +195,6 @@ struct ToolButtonView: View {
     }
 }
 
-
 struct CContentGenerator_Previews: PreviewProvider {
 
     static var previews: some View {
@@ -201,7 +207,6 @@ struct CContentGenerator_Previews: PreviewProvider {
         .ignoresSafeArea()
     }
 }
-
 
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
