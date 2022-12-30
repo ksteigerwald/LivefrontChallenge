@@ -89,11 +89,11 @@ struct ArticleView: View {
             self.zStackAlignment = .center
             switch val {
             case .bulletPoints:
-                self.displayResults(prompt: .summarizeIntoBulletPoints(context: articleFeedItem.body))
+                self.displayResults(prompt: .summarizeIntoBulletPoints(context: articleFeedItem.url))
             case .sentiment:
-                self.displayResults(prompt: .sentimentAnalysis(context: articleFeedItem.body))
+                self.displayResults(prompt: .sentimentAnalysis(context: articleFeedItem.url))
             case .tone:
-                self.displayResults(prompt: .toneAnalysis(context: articleFeedItem.body))
+                self.displayResults(prompt: .toneAnalysis(context: articleFeedItem.url))
             case .original:
                 self.summarizedContent = self.cachedArticle
                 self.isLoaded = true
@@ -106,14 +106,8 @@ struct ArticleView: View {
     func displayResults(prompt: Prompts) {
         app.articles.getAIContent(prompt: prompt)
             .sink(
-                receiveCompletion: { _ in
-                    self.generator = ToolButtonAction.tokenError
-                    self.zStackAlignment = .center
-                    // Show the error for 5 seconds, then reset
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                        self.generator = .original
-                        self.isLoaded = true
-                    }
+                receiveCompletion: { completion in
+                    print(completion)
                 },
                 receiveValue: { result in
                     switch result {
@@ -123,6 +117,7 @@ struct ArticleView: View {
                         let data = Article(
                             headline: self.cachedArticle.headline,
                             body: article.body,
+                            articleURL: article.articleURL,
                             parse: false
                         )
 
@@ -130,11 +125,16 @@ struct ArticleView: View {
                         self.isLoaded = true
                         self.zStackAlignment = .topLeading
                     case .failure(let error):
+                        print(".failure: \(error)")
                         self.generator = ToolButtonAction.tokenError
                         self.zStackAlignment = .center
-                        print(error)
+                        // Show the error for 5 seconds, then reset
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                            self.generator = .original
+                            self.isLoaded = true
+                        }
                     }
                 })
             .store(in: &cancellables)
-        }
+    }
 }

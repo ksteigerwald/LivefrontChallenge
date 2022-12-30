@@ -20,10 +20,8 @@ struct ArticleSummaryView: View {
     @StateObject private var newsSources: ArticleList = .init()
     @Binding var path: NavigationPath
     @State var category: NewsCategory
-
-    @State private var generator: ToolButtonAction = .none
-
     @State private var cancellables = [AnyCancellable]()
+
     var body: some View {
         ZStack(alignment: .leading) {
             Color.DesignSystem.greyscale900
@@ -63,9 +61,6 @@ struct ArticleSummaryView: View {
             }
             Spacer()
         }
-        .overlay(
-            ContentGenerator(generator: $generator, isParentLoaded: $isArticleLoaded),
-            alignment: .bottom)
         .background(Color.DesignSystem.greyscale900)
         .navigationBarBackButtonHidden()
 
