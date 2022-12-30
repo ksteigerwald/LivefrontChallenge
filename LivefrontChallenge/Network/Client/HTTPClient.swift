@@ -32,7 +32,6 @@ extension HTTPClient {
         guard let url = request.url else { throw RequestError.invalidURL }
 
         var urlRequest = URLRequest(url: url)
-        // urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.httpMethod = endpoint.method.rawValue
         urlRequest.allHTTPHeaderFields = endpoint.headers
         // urlRequest.cachePolicy = .returnCacheDataElseLoad

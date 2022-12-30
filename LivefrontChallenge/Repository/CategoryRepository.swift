@@ -8,11 +8,6 @@
 import Foundation
 import Combine
 
-/// A news category
-struct NewsCategory: Hashable {
-    let name: String
-}
-
 /// A protocol that defines an interface for fetching news categories and news articles
 protocol CategoryInterface {
     /// Fetches a list of news categories

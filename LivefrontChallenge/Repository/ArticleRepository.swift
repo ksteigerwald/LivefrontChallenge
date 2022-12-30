@@ -8,43 +8,6 @@
 import Foundation
 import Combine
 
-struct Article: Hashable {
-    let category: String
-    let document: String
-    let headline: String
-    let body: String
-    let articleURL: String
-    let imageURL: String
-    /// Initializes an `Article` instance.
-    /// - Parameters:
-    ///   - category: The category of the article.
-    ///   - document: The document containing the headline and body of the article.
-    ///   - headline: (Optional) The headline of the article. If not provided, the first line of the `document` will be used.
-    ///   - body: (Optional) The body of the article. If not provided, the second line of the `document` will be used.
-    init(
-        category: String = "",
-        document: String = "",
-        headline: String? = nil,
-        body: String? = nil,
-        articleURL: String = "",
-        imageURL: String = "https://placeimg.com/320/240/any",
-        parse: Bool = true
-    ) {
-        var content: [String]
-        if parse {
-            content = document.parseHeadlineAndBody()
-        } else {
-            content = [headline ?? "-", body ?? "+"]
-        }
-        self.category = category
-        self.document = document
-        self.imageURL = imageURL
-        self.articleURL = articleURL
-        self.headline = content.remove(at: 0)
-        self.body = content.joined(separator: "\n\n")
-    }
-}
-
 protocol ArticleInterface {
     /// Generates a summary article for a given category and list of articles.
     /// - Parameters:
@@ -99,7 +62,9 @@ class ArticleRepository: ObservableObject, ArticleInterface {
             try await self.service.getSummaries(requestParams: params).get()
         })
     }
-
+    /// Query for the latest articles from the News API.
+    ///  - parameter limit: the number of articles to fetch
+    ///  - returns: a `Future` containing a `CryptoCompareResponse` object or an `Error`
     func queryForArticles(limit: Int = 5) -> Future<CryptoCompareResponse, Error> {
             let params = CryptoCompareRequestParams()
         return Future(asyncFunc: {
@@ -107,7 +72,9 @@ class ArticleRepository: ObservableObject, ArticleInterface {
         })
     }
 
-    /// get the latest news articles
+    /// Get the latest articles from the News API
+    /// - parameter limit: the number of articles to fetch
+    /// - returns: a publisher emitting a `Result` containing an array of `ArticleFeedItem` objects or an `Error`
     func getLatestArticles(limit: Int = 5) -> AnyPublisher<Result<[ArticleFeedItem], Error>, Error> {
         queryForArticles()
             .map { Result.success($0.articles) }
@@ -115,6 +82,9 @@ class ArticleRepository: ObservableObject, ArticleInterface {
             .eraseToAnyPublisher()
     }
 
+    /// Get content from OpenAI's API
+    /// - parameter prompt: the prompt to generate content from
+    /// - returns: a publisher emitting a `Result` containing an `Article` object or an `Error`
     func getAIContent(prompt: Prompts) -> AnyPublisher<Result<Article, Error>, Error> {
         generateArticleFromSource(prompt: prompt)
             .map { $0.choices[0] }
@@ -124,6 +94,9 @@ class ArticleRepository: ObservableObject, ArticleInterface {
             .eraseToAnyPublisher()
     }
 
+    /// Generate an article from a prompt using OpenAI's API
+    ///  - parameter prompt: the prompt to generate content from
+    ///  - returns: a `Future` containing an `OpenAIResponse` object or an `Error`
     func generateArticleFromSource(prompt: Prompts) -> Future<OpenAIResponse, Error> {
         let params = OpenAIRequestParams(
             model: Prompts.Models.davinci003.rawValue,
