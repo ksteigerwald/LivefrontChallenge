@@ -6,7 +6,7 @@ This application pulls news streams from CryptoCompare and analyzes the results 
 The app utilizes many of the latest features available on iOS 16. Build and run this application using XCode 14.2; there is no guarantee that it will work with any earlier version.
 
 ## How to run
-API Key's for CryptoCompare and OpenAI must be included in the Environment file under the Token enum. For the intended audience, I will share the API keys with you. 
+API Key's for CryptoCompare and OpenAI must be included in the Environment file under the Token enum. For the intended audience, I will share the API keys with you.
 
 This project makes use of swiftlint, to install it on your system:
 ```
@@ -34,10 +34,10 @@ For further instructions go here:[SwiftLint](https://github.com/realm/SwiftLint)
 ### Frontend Architecture
 SwiftUI's declarative UI does not require the use of MVVM in iOS development. Instead, it follows an MV (Model View) setup, with the View containing equivalent functions to the ViewModel. The Environment Object allows for access to repositories that synchronize data flow throughout the app. However, it is important to note that while some state may be preserved in the Environment Object, it could potentially be refactored to have isolated views manage their own state. This approach may provide better scalability and maintenance for the app. 
 
-## Getting Started
-Explain how to set up the development environment
-List any dependencies that need to be installed
-Provide instructions on how to build and run the app
+### SwiftUI Tests
+At this time, SwiftUI views do not come with built-in testing capabilities. However, following the principles outlined in John Sundell's "Writing Testable Code when using SwiftUI" article, we can make testing easier. This includes separating views and business logic, using dependency injection, and making sure views are as stateless as possible. Doing this will make it simpler to create unit tests for the business logic and integration tests for the views.
+
+I will be working on SwiftUI testing but may be found on a development branch vs what is currently submitte. 
 
 ## Credits and Inspiration
 - https://developer.apple.com/forums/thread/699003
@@ -45,4 +45,3 @@ Provide instructions on how to build and run the app
 - https://www.figma.com/community/plugin/1041038879576667317/Swift-Package-Exporter (Love this)
 
 ## Screenshots
-Include a few screenshots of the app in action
