@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentGeneratorRevealView: View {
-    @State var actionType: ToolButtonAction
+    @Binding var actionType: ToolButtonAction
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .top ,spacing: 10) {
@@ -57,7 +57,9 @@ struct ContentGeneratorRevealView_Previews: PreviewProvider {
         ZStack(alignment: .bottom) {
             Color.DesignSystem.greyscale900
             Spacer()
-            ContentGeneratorRevealView(actionType: ToolButtonAction.bulletPoints)
+            ContentGeneratorRevealView(
+                actionType: .constant(ToolButtonAction.bulletPoints)
+            )
         }
         .ignoresSafeArea(.all)
     }

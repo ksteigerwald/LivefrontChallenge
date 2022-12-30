@@ -79,11 +79,13 @@ struct ContentGenerator: View {
             ZStack(alignment: .bottomTrailing) {
 
                 if showGeneratorRevealView {
-                    ContentGeneratorRevealView(actionType: action)
+                    ContentGeneratorRevealView(actionType: $action)
                         .transition(.move(edge: .bottom))
                         .task { await hideContentGeneratorRevealView() }
                         .onTapGesture {
-                            showGeneratorRevealView = false
+                            withAnimation {
+                                showGeneratorRevealView = false
+                            }
                         }
                 }
 
@@ -125,6 +127,10 @@ struct ContentGenerator: View {
                 action = setAction
             }
             .onChange(of: action) { _ in
+                print(action)
+                if action == generator {
+                    print("action == gene \(action) \(generator)")
+                }
                 showGeneratorRevealView = false
                 withAnimation {
                     showGeneratorRevealView = true
@@ -152,23 +158,26 @@ struct ToolButtonView: View {
     var body: some View {
         Button(action: {
             current = id
-            guard $current.wrappedValue != id && !isOn else {
+            print("ToolButonView.Button.id: \(current)")
+            print("ToolButonView.Button.id: \(id)")
+            guard current != id && !isOn else {
                 isOn = false
                 return
             }
-            if $current.wrappedValue == id {
+            if current == id {
                 isOn = true
+                return
             }
         }) {
             Circle()
                 .frame(width: 40, height: 40, alignment: .center)
                 .foregroundColor(
-                    $isOn.wrappedValue ? Color.DesignSystem.greyscale50 : Color.DesignSystem.greyscale800
+                    isOn ? Color.DesignSystem.greyscale50 : Color.DesignSystem.greyscale800
                 )
                 .overlay(
                     Text(label)
                         .foregroundColor(
-                            $isOn.wrappedValue ? Color.DesignSystem.secondaryBase : Color.DesignSystem.greyscale500
+                            isOn ? Color.DesignSystem.secondaryBase : Color.DesignSystem.greyscale500
                         )
                         .font(Font.DesignSystem.bodySmallBold)
                 )
