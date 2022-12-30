@@ -13,13 +13,13 @@ struct ArticleView: View {
     @Binding var path: NavigationPath
 
     @State private var cancellables = [AnyCancellable]()
-    @State private var generator: ToolButtonAction = .none
+    @State private var generator: ToolButtonAction = .original
     @State private var isLoaded: Bool = false
     @State private var summarizedContent: Article = .init()
     @State private var cachedArticle: Article = .init()
-    @State private var loadingOrError: String = ToolButtonAction.original.loadingMessage
 
     let articleFeedItem: ArticleFeedItem
+
     var body: some View {
 
         ZStack(alignment: .topLeading) {
@@ -54,10 +54,9 @@ struct ArticleView: View {
                     }
                 }
             } else {
-                ScrollView {
+                ZStack(alignment: .center) {
                     VStack(alignment: .center) {
-                        Text(loadingOrError)
-                            .padding(.top, 400)
+                        ArticleLoadingView(loadingOrError: $generator)
                     }
                 }
             }
@@ -90,7 +89,6 @@ struct ArticleView: View {
         .background(Color.DesignSystem.greyscale900)
         .onChange(of: generator) { val in
             self.isLoaded = false
-            self.loadingOrError = generator.loadingMessage
             switch val {
             case .bulletPoints:
                 self.displayResults(prompt: .summarizeIntoBulletPoints(context: articleFeedItem.body))
@@ -124,7 +122,8 @@ struct ArticleView: View {
                         self.summarizedContent = data
                         self.isLoaded = true
                     case .failure(let error):
-                        self.loadingOrError = "Something happened \(error)"
+                        self.generator = ToolButtonAction.tokenError
+                        print(error)
                     }
                 })
             .store(in: &cancellables)

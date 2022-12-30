@@ -14,6 +14,8 @@ enum ToolButtonAction {
     case tone
     case original
     case none
+    case tokenError
+    case error
 
     var image: String {
         switch self {
@@ -22,6 +24,8 @@ enum ToolButtonAction {
         case .tone: return "water.waves"
         case .original: return "newspaper"
         case .none: return "x.square.fill"
+        case .tokenError: return "exclamationmark.bubble.fill"
+        case .error: return "exclamationmark.triangle"
         }
     }
 
@@ -32,6 +36,8 @@ enum ToolButtonAction {
         case .tone: return "Choose this option to have the AI score the article either Positive, Negative or Neutral"
         case .original: return "Show the original AI generated summary article"
         case .none: return ""
+        case .tokenError: return "A Token Error has occured"
+        case .error: return "An Error has occured"
         }
     }
 
@@ -41,10 +47,23 @@ enum ToolButtonAction {
         case .sentiment: return "Running sentiment analysis on the given article..."
         case .tone: return "Running tone (positive, negative, neutral) analysis on the given article..."
         case .original: return "Content is being fetched from a given URL, then summarized into 7 paragraphs"
-        case .none: return ""
+        case .none: return "Loading"
+        case .tokenError: return "We have encounted a generator error, tokens exced limit. Try to regenerate article"
+        case .error: return "We are sorry but an error has occured"
         }
     }
 
+    var loadingHeading: String {
+        switch self {
+        case .bulletPoints: return "Loading Bullet Points"
+        case .sentiment: return "Running Sentiment Analysis"
+        case .tone: return "Loading Tone Analysis"
+        case .original: return "Loading Summarized Article"
+        case .none: return "Content is Loading"
+        case .tokenError: return "Token Limit Exceded"
+        case .error: return "Error"
+        }
+    }
 }
 
 /// The ContentGenerator view is a horizontal stack of four ToolButtonViews and a "Generate" button.
@@ -166,6 +185,7 @@ extension View {
         clipShape( RoundedCorner(radius: radius, corners: corners) )
     }
 }
+
 struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners

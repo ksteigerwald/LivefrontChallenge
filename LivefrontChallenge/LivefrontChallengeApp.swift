@@ -25,6 +25,7 @@ struct LivefrontChallengeApp: App {
                         .environment(\.colorScheme, .dark)
                         .background(Color.DesignSystem.greyscale900)
                         .environmentObject(AppEnvironment())
+                        .background(Color.DesignSystem.greyscale900)
                 }
                 .ignoresSafeArea(.all)
             }
