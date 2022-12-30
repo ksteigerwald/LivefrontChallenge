@@ -8,24 +8,29 @@
 import Foundation
 import Combine
 
+/// A news category
 struct NewsCategory: Hashable {
     let name: String
 }
 
+/// A protocol that defines an interface for fetching news categories and news articles
 protocol CategoryInterface {
-    func fetchCategories() async -> Future<[CryptoCompareNewsCategoriesResponse], Error>
-    func fetchNewsForCategory(category: String) async -> Future<CryptoCompareResponse, Error>
+    /// Fetches a list of news categories
+    func fetchCategories() -> Future<[CryptoCompareNewsCategoriesResponse], Error>
+    /// Fetches news articles for a specific category
+    func fetchNewsForCategory(category: String) -> Future<CryptoCompareResponse, Error>
 }
 
-typealias CategoryDataRepository = CryptoCompareServiceable
-
+/// A concrete implementation of `CategoryInterface`
 class CategoryRepository: CategoryInterface {
     private let ccService: CryptoCompareService
 
+    /// Initializes a new instance of `CategoryRepository`
     init(ccService: CryptoCompareService = CryptoCompareService()) {
         self.ccService = ccService
     }
 
+    /// Fetches news articles for a specific category
     func fetchNewsForCategory(category: String) -> Future<CryptoCompareResponse, Error> {
         let params = CryptoCompareRequestParams(
             categories: category
@@ -35,7 +40,8 @@ class CategoryRepository: CategoryInterface {
         })
     }
 
-    func fetchCategories() async -> Future<[CryptoCompareNewsCategoriesResponse], Error> {
+    /// Fetches a list of news categories
+    func fetchCategories() -> Future<[CryptoCompareNewsCategoriesResponse], Error> {
         Future(asyncFunc: {
             try await self.ccService.getNewsCategories().get()
         })
