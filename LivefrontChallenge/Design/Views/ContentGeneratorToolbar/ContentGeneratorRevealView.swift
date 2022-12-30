@@ -27,23 +27,23 @@ struct ContentGeneratorRevealView: View {
 
                 VStack(alignment: .leading) {
                     Text(actionType.loadingHeading)
+                        .fixedSize()
                         .foregroundColor(Color.DesignSystem.greyscale50)
                         .font(Font.DesignSystem.bodySmallBold)
                         .padding(.bottom, 4)
-                    Text(actionType.loadingMessage)
+                    Text(actionType.decription)
+                        .fixedSize(horizontal: false, vertical: true)
                         .foregroundColor(Color.DesignSystem.greyscale500)
                         .font(Font.DesignSystem.bodyXsmallMedium)
                         .multilineTextAlignment(.leading)
-                        .lineLimit(2)
+                        .lineLimit(3)
                 }
-                .padding(.all, 0)
                 .frame(maxWidth: .infinity)
-                Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(.all, 16)
             Spacer()
-                .padding(.bottom, 100)
+                .padding(.bottom, 50)
         }
         .frame(maxWidth: .infinity, maxHeight: 140, alignment: .top)
         .background(Color.DesignSystem.greyscale800)
