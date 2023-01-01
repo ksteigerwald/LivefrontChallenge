@@ -120,12 +120,12 @@ struct ToolButtonView: View {
             Circle()
                 .frame(width: 40, height: 40, alignment: .center)
                 .foregroundColor(
-                    isOn ? Color.DesignSystem.greyscale50 : Color.DesignSystem.greyscale800
+                    Color.DesignSystem.greyscale800
                 )
                 .overlay(
                     Text(label)
                         .foregroundColor(
-                            isOn ? Color.DesignSystem.secondaryBase : Color.DesignSystem.greyscale500
+                            isOn ? current.onColor : Color.DesignSystem.greyscale500
                         )
                         .font(Font.DesignSystem.bodySmallBold)
                 )

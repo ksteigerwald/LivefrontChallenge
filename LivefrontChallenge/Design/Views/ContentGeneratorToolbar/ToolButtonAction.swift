@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 /// Enum representing the four types of tool buttons available.
 enum ToolButtonAction {
@@ -62,6 +63,16 @@ enum ToolButtonAction {
         case .none: return "Content is Loading"
         case .tokenError: return "Token Limit Exceded"
         case .error: return "Error"
+        }
+    }
+
+    var onColor: Color {
+        switch self {
+        case .bulletPoints: return Color.DesignSystem.secondaryBase
+        case .sentiment: return Color.DesignSystem.othersCamaron
+        case .tone: return Color.DesignSystem.othersSky
+        case .original: return Color.DesignSystem.othersOrange
+        default: return Color.DesignSystem.othersTeal
         }
     }
 }

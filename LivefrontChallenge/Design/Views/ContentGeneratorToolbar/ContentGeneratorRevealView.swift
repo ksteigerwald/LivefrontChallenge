@@ -20,7 +20,7 @@ struct ContentGeneratorRevealView: View {
                     .overlay(
                         Image(systemName: actionType.image)
                             .foregroundColor(
-                                Color.DesignSystem.othersCamaron
+                                actionType.onColor
                             )
                             .font(Font.DesignSystem.bodySmallBold)
                     )
