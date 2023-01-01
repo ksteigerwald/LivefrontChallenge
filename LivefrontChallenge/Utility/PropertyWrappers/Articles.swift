@@ -63,7 +63,16 @@ public class Articles: ObservableObject {
                     case .success(let data):
                         guard let val = Array(data.choices.prefix(1)).first else { return }
                         guard let content = val.text.parseHeadlineAndBody() else { return }
-                        let article = Article(headline: content.headline, body: content.body)
+                        var heading: String = ""
+                        // TODO: this is way too ask not tell.
+                        if case .toneAnalysis = prompt {
+                            heading = self.cached!.headline
+                        }
+
+                        let article = Article(
+                            headline: heading.isEmpty ? content.headline : heading,
+                            body: content.body
+                        )
                         self.generatedContent = article
                         self.isLoaded = true
 

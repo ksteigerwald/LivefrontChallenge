@@ -19,10 +19,17 @@ extension String {
             element.trimmingCharacters(in: .whitespacesAndNewlines).count > 0
         }
 
-        guard filtered.count >= 2 else {
+        // TODO: Not happy with this, will come back with a better approach
+        guard filtered.count >= 1 else {
             return nil
         }
+
+        if filtered.count == 1 {
+            return ParsedDoc(headline: "", body: filtered.remove(at: 0))
+        }
+
         let headline = filtered.remove(at: 0)
+
         let body = filtered.joined(separator: "\n\n")
 
         return ParsedDoc(headline: headline, body: body)
