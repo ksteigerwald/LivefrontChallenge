@@ -11,25 +11,17 @@ import Combine
 
 struct RootView: View {
 
-    @EnvironmentObject var app: AppEnvironment
-    @State private var isCategoriesLoaded = false
-    @State private var loadingOrError: String = "Loading..."
     @State private var path = NavigationPath()
-    @State var articleFeedItems: [ArticleFeedItem]
-    @State private var cancellables = [AnyCancellable]()
 
-    @State private var recomendations = [
-        NewsCategory(name: "XRP"),
-        NewsCategory(name: "ALGO"),
-        NewsCategory(name: "ETH"),
-        NewsCategory(name: "BTC"),
-        NewsCategory(name: "XLM")
-    ]
+    @State var articleFeedItems: [ArticleFeedItem]
+
+    @CategoryProperty var categories: Categories
+    @FeedProperty var articles: Feed
 
     var body: some View {
         ZStack(alignment: .top) {
             Color.DesignSystem.greyscale900
-            if isCategoriesLoaded {
+            if articles.isFeedItemLoaded {
                 NavigationStack(path: $path) {
                     ZStack(alignment: .topLeading) {
                         mainContent
@@ -46,26 +38,17 @@ struct RootView: View {
             }
         }
         .task {
-            self.app.articles.getLatestArticles()
-                .sink(
-                    receiveCompletion: { _ in},
-                    receiveValue: { result in
-                        switch result {
-                        case .success(let articles):
-                            self.articleFeedItems = articles
-                            self.isCategoriesLoaded = true
-                        case .failure(let error):
-                            self.loadingOrError = "Failed to fetch latest articles: \(error)"
-                        }
-                    }
-                ).store(in: &cancellables)
+            articles.getLatestArticles()
+        }
+        .onReceive(articles.$isFeedItemLoaded) { _ in
+            articleFeedItems = articles.list
         }
     }
 
     var mainContent: some View {
         VStack(alignment: .leading) {
             MainHeadingView()
-            RecommendationsView(recomendations: $recomendations)
+            RecommendationsView(recomendations: categories.list)
             NewsFeed(articleFeedItems: $articleFeedItems)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
@@ -81,10 +64,8 @@ struct RootView: View {
                     path: $path,
                     category: category
                 )
-                .environmentObject(AppEnvironment())
             case .article(let articleFeedItem):
                 ArticleView(path: $path, articleFeedItem: articleFeedItem)
-                    .environmentObject(AppEnvironment())
             case .newsList:
                 NewsListView(path: $path)
             }

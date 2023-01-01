@@ -12,6 +12,34 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>LibreBaskerville-Bold.ttf</string>
-	</array>
+  </array>
+  <key>NSExceptionDomains</key>
+  <dict>
+    <key>jsonplaceholder.typicode.com</key>
+    <dict>
+        <key>NSExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+    </dict>
+    <key>api.coingecko.com</key>
+    <dict>
+        <key>NSExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+    </dict>
+    <key>api.openai.com</key>
+    <dict>
+        <key>NSExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+    </dict>
+    <key>min-api.cryptocompare.com</key>
+    <dict>
+        <key>NSExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+    </dict>
+    <key>hacker-news.firebaseio.com</key>
+    <dict>
+        <key>NSExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+    </dict>
+  </dict>
 </dict>
 </plist>

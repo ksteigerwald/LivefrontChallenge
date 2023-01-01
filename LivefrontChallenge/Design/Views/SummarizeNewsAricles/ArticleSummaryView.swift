@@ -8,33 +8,29 @@
 import SwiftUI
 import Combine
 
-class ArticleList: ObservableObject {
-    @Published var articles = [Article]()
-}
-
 struct ArticleSummaryView: View {
 
-    @EnvironmentObject private var app: AppEnvironment
-    @State private var isArticleLoaded = false
-    @State private var document: Article = .init()
-    @StateObject private var newsSources: ArticleList = .init()
+    @CategoryProperty var categories: Categories
+    @ArticleProperty var articles: Articles
+
+    @State private var feeds: [Article] = []
+
     @Binding var path: NavigationPath
     @State var category: NewsCategory
-    @State private var cancellables = [AnyCancellable]()
 
     var body: some View {
         ZStack(alignment: .leading) {
             Color.DesignSystem.greyscale900
-            if isArticleLoaded {
+            if articles.generatedSummaryLoaded {
                 ScrollView {
                     VStack(alignment: .leading) {
-                        Text(document.headline)
+                        Text(articles.document.headline)
                             .lineLimit(3)
                             .font(Font.DesignSystem.headingH3)
                             .foregroundColor(Color.DesignSystem.greyscale50)
                             .padding([.top, .bottom], 24)
 
-                        AsyncImage(url: URL(string: "https://placeimg.com/320/240/any")) { image in
+                        AsyncImage(url: URL(string: articles.document.imageURL)) { image in
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -46,7 +42,7 @@ struct ArticleSummaryView: View {
                             Color.DesignSystem.greyscale50
                         }
 
-                        Text(document.body)
+                        Text(articles.document.body)
                             .font(.body)
                             .lineSpacing(8)
                             .foregroundColor(Color.DesignSystem.greyscale50)
@@ -56,53 +52,32 @@ struct ArticleSummaryView: View {
 
                 }
             } else {
-                SummaryLoadingView(newsSources: $newsSources.articles)
-                    .environmentObject(AppEnvironment())
+                SummaryLoadingView(newsSources: $feeds)
             }
             Spacer()
         }
         .background(Color.DesignSystem.greyscale900)
         .navigationBarBackButtonHidden()
-
         .modifier(ToolbarModifier(
             path: $path,
             heading: "Summary Article")
         )
         .task {
-            // Figure out how to do this in one take vs task, then onRecieve
-            app.categories.fetchNewsForCategory(category: category.name)
-                .mapError { $0 as Error }
-                .map { response in
-                    response.articles.map {
-                        Article(
-                            category: category.name,
-                            headline: $0.title,
-                            articleURL: $0.url
-                        )
-                    }
-                }
-                .receive(on: DispatchQueue.main)
-                .sink(receiveCompletion: { _ in}, receiveValue: { articles in
-                    self.newsSources.articles = Array(articles.prefix(10))
-                })
-                .store(in: &cancellables)
+            articles.generatedSummaryLoaded = false
+            articles.document = .init()
+            categories.getNewsFromCategory(category: category)
         }
-        .onReceive(newsSources.$articles) { sources in
-            guard !sources.isEmpty else { return }
-            let urls: [String] = sources.map { $0.articleURL }
-            guard let source = sources.first else { return }
-            app.articles.generateSummaryArticle(category: source.category, articles: urls)
-                .sink(receiveCompletion: {_ in }, receiveValue: { response in
-                    guard let choice = response.choices.first else { return }
-                    let article = Article(
-                        category: source.category,
-                        document: choice.text
-                    )
-                    self.document = article
-                    self.isArticleLoaded = true
-                })
-                .store(in: &cancellables)
-
+        .onReceive(categories.$news) { news in
+            guard !news.isEmpty else { return }
+            feeds = news
+            articles.generateSummaryArticle(category: category, articles: news)
+        }
+        .onReceive(articles.$generatedSummaryLoaded) { _ in
+            // After we load the generated article, clear the feeds to ensure only one completion request is made.
+            // TODO: figure out how to manage this through the property wrappers
+            feeds = []
+            categories.news = []
+            articles.list = []
         }
     }
 }

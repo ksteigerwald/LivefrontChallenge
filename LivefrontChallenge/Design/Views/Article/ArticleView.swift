@@ -9,26 +9,26 @@ import SwiftUI
 import Combine
 
 struct ArticleView: View {
-    @EnvironmentObject private var app: AppEnvironment
     @Binding var path: NavigationPath
 
     @State private var cancellables = [AnyCancellable]()
     @State private var generator: ToolButtonAction = .original
-    @State private var isLoaded: Bool = false
-    @State private var summarizedContent: Article = .init()
-    @State private var cachedArticle: Article = .init()
     @State private var zStackAlignment: Alignment = .center
+    @State public var isLoaded: Bool = false
+
+    @State public var reset: Bool = true
 
     let articleFeedItem: ArticleFeedItem
 
-    var body: some View {
+    @ArticleProperty var articles: Articles
 
+    var body: some View {
         ZStack(alignment: zStackAlignment) {
             Color.DesignSystem.greyscale900
             if isLoaded {
                 ScrollView {
                     VStack(alignment: .leading) {
-                        Text(summarizedContent.headline)
+                        Text(articles.generatedContent.headline)
                             .font(Font.DesignSystem.headingH3)
                             .foregroundColor(Color.DesignSystem.greyscale50)
                             .padding([.top, .bottom], 24)
@@ -45,7 +45,7 @@ struct ArticleView: View {
                         .cornerRadius(15)
                         .padding(.bottom, 24)
 
-                        Text(summarizedContent.body)
+                        Text(articles.generatedContent.body)
                             .font(Font.DesignSystem.bodyMediumMedium)
                             .foregroundColor(Color.DesignSystem.greyscale50)
                             .lineSpacing(8)
@@ -60,22 +60,19 @@ struct ArticleView: View {
         .overlay(
             ContentGenerator(generator: $generator, isParentLoaded: $isLoaded),
             alignment: .bottom)
+        .onDisappear {
+            articles.cached = nil
+            articles.firstLoad = false
+            articles.isLoaded = false
+        }
         .task {
-            app.articles.getAIContent(prompt: .rewordArticle(context: articleFeedItem.url))
-                .sink(
-                    receiveCompletion: { _ in },
-                    receiveValue: { result in
-                        switch result {
-                        case .success(let article):
-                            self.cachedArticle = article
-                            self.summarizedContent = article
-                            self.isLoaded = true
-                            self.zStackAlignment = .topLeading
-                        case .failure(let error):
-                            print(error)
-                        }
-                    })
-                .store(in: &cancellables)
+            articles.generateArticleFromPrompt(prompt: .rewordArticle(context: articleFeedItem.url))
+        }
+        .onReceive(articles.$isLoaded) { loaded in
+            guard loaded else { return }
+            articles.cacheHadler(item: articleFeedItem)
+            isLoaded = loaded
+            self.zStackAlignment = .topLeading
         }
         .modifier(ToolbarModifier(
             path: $path,
@@ -89,53 +86,19 @@ struct ArticleView: View {
             self.zStackAlignment = .center
             switch val {
             case .bulletPoints:
-                self.displayResults(prompt: .summarizeIntoBulletPoints(context: articleFeedItem.url))
+                articles.generateArticleFromPrompt(prompt: .summarizeIntoBulletPoints(context: articleFeedItem.url))
             case .sentiment:
-                self.displayResults(prompt: .sentimentAnalysis(context: articleFeedItem.url))
+                articles.generateArticleFromPrompt(prompt: .sentimentAnalysis(context: articleFeedItem.url))
             case .tone:
-                self.displayResults(prompt: .toneAnalysis(context: articleFeedItem.url))
+                articles.generateArticleFromPrompt(prompt: .toneAnalysis(context: articleFeedItem.url))
             case .original:
-                self.summarizedContent = self.cachedArticle
+                guard let article = articles.cached else { return }
+                articles.generatedContent = article
                 self.isLoaded = true
                 self.zStackAlignment = .topLeading
             default: print(val)
             }
         }
-    }
-
-    func displayResults(prompt: Prompts) {
-        app.articles.getAIContent(prompt: prompt)
-            .sink(
-                receiveCompletion: { completion in
-                    switch completion {
-                    case .finished:
-                        print(completion)
-                    case .failure(let error):
-                        print(error)
-                        handleTokenError()
-                    }
-                },
-                receiveValue: { result in
-                    switch result {
-                    case .success(let article):
-                        // This is needed to ensure we keep the same heading
-                        // as new content is generated.
-                        let data = Article(
-                            headline: self.cachedArticle.headline,
-                            body: article.body,
-                            articleURL: article.articleURL,
-                            parse: false
-                        )
-
-                        self.summarizedContent = data
-                        self.isLoaded = true
-                        self.zStackAlignment = .topLeading
-                    case .failure(let error):
-                        print(".failure: \(error)")
-                        handleTokenError()
-                    }
-                })
-            .store(in: &cancellables)
     }
 
     func handleTokenError() {

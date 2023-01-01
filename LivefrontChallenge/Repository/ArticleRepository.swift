@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 protocol ArticleInterface {
     /// Generates a summary article for a given category and list of articles.
@@ -22,19 +23,17 @@ protocol ArticleInterface {
     func generateArticleFromSource(prompt: Prompts) async -> Future<OpenAIResponse, Error>
 }
 
-/// Typealias for an OpenAI service that can be used by `ArticleRepository`
-typealias ArticleDataRepository = OpenAIServiceable
-
 /// A class for storing and managing articles.
-class ArticleRepository: ObservableObject, ArticleInterface {
+public class ArticleRepository: ObservableObject, ArticleInterface {
     /// The OpenAI service to use for generating article summaries.
     private let service: OpenAIService
-
+    /// News service used to gather crypto related news feeds
     private let newsService: CryptoCompareService
 
     /// Initializes a new `ArticleRepository` with the given OpenAI service.
-    ///
-    /// - Parameter service: The OpenAI service to use for generating article summaries.
+    /// - Parameters:
+    ///   - service:  The OpenAI service to use for generating article summaries.
+    ///   - newsService: News service used to gather crypto related news feeds
     init(
         service: OpenAIService = OpenAIService(),
         newsService: CryptoCompareService = CryptoCompareService()
@@ -66,7 +65,7 @@ class ArticleRepository: ObservableObject, ArticleInterface {
     ///  - parameter limit: the number of articles to fetch
     ///  - returns: a `Future` containing a `CryptoCompareResponse` object or an `Error`
     func queryForArticles(limit: Int = 5) -> Future<CryptoCompareResponse, Error> {
-            let params = CryptoCompareRequestParams()
+        let params = CryptoCompareRequestParams()
         return Future(asyncFunc: {
             try await self.newsService.getNews(requestParams: params).get()
         })

@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct RecommendationsView: View {
-    @EnvironmentObject var app: AppEnvironment
-    @Binding var recomendations: [NewsCategory]
+    var recomendations: [NewsCategory]
 
     var body: some View {
         VStack(alignment: .leading) {

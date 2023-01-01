@@ -8,7 +8,7 @@
 import Foundation
 
 /// Prompts passed to OpenAI representing different prompts for text analysis
-enum Prompts {
+public enum Prompts {
     /// OpenAI Models
     enum Models: String {
         case davinci003 = "text-davinci-003"
@@ -42,9 +42,9 @@ enum Prompts {
             return "Summarize the following article into 7 of paragraphs, include a headline for the summary: \(content.data)"
         case .summarizeIntoBulletPoints(let context):
             let content = PromptModel(data: context)
-            return "Summarize the given content into a list of bullet points: \(content.data)"
+            return "Summarize the given content into a list of bullet points, include a headline for the list: \(content.data)"
         case .sentimentAnalysis(let context):
-            return "Provide sentiment analysis for the given content: \(context)"
+            return "Provide sentiment analysis for the given content, include a headline for the analysis: \(context)"
         case .toneAnalysis(let context):
             return "Identify the tone of the article (positive, negative, neutral) for the given content, respond only with (positive, negative, neutral): \(context)"
         }

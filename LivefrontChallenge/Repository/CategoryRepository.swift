@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 /// A protocol that defines an interface for fetching news categories and news articles
 protocol CategoryInterface {
@@ -18,11 +19,11 @@ protocol CategoryInterface {
 
 /// A concrete implementation of `CategoryInterface`
 class CategoryRepository: CategoryInterface {
-    private let ccService: CryptoCompareService
+    private let service: CryptoCompareService
 
     /// Initializes a new instance of `CategoryRepository`
-    init(ccService: CryptoCompareService = CryptoCompareService()) {
-        self.ccService = ccService
+    init(service: CryptoCompareService = CryptoCompareService()) {
+        self.service = service
     }
 
     /// Fetches news articles for a specific category
@@ -31,14 +32,14 @@ class CategoryRepository: CategoryInterface {
             categories: category
         )
         return Future(asyncFunc: {
-            try await self.ccService.getNews(requestParams: params).get()
+            try await self.service.getNews(requestParams: params).get()
         })
     }
 
     /// Fetches a list of news categories
     func fetchCategories() -> Future<[CryptoCompareNewsCategoriesResponse], Error> {
         Future(asyncFunc: {
-            try await self.ccService.getNewsCategories().get()
+            try await self.service.getNewsCategories().get()
         })
     }
 }

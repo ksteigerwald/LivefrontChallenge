@@ -11,8 +11,6 @@ import DesignSystem
 @main
 struct LivefrontChallengeApp: App {
 
-    @EnvironmentObject var app: AppEnvironment
-
     var body: some Scene {
         WindowGroup {
             // When testing do not run the whole app in order to speed up things
@@ -24,7 +22,6 @@ struct LivefrontChallengeApp: App {
                     RootView(articleFeedItems: [])
                         .environment(\.colorScheme, .dark)
                         .background(Color.DesignSystem.greyscale900)
-                        .environmentObject(AppEnvironment())
                         .background(Color.DesignSystem.greyscale900)
                 }
                 .ignoresSafeArea(.all)
