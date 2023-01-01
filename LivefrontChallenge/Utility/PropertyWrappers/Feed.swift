@@ -55,26 +55,31 @@ public class Feed: ObservableObject {
     }
 
 }
-/// A `FeedProperty` is a `DynamicProperty` that wraps a `Feed` object
+
+/// A property wrapper for the Feed type.
+/// - Note: FeedProperty provides a wrapper for the `Feed` type.
 /// - Parameters:
-///   - feed: The `Feed` object to be wrapped. Defaults to `.shared`
-/// - Example Usage:
-///     ```
-///     @FeedProperty var feed: Feed = .shared
-///     ```
+///   - feed: The Feed object used for the property wrapper.
+/// - Returns: A FeedProperty object.
 @propertyWrapper
 public struct FeedProperty: DynamicProperty {
+    /// The observed object for the FeedProperty.
     @ObservedObject public var feed: Feed
 
+    /// Creates a FeedProperty object.
+    /// - Parameters:
+    ///   - feed: The Feed object used for the property wrapper.
     public init(feed: Feed = .shared) {
         self.feed = feed
     }
 
+    /// Returns the wrapped value of the FeedProperty object.
     public var wrappedValue: Feed {
         get {
             feed
         }
 
+        /// Sets the wrapped value of the FeedProperty object.
         mutating set {
             feed = newValue
         }
