@@ -10,8 +10,6 @@ import Combine
 
 struct ArticleSummaryView: View {
 
-    @EnvironmentObject private var app: AppEnvironment
-    @State private var isArticleLoaded = false
     @CategoryProperty var categories: Categories
     @ArticleProperty var articles: Articles
 
@@ -19,7 +17,6 @@ struct ArticleSummaryView: View {
 
     @Binding var path: NavigationPath
     @State var category: NewsCategory
-    @State private var cancellables = [AnyCancellable]()
 
     var body: some View {
         ZStack(alignment: .leading) {
@@ -62,17 +59,26 @@ struct ArticleSummaryView: View {
         }
         .background(Color.DesignSystem.greyscale900)
         .navigationBarBackButtonHidden()
-
         .modifier(ToolbarModifier(
             path: $path,
             heading: "Summary Article")
         )
         .task {
+            articles.generatedSummaryLoaded = false
+            articles.document = .init()
             categories.getNewsFromCategory(category: category)
         }
         .onReceive(categories.$news) { news in
+            guard !news.isEmpty else { return }
             feeds = news
             articles.generateSummaryArticle(category: category, articles: news)
+        }
+        .onReceive(articles.$generatedSummaryLoaded) { _ in
+            // After we load the generated article, clear the feeds to ensure only one completion request is made.
+            // TODO: figure out how to manage this through the property wrappers
+            feeds = []
+            categories.news = []
+            articles.list = []
         }
     }
 }

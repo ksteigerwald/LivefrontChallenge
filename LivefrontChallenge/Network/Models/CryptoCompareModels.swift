@@ -8,7 +8,7 @@
 import Foundation
 import BackedCodable
 
-struct CryptoCompareRequestParams: Encodable, URLQueryItemConvertible {
+public struct CryptoCompareRequestParams: Encodable, URLQueryItemConvertible {
     /// A list of feeds to include in the response.
     let feeds: String?
 
@@ -52,7 +52,8 @@ struct CryptoCompareRequestParams: Encodable, URLQueryItemConvertible {
     }
 }
 
-struct CryptoCompareResponse: Decodable {
+public struct CryptoCompareResponse: Decodable, Identifiable {
+    public var id = UUID()
     /// The type of response
     let type: Int
     /// The message of the response
@@ -77,17 +78,17 @@ struct CryptoCompareResponse: Decodable {
 
 }
 
-struct RateLimit: Decodable {
+public struct RateLimit: Decodable {
     // TODO: add properties
 }
 
-struct PromotedArticle: Decodable {
+public struct PromotedArticle: Decodable {
     // TODO: add properties
 }
 
-struct ArticleFeedItem: Decodable, Hashable {
+public struct ArticleFeedItem: Decodable, Hashable, Identifiable {
     /// The ID of the news article
-    let id: String
+    public let id: String
     /// The globally unique identifier of the news article
     let guid: String
     /// The Unix timestamp of when the article was published
@@ -115,11 +116,11 @@ struct ArticleFeedItem: Decodable, Hashable {
     /// The source of the article
     let source: String
 
-    static func == (lhs: ArticleFeedItem, rhs: ArticleFeedItem) -> Bool {
+    public static func == (lhs: ArticleFeedItem, rhs: ArticleFeedItem) -> Bool {
         lhs.title == rhs.title && lhs.id == rhs.id
     }
 
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 
@@ -151,13 +152,13 @@ struct ArticleFeedItem: Decodable, Hashable {
     }
 }
 
-struct SourceInfo: Decodable {
+public struct SourceInfo: Decodable {
     let name: String
     let img: String
     let lang: String
 }
 
-struct CryptoCompareNewsCategoriesResponse: Decodable {
+public struct CryptoCompareNewsCategoriesResponse: Decodable {
 
     /// The name of the news category
     let categoryName: String

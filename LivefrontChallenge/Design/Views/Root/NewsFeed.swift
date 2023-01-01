@@ -9,8 +9,6 @@ import SwiftUI
 
 struct NewsFeed: View {
 
-    @EnvironmentObject private var app: AppEnvironment
-    @State private var isActive = false
     @Binding var articleFeedItems: [ArticleFeedItem]
 
     var body: some View {

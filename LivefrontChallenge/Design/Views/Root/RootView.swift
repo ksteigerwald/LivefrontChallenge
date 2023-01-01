@@ -12,19 +12,18 @@ import Combine
 struct RootView: View {
 
     @EnvironmentObject var app: AppEnvironment
-    @State private var isCategoriesLoaded = false
-    @State private var loadingOrError: String = "Loading..."
     @State private var path = NavigationPath()
     @State var articleFeedItems: [ArticleFeedItem]
+
     @State private var cancellables = [AnyCancellable]()
 
     @CategoryProperty var categories: Categories
-    @ArticleProperty var articles: Articles
+    @FeedProperty var articles: Feed
 
     var body: some View {
         ZStack(alignment: .top) {
             Color.DesignSystem.greyscale900
-            if isCategoriesLoaded {
+            if articles.isFeedItemLoaded {
                 NavigationStack(path: $path) {
                     ZStack(alignment: .topLeading) {
                         mainContent
@@ -40,23 +39,12 @@ struct RootView: View {
                 }
             }
         }
-        .onAppear {
-            articles.reset()
-        }
         .task {
-            self.app.articles.getLatestArticles()
-                .sink(
-                    receiveCompletion: { _ in},
-                    receiveValue: { result in
-                        switch result {
-                        case .success(let articles):
-                            self.articleFeedItems = articles
-                            self.isCategoriesLoaded = true
-                        case .failure(let error):
-                            self.loadingOrError = "Failed to fetch latest articles: \(error)"
-                        }
-                    }
-                ).store(in: &cancellables)
+            articles.getLatestArticles()
+        }
+        .onReceive(articles.$isFeedItemLoaded) { _ in
+            articleFeedItems = articles.list
+            print(articleFeedItems)
         }
     }
 

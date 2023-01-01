@@ -10,6 +10,8 @@
 		801C0ACC295F83A40035CCFB /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C0ACB295F83A40035CCFB /* Article.swift */; };
 		801C0ACE295F848C0035CCFB /* NewsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C0ACD295F848C0035CCFB /* NewsCategory.swift */; };
 		801C0AD0295F85AA0035CCFB /* ToolButtonAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C0ACF295F85AA0035CCFB /* ToolButtonAction.swift */; };
+		801C0AD32961874A0035CCFB /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C0AD22961874A0035CCFB /* Categories.swift */; };
+		801C0AD52961877F0035CCFB /* Articles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C0AD42961877F0035CCFB /* Articles.swift */; };
 		801C215B29552849008072D8 /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = 801C215A29552849008072D8 /* OHHTTPStubs */; };
 		801C215D29552849008072D8 /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 801C215C29552849008072D8 /* OHHTTPStubsSwift */; };
 		801C2160295529AA008072D8 /* JSONFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C215F295529AA008072D8 /* JSONFile.swift */; };
@@ -69,6 +71,7 @@
 		80C2881A29550BA900067BBC /* JSONPlaceHolderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C2881929550BA900067BBC /* JSONPlaceHolderService.swift */; };
 		80C2881D29550C1100067BBC /* JSONPlaceHolderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C2881C29550C1100067BBC /* JSONPlaceHolderResponse.swift */; };
 		80C28D2E295C0AFC002349C8 /* Prompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C28D2D295C0AFC002349C8 /* Prompts.swift */; };
+		80D324902961DCFC00F5BCD2 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D3248F2961DCFC00F5BCD2 /* Feed.swift */; };
 		80F9E642295A808300222177 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 80F9E641295A808300222177 /* RiveRuntime */; };
 		80F9E64A295A826B00222177 /* tech.riv in Resources */ = {isa = PBXBuildFile; fileRef = 80F9E649295A826B00222177 /* tech.riv */; };
 		80F9E64C295A8E1100222177 /* SummaryLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F9E64B295A8E1100222177 /* SummaryLoadingView.swift */; };
@@ -99,6 +102,8 @@
 		801C0ACB295F83A40035CCFB /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		801C0ACD295F848C0035CCFB /* NewsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCategory.swift; sourceTree = "<group>"; };
 		801C0ACF295F85AA0035CCFB /* ToolButtonAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolButtonAction.swift; sourceTree = "<group>"; };
+		801C0AD22961874A0035CCFB /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		801C0AD42961877F0035CCFB /* Articles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Articles.swift; sourceTree = "<group>"; };
 		801C215F295529AA008072D8 /* JSONFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONFile.swift; sourceTree = "<group>"; };
 		801C21622955366C008072D8 /* JSONPlaceholder.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONPlaceholder.json; sourceTree = "<group>"; };
 		801C216429553BDC008072D8 /* GeckoEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeckoEndpoint.swift; sourceTree = "<group>"; };
@@ -159,6 +164,7 @@
 		80C2881929550BA900067BBC /* JSONPlaceHolderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceHolderService.swift; sourceTree = "<group>"; };
 		80C2881C29550C1100067BBC /* JSONPlaceHolderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceHolderResponse.swift; sourceTree = "<group>"; };
 		80C28D2D295C0AFC002349C8 /* Prompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompts.swift; sourceTree = "<group>"; };
+		80D3248F2961DCFC00F5BCD2 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		80D4BE292955230C000DA3B5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		80F9E649295A826B00222177 /* tech.riv */ = {isa = PBXFileReference; lastKnownFileType = file; name = tech.riv; path = "../../../../../Dropbox (Personal)/My Mac (Velaru.cable.rcn.com)/Downloads/tech.riv"; sourceTree = "<group>"; };
 		80F9E64B295A8E1100222177 /* SummaryLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryLoadingView.swift; sourceTree = "<group>"; };
@@ -198,6 +204,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		801C0AD12961872D0035CCFB /* PropertyWrappers */ = {
+			isa = PBXGroup;
+			children = (
+				801C0AD22961874A0035CCFB /* Categories.swift */,
+				801C0AD42961877F0035CCFB /* Articles.swift */,
+				80D3248F2961DCFC00F5BCD2 /* Feed.swift */,
+			);
+			path = PropertyWrappers;
+			sourceTree = "<group>";
+		};
 		801C215E29552991008072D8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +307,7 @@
 		80C0A00729557623000D6E30 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				801C0AD12961872D0035CCFB /* PropertyWrappers */,
 				80C0A00829557634000D6E30 /* Constants.swift */,
 				80C0A02729575299000D6E30 /* Environment.swift */,
 				80C0A029295753B4000D6E30 /* AppEnvironment.swift */,
@@ -641,6 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80C0A00D29560A46000D6E30 /* CryptoCompareModels.swift in Sources */,
+				80D324902961DCFC00F5BCD2 /* Feed.swift in Sources */,
 				8082774A2958CFA100CCA40B /* StringExtension.swift in Sources */,
 				801C217129555E97008072D8 /* Dictionary.swift in Sources */,
 				801C216B29554BEE008072D8 /* OpenAIModels.swift in Sources */,
@@ -657,6 +675,7 @@
 				80C0A00B2956091A000D6E30 /* CryptoCompareEndpoint.swift in Sources */,
 				80C288132954F06700067BBC /* RequestError.swift in Sources */,
 				80C0A01129560EBE000D6E30 /* CryptoCompareService.swift in Sources */,
+				801C0AD32961874A0035CCFB /* Categories.swift in Sources */,
 				801C216D29554C86008072D8 /* OpenAIEndpoint.swift in Sources */,
 				80C2880E2954EC8300067BBC /* Endpoint.swift in Sources */,
 				801C216529553BDC008072D8 /* GeckoEndpoint.swift in Sources */,
@@ -670,6 +689,7 @@
 				801C0ACC295F83A40035CCFB /* Article.swift in Sources */,
 				80C288112954EF7C00067BBC /* RequestMethod.swift in Sources */,
 				80C28D2E295C0AFC002349C8 /* Prompts.swift in Sources */,
+				801C0AD52961877F0035CCFB /* Articles.swift in Sources */,
 				80C0A02829575299000D6E30 /* Environment.swift in Sources */,
 				801C21732955633E008072D8 /* Encodable.swift in Sources */,
 				80C0A02A295753B4000D6E30 /* AppEnvironment.swift in Sources */,
