@@ -9,7 +9,6 @@ import SwiftUI
 import RiveRuntime
 
 struct SummaryLoadingView: View {
-    @EnvironmentObject var app: AppEnvironment
     @Binding var newsSources: [Article]
 
     var body: some View {

@@ -9,7 +9,6 @@ import SwiftUI
 import Combine
 
 struct ArticleView: View {
-    @EnvironmentObject private var app: AppEnvironment
     @Binding var path: NavigationPath
 
     @State private var cancellables = [AnyCancellable]()

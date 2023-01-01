@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentGeneratorViewModifier: ViewModifier {
 
-    @EnvironmentObject private var app: AppEnvironment
     @Binding var article: Article
     @Binding var generator: ToolButtonAction
     @Binding var isLoaded: Bool

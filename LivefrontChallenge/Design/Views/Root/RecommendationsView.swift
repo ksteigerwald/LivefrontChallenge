@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct RecommendationsView: View {
-    @EnvironmentObject var app: AppEnvironment
     var recomendations: [NewsCategory]
 
     var body: some View {

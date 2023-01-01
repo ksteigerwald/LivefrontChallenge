@@ -53,7 +53,6 @@ struct ArticleSummaryView: View {
                 }
             } else {
                 SummaryLoadingView(newsSources: $feeds)
-                    .environmentObject(AppEnvironment())
             }
             Spacer()
         }

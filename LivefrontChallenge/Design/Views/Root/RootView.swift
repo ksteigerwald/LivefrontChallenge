@@ -11,7 +11,6 @@ import Combine
 
 struct RootView: View {
 
-    @EnvironmentObject var app: AppEnvironment
     @State private var path = NavigationPath()
 
     @State var articleFeedItems: [ArticleFeedItem]
@@ -65,10 +64,8 @@ struct RootView: View {
                     path: $path,
                     category: category
                 )
-                .environmentObject(AppEnvironment())
             case .article(let articleFeedItem):
                 ArticleView(path: $path, articleFeedItem: articleFeedItem)
-                    .environmentObject(AppEnvironment())
             case .newsList:
                 NewsListView(path: $path)
             }
