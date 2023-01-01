@@ -31,6 +31,7 @@ public class Articles: ObservableObject {
 
     public func generateSummaryArticle(category: NewsCategory, articles: [Article]) {
         let urls = articles.map { $0.articleURL }
+        guard let image = articles.first?.imageURL else { return }
         guard !urls.isEmpty else { return }
         repository.generateSummaryArticle(category: category.name, articles: urls)
             .receive(on: RunLoop.main)
@@ -39,9 +40,12 @@ public class Articles: ObservableObject {
                 switch result {
                 case .success(let data):
                     guard let choice = data.choices.first else { return }
+                    guard let content = choice.text.parseHeadlineAndBody() else { return }
                     let article = Article(
                         category: category.name,
-                        document: choice.text
+                        headline: content.headline,
+                        body: content.body,
+                        imageURL: image
                     )
                     self.document = article
                     self.generatedSummaryLoaded = true

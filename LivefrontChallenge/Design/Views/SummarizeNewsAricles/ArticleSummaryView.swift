@@ -30,7 +30,7 @@ struct ArticleSummaryView: View {
                             .foregroundColor(Color.DesignSystem.greyscale50)
                             .padding([.top, .bottom], 24)
 
-                        AsyncImage(url: URL(string: "https://placeimg.com/320/240/any")) { image in
+                        AsyncImage(url: URL(string: articles.document.imageURL)) { image in
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
