@@ -158,6 +158,7 @@ struct SourceInfo: Decodable {
 }
 
 struct CryptoCompareNewsCategoriesResponse: Decodable {
+
     /// The name of the news category
     let categoryName: String
 

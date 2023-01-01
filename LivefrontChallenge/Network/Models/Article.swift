@@ -8,7 +8,7 @@
 import Foundation
 
 /// Article Model Used to transform response into
-struct Article: Hashable {
+public struct Article: Hashable {
     let category: String
     let document: String
     let headline: String

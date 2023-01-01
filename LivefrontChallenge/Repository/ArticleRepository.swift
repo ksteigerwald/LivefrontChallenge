@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 protocol ArticleInterface {
     /// Generates a summary article for a given category and list of articles.
@@ -22,19 +23,17 @@ protocol ArticleInterface {
     func generateArticleFromSource(prompt: Prompts) async -> Future<OpenAIResponse, Error>
 }
 
-/// Typealias for an OpenAI service that can be used by `ArticleRepository`
-typealias ArticleDataRepository = OpenAIServiceable
-
 /// A class for storing and managing articles.
-class ArticleRepository: ObservableObject, ArticleInterface {
+public class ArticleRepository: ObservableObject, ArticleInterface {
     /// The OpenAI service to use for generating article summaries.
     private let service: OpenAIService
-
+    /// News service used to gather crypto related news feeds
     private let newsService: CryptoCompareService
 
     /// Initializes a new `ArticleRepository` with the given OpenAI service.
-    ///
-    /// - Parameter service: The OpenAI service to use for generating article summaries.
+    /// - Parameters:
+    ///   - service:  The OpenAI service to use for generating article summaries.
+    ///   - newsService: News service used to gather crypto related news feeds
     init(
         service: OpenAIService = OpenAIService(),
         newsService: CryptoCompareService = CryptoCompareService()
@@ -66,7 +65,7 @@ class ArticleRepository: ObservableObject, ArticleInterface {
     ///  - parameter limit: the number of articles to fetch
     ///  - returns: a `Future` containing a `CryptoCompareResponse` object or an `Error`
     func queryForArticles(limit: Int = 5) -> Future<CryptoCompareResponse, Error> {
-            let params = CryptoCompareRequestParams()
+        let params = CryptoCompareRequestParams()
         return Future(asyncFunc: {
             try await self.newsService.getNews(requestParams: params).get()
         })
@@ -111,4 +110,86 @@ class ArticleRepository: ObservableObject, ArticleInterface {
             try await self.service.getSummaries(requestParams: params).get()
         })
     }
+}
+
+public class Articles: ObservableObject {
+
+    @State public var list: [Article] = []
+    @Published public var document: Article = .init()
+    @Published public var generatedSummaryLoaded: Bool = false
+
+    public static let shared = Articles()
+    private let repository: ArticleRepository
+    var cancellables = Set<AnyCancellable>()
+
+    init(repository: ArticleRepository = ArticleRepository()) {
+        self.repository = repository
+    }
+
+    public func generateSummaryArticle(category: NewsCategory, articles: [Article]) {
+        let urls = articles.map { $0.articleURL }
+        guard !urls.isEmpty else { return }
+        repository.generateSummaryArticle(category: category.name, articles: urls)
+            .receive(on: RunLoop.main)
+            .map(Result<OpenAIResponse, Error>.success)
+            .sink(receiveCompletion: { _ in }, receiveValue: { result in
+                switch result {
+                case .success(let data):
+                    guard let choice = data.choices.first else { return }
+                    let article = Article(
+                        category: category.name,
+                        document: choice.text
+                    )
+                    self.document = article
+                    self.generatedSummaryLoaded = true
+                case .failure(let error):
+                    print(error)
+                }
+            })
+            .store(in: &cancellables)
+    }
+
+    func reset() {
+        document = .init()
+        generatedSummaryLoaded = false
+        list = []
+    }
+}
+
+@propertyWrapper
+public struct ArticleProperty: DynamicProperty {
+    @ObservedObject public var articles: Articles
+
+    public init(articles: Articles = .shared) {
+        self.articles = articles
+    }
+    public var wrappedValue: Articles {
+        get {
+            articles
+        }
+
+        mutating set {
+            articles = newValue
+        }
+    }
+}
+
+@propertyWrapper
+public struct SummaryArticle: DynamicProperty {
+    @StateObject public var articles: Articles = Articles()
+    @State var category: NewsCategory?
+
+    public init(category: NewsCategory) {
+        self.category = category
+    }
+
+    public var wrappedValue: [Article] {
+        articles.list
+    }
+
+    public func update() {
+        guard let category = category else { return }
+        articles.generateSummaryArticle(category: category, articles: articles.list)
+    }
+
 }

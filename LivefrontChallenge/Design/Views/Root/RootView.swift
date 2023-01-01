@@ -18,13 +18,8 @@ struct RootView: View {
     @State var articleFeedItems: [ArticleFeedItem]
     @State private var cancellables = [AnyCancellable]()
 
-    @State private var recomendations = [
-        NewsCategory(name: "XRP"),
-        NewsCategory(name: "ALGO"),
-        NewsCategory(name: "ETH"),
-        NewsCategory(name: "BTC"),
-        NewsCategory(name: "XLM")
-    ]
+    @CategoryProperty var categories: Categories
+    @ArticleProperty var articles: Articles
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -44,6 +39,9 @@ struct RootView: View {
                         .padding(.top, 200)
                 }
             }
+        }
+        .onAppear {
+            articles.reset()
         }
         .task {
             self.app.articles.getLatestArticles()
@@ -65,7 +63,7 @@ struct RootView: View {
     var mainContent: some View {
         VStack(alignment: .leading) {
             MainHeadingView()
-            RecommendationsView(recomendations: $recomendations)
+            RecommendationsView(recomendations: categories.list)
             NewsFeed(articleFeedItems: $articleFeedItems)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)

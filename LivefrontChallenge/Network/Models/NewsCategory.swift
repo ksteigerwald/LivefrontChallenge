@@ -8,6 +8,6 @@
 import Foundation
 
 /// A news category
-struct NewsCategory: Hashable {
+public struct NewsCategory: Hashable {
     let name: String
 }

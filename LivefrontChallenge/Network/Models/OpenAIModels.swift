@@ -8,7 +8,7 @@
 import Foundation
 import BackedCodable
 
-struct OpenAIRequestParams: Encodable {
+public struct OpenAIRequestParams: Encodable {
     /// The name of the model to use for the request
     let model: String
 
@@ -34,7 +34,7 @@ struct OpenAIRequestParams: Encodable {
     let presence_penalty: Float
 }
 
-struct OpenAIResponse: Decodable {
+public struct OpenAIResponse: Decodable {
 
     /// The unique identifier for the response
     var id: String
@@ -55,9 +55,9 @@ struct OpenAIResponse: Decodable {
     var usage: Usage
 }
 
-struct Choice: BackedDecodable, Decodable {
+public struct Choice: BackedDecodable, Decodable {
     /// Default init for Backed Framework
-    init(_: DeferredDecoder) {  }
+    public init(_: DeferredDecoder) {  }
 
     /// The completed text
     @Backed()
@@ -76,10 +76,10 @@ struct Choice: BackedDecodable, Decodable {
     var finishReason: String
 }
 
-struct Usage: BackedDecodable, Decodable {
+public struct Usage: BackedDecodable, Decodable {
 
     /// Default init for Backed Framework
-    init(_: DeferredDecoder) {  }
+    public init(_: DeferredDecoder) {  }
 
     /// The number of tokens in the prompt
     @Backed("prompt_tokens")
