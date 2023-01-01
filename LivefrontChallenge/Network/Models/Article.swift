@@ -24,25 +24,18 @@ public struct Article: Hashable {
     init(
         category: String = "",
         document: String = "",
-        headline: String? = nil,
-        body: String? = nil,
+        headline: String = "",
+        body: String = "",
         articleURL: String = "",
         imageURL: String = "https://placeimg.com/320/240/any",
         parse: Bool = true
     ) {
-        var content: [String]
-
-        // TODO: remove, used for debugging
-        if parse {
-            content = document.parseHeadlineAndBody()
-        } else {
-            content = [headline ?? "-", body ?? "+"]
-        }
         self.category = category
         self.document = document
         self.imageURL = imageURL
         self.articleURL = articleURL
-        self.headline = content.remove(at: 0)
-        self.body = content.joined(separator: "\n\n")
+        self.headline = headline
+        self.body = body
+
     }
 }

@@ -11,11 +11,17 @@ import SwiftUI
 
 public class Articles: ObservableObject {
 
-    @State public var list: [Article] = []
-    @Published public var document: Article = .init()
-    @Published public var generatedSummaryLoaded: Bool = false
-
     public static let shared = Articles()
+
+    @State public var list: [Article] = []
+    @Published public var generatedSummaryLoaded: Bool = false
+    @Published public var isLoaded: Bool = false
+
+    public var firstLoad: Bool = false
+    public var generatedContent: Article = .init()
+    public var document: Article = .init()
+    public var cached: Article?
+
     private let repository: ArticleRepository
     var cancellables = Set<AnyCancellable>()
 
@@ -44,6 +50,41 @@ public class Articles: ObservableObject {
                 }
             })
             .store(in: &cancellables)
+    }
+
+    public func generateArticleFromPrompt(prompt: Prompts) {
+        repository.generateArticleFromSource(prompt: prompt)
+            .receive(on: RunLoop.main)
+            .map(Result<OpenAIResponse, Error>.success)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { result in
+                    switch result {
+                    case .success(let data):
+                        guard let val = Array(data.choices.prefix(1)).first else { return }
+                        guard let content = val.text.parseHeadlineAndBody() else { return }
+                        let article = Article(headline: content.headline, body: content.body)
+                        self.generatedContent = article
+                        self.isLoaded = true
+
+                    case .failure(let error):
+                        print(error)
+                    }
+                })
+            .store(in: &cancellables)
+    }
+
+    func cacheHadler(item: ArticleFeedItem) {
+        if !firstLoad && cached == nil {
+            self.firstLoad = true
+            let cacheArticle = Article(
+                headline: generatedContent.headline,
+                body: generatedContent.body,
+                articleURL: item.url,
+                imageURL: item.imageUrl
+            )
+            self.cached = cacheArticle
+        }
     }
 }
 

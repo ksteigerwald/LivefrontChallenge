@@ -13,9 +13,8 @@ struct RootView: View {
 
     @EnvironmentObject var app: AppEnvironment
     @State private var path = NavigationPath()
-    @State var articleFeedItems: [ArticleFeedItem]
 
-    @State private var cancellables = [AnyCancellable]()
+    @State var articleFeedItems: [ArticleFeedItem]
 
     @CategoryProperty var categories: Categories
     @FeedProperty var articles: Feed
@@ -44,7 +43,6 @@ struct RootView: View {
         }
         .onReceive(articles.$isFeedItemLoaded) { _ in
             articleFeedItems = articles.list
-            print(articleFeedItems)
         }
     }
 
