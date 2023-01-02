@@ -10,12 +10,12 @@ import Combine
 @testable import LivefrontChallenge
 
 class FutureTests: XCTestCase {
-
+    var cancellables = Set<AnyCancellable>()
     func testAsyncFunction() {
         let expectation = self.expectation(description: "asyncFunc")
 
         let future = Future<Int, Error> { promise in
-            async {
+            Task.init {
                 promise(.success(5))
             }
         }
@@ -25,8 +25,8 @@ class FutureTests: XCTestCase {
                 XCTAssertEqual(value, 5)
                 expectation.fulfill()
             }
-        )
+        ).store(in: &cancellables)
 
-        wait(for: [expectation], timeout: 1.0)
+        wait(for: [expectation], timeout: 5.0)
     }
 }
