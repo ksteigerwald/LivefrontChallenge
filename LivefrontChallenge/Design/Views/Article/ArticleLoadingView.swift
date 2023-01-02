@@ -42,7 +42,8 @@ struct ArticleLoadingView: View {
             .padding(.all, 16)
             .background(Color.DesignSystem.greyscale800)
         }
-        .cornerRadius(20, corners: .allCorners)
+        .cornerRadius(12, corners: .allCorners)
+        .frame(maxWidth: .infinity)
     }
 }
 
