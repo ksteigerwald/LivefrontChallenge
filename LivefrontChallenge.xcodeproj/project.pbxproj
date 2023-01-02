@@ -45,7 +45,6 @@
 		80B2222E295A136600E3DA6F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B2222D295A136600E3DA6F /* RootView.swift */; };
 		80B22230295A1C9E00E3DA6F /* ToolbarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B2222F295A1C9E00E3DA6F /* ToolbarModifier.swift */; };
 		80C0A00629556D6B000D6E30 /* completion.json in Resources */ = {isa = PBXBuildFile; fileRef = 80C0A00529556D6B000D6E30 /* completion.json */; };
-		80C0A00929557634000D6E30 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A00829557634000D6E30 /* Constants.swift */; };
 		80C0A00B2956091A000D6E30 /* CryptoCompareEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A00A29560919000D6E30 /* CryptoCompareEndpoint.swift */; };
 		80C0A00D29560A46000D6E30 /* CryptoCompareModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A00C29560A46000D6E30 /* CryptoCompareModels.swift */; };
 		80C0A00F29560B10000D6E30 /* CryptoCompare.json in Resources */ = {isa = PBXBuildFile; fileRef = 80C0A00E29560B10000D6E30 /* CryptoCompare.json */; };
@@ -56,7 +55,6 @@
 		80C0A01C295658C9000D6E30 /* CryptoCompareNewsCategories.json in Resources */ = {isa = PBXBuildFile; fileRef = 80C0A01B295658C9000D6E30 /* CryptoCompareNewsCategories.json */; };
 		80C0A02129566E56000D6E30 /* ArticleSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A02029566E56000D6E30 /* ArticleSummaryView.swift */; };
 		80C0A02829575299000D6E30 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A02729575299000D6E30 /* Environment.swift */; };
-		80C0A02A295753B4000D6E30 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A029295753B4000D6E30 /* AppEnvironment.swift */; };
 		80C0A02C29575591000D6E30 /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C0A02B29575591000D6E30 /* CategoryRepository.swift */; };
 		80C0A04529579703000D6E30 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 80C0A04429579703000D6E30 /* DesignSystem */; };
 		80C0A04C29579B39000D6E30 /* LibreBaskerville-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80C0A04929579B39000D6E30 /* LibreBaskerville-Bold.ttf */; };
@@ -138,7 +136,6 @@
 		80B2222D295A136600E3DA6F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		80B2222F295A1C9E00E3DA6F /* ToolbarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarModifier.swift; sourceTree = "<group>"; };
 		80C0A00529556D6B000D6E30 /* completion.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = completion.json; sourceTree = "<group>"; };
-		80C0A00829557634000D6E30 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		80C0A00A29560919000D6E30 /* CryptoCompareEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCompareEndpoint.swift; sourceTree = "<group>"; };
 		80C0A00C29560A46000D6E30 /* CryptoCompareModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCompareModels.swift; sourceTree = "<group>"; };
 		80C0A00E29560B10000D6E30 /* CryptoCompare.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CryptoCompare.json; sourceTree = "<group>"; };
@@ -148,7 +145,6 @@
 		80C0A01B295658C9000D6E30 /* CryptoCompareNewsCategories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CryptoCompareNewsCategories.json; sourceTree = "<group>"; };
 		80C0A02029566E56000D6E30 /* ArticleSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSummaryView.swift; sourceTree = "<group>"; };
 		80C0A02729575299000D6E30 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		80C0A029295753B4000D6E30 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		80C0A02B29575591000D6E30 /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepository.swift; sourceTree = "<group>"; };
 		80C0A043295796F5000D6E30 /* DesignSystem */ = {isa = PBXFileReference; lastKnownFileType = text; name = DesignSystem; path = Sources/DesignSystem; sourceTree = SOURCE_ROOT; };
 		80C0A04929579B39000D6E30 /* LibreBaskerville-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "LibreBaskerville-Bold.ttf"; path = "../../../../Dropbox (Personal)/My Mac (Velaru.cable.rcn.com)/Downloads/Libre_Baskerville/LibreBaskerville-Bold.ttf"; sourceTree = "<group>"; };
@@ -321,9 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				801C0AD12961872D0035CCFB /* PropertyWrappers */,
-				80C0A00829557634000D6E30 /* Constants.swift */,
 				80C0A02729575299000D6E30 /* Environment.swift */,
-				80C0A029295753B4000D6E30 /* AppEnvironment.swift */,
 				808277492958CFA100CCA40B /* StringExtension.swift */,
 				80827753295903E100CCA40B /* Router.swift */,
 				80C28D2D295C0AFC002349C8 /* Prompts.swift */,
@@ -706,14 +700,12 @@
 				801C0AD52961877F0035CCFB /* Articles.swift in Sources */,
 				80C0A02829575299000D6E30 /* Environment.swift in Sources */,
 				801C21732955633E008072D8 /* Encodable.swift in Sources */,
-				80C0A02A295753B4000D6E30 /* AppEnvironment.swift in Sources */,
 				808277412957D23000CCA40B /* RecommendationsView.swift in Sources */,
 				8082774C2958E0BE00CCA40B /* NewsFeed.swift in Sources */,
 				80983F5A295F3CCC00624819 /* ArticleLoadingView.swift in Sources */,
 				80F9E64C295A8E1100222177 /* SummaryLoadingView.swift in Sources */,
 				80C288062954E8A400067BBC /* HTTPClient.swift in Sources */,
 				801C216729553E7D008072D8 /* GeckoService.swift in Sources */,
-				80C0A00929557634000D6E30 /* Constants.swift in Sources */,
 				80B2222E295A136600E3DA6F /* RootView.swift in Sources */,
 				80F9E654295BBBFD00222177 /* ContentGeneratorRevealView.swift in Sources */,
 				806A62AE295CA84B00E909AE /* FutureExtension.swift in Sources */,

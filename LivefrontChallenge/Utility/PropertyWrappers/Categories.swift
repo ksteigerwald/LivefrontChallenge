@@ -78,8 +78,10 @@ public class Categories: ObservableObject {
 /// - `@propertyWrapper`: A property wrapper type that provides read and write access to a value of type
 @propertyWrapper
 public struct CategoryProperty: DynamicProperty {
+
     /// - `@ObservedObject`: The `@ObservedObject` attribute specifies that the property should be observed
     @ObservedObject public var categories: Categories
+
     /// - `public var wrappedValue`: The read/write property used to access the value of type `Categories`.
     public var wrappedValue: Categories {
         get {
