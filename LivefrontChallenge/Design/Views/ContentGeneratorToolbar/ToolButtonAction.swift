@@ -44,9 +44,9 @@ enum ToolButtonAction {
 
     var loadingMessage: String {
         switch self {
-        case .bulletPoints: return "Loading a set of bullet points from the article provided"
-        case .sentiment: return "Running sentiment analysis on the given article..."
-        case .tone: return "Running tone (positive, negative, neutral) analysis on the given article..."
+        case .bulletPoints: return "Loading a set of bullet points from the article provided, a set of summarized bullet points will be retrieved"
+        case .sentiment: return "Running sentiment analysis on the given article. A short paragraph describing sentiment will be retrieved"
+        case .tone: return "Running tone (positive, negative, neutral) analysis on the given article. Positive, Negative, Neutral will be retrieved"
         case .original: return "Content is being fetched from a given URL, then summarized into 7 paragraphs"
         case .none: return "Loading"
         case .tokenError: return "We have encounted a generator error, tokens exced limit. Try to regenerate article"

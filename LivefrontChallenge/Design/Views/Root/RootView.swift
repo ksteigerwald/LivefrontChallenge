@@ -50,6 +50,9 @@ struct RootView: View {
             MainHeadingView()
             RecommendationsView(recomendations: categories.list)
             NewsFeed(articleFeedItems: $articleFeedItems)
+                .refreshable {
+                    articles.getLatestArticles()
+                }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .padding([.leading, .trailing], 20)
