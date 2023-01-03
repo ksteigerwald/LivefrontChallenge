@@ -24,7 +24,9 @@ extension String {
             .dropFirst()
             .joined(separator: "\n\n")
 
-        return ParsedDoc(headline: headline, body: body)
+        return body.isEmpty ?
+            ParsedDoc(headline: headline, body: headline) :
+            ParsedDoc(headline: headline, body: body)
     }
 
     func truncate(maxLength: Int) -> String {
