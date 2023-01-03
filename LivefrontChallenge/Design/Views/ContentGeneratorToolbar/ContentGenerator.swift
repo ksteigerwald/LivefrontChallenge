@@ -136,7 +136,7 @@ struct ToolButtonView: View {
     }
 }
 
-struct CContentGenerator_Previews: PreviewProvider {
+struct ContentGenerator_Previews: PreviewProvider {
 
     static var previews: some View {
         ZStack(alignment: .bottomLeading) {
