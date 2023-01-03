@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AlertToast
 
 struct ArticleView: View {
     @Binding var path: NavigationPath
@@ -14,9 +15,12 @@ struct ArticleView: View {
     @State private var cancellables = [AnyCancellable]()
     @State private var generator: ToolButtonAction = .original
     @State private var zStackAlignment: Alignment = .center
-    @State public var isLoaded: Bool = false
 
+    @State public var isLoaded: Bool = false
     @State public var reset: Bool = true
+
+    @State private var hasError: Bool = false
+    @State private var errorMsg: String = ""
 
     let articleFeedItem: ArticleFeedItem
 
@@ -68,7 +72,19 @@ struct ArticleView: View {
         .task {
             articles.generateArticleFromPrompt(prompt: .rewordArticle(context: articleFeedItem.url))
         }
-        .onReceive(articles.$isLoading) { loaded in
+        .toast(isPresenting: $hasError) {
+            AlertToast(
+                displayMode: .alert,
+                type: .error(Color.DesignSystem.alertsErrorBase),
+                title: "Error: \(errorMsg)"
+            )
+        }
+        .onReceive(articles.$error) { error in
+            guard let msg = error else { return }
+            errorMsg = msg.localizedDescription
+            hasError = true
+        }
+        .onReceive(articles.$isLoaded) { loaded in
             guard loaded else { return }
             articles.cacheHadler(item: articleFeedItem)
             isLoaded = loaded

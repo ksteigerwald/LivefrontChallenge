@@ -78,6 +78,7 @@ struct ArticleSummaryView: View {
             hasError = true
         }
         .task {
+            // Establish a baseline state
             articles.generatedSummaryLoaded = false
             articles.document = .init()
             categories.getNewsFromCategory(category: category)

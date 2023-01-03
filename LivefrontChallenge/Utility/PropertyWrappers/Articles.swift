@@ -66,30 +66,31 @@ public class Articles: ObservableObject, StateManagerProtocol {
         repository.generateSummaryArticle(category: category.name, articles: urls)
             .receive(on: RunLoop.main)
             .map(Result<OpenAIResponse, Error>.success)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let error):
-                    self.handleResponse(response: Result<Article, Error>.failure(error))
-                default: print(completion)
-                }
-            }, receiveValue: { result in
-                switch result {
-                case .success(let data):
-                    guard let choice = data.choices.first else { return }
-                    guard let content = choice.text.parseHeadlineAndBody() else { return }
-                    let article = Article(
-                        category: category.name,
-                        headline: content.headline,
-                        body: content.body,
-                        imageURL: image
-                    )
-                    self.document = article
-                    self.generatedSummaryLoaded = true
-                    self.handleResponse(response: .success(article))
-                case .failure(let error):
-                    self.handleResponse(response: Result<Article, Error>.failure(error))
-                }
-            })
+            .sink(
+                receiveCompletion: { completion in
+                    switch completion {
+                    case .failure(let error):
+                        self.handleResponse(response: Result<Article, Error>.failure(error))
+                    default: print(completion)
+                    }
+                }, receiveValue: { result in
+                    switch result {
+                    case .success(let data):
+                        guard let choice = data.choices.first else { return }
+                        guard let content = choice.text.parseHeadlineAndBody() else { return }
+                        let article = Article(
+                            category: category.name,
+                            headline: content.headline,
+                            body: content.body,
+                            imageURL: image
+                        )
+                        self.document = article
+                        self.generatedSummaryLoaded = true
+                        self.handleResponse(response: .success(article))
+                    case .failure(let error):
+                        self.handleResponse(response: Result<Article, Error>.failure(error))
+                    }
+                })
             .store(in: &cancellables)
     }
 
@@ -105,7 +106,13 @@ public class Articles: ObservableObject, StateManagerProtocol {
             .receive(on: RunLoop.main)
             .map(Result<OpenAIResponse, Error>.success)
             .sink(
-                receiveCompletion: { _ in },
+                receiveCompletion: { completion in
+                    switch completion {
+                    case .failure(let error):
+                        self.handleResponse(response: Result<Article, Error>.failure(error))
+                    default: print(completion)
+                    }
+                },
                 receiveValue: { result in
                     switch result {
                     case .success(let data):
@@ -152,10 +159,13 @@ public class Articles: ObservableObject, StateManagerProtocol {
             self.error = nil
             self.isLoading = false
             self.isError = false
+            self.isLoaded = true
+            self.firstLoad = false
         case .failure(let error):
             self.error = error
             self.isError = true
             self.isLoading = false
+            self.isLoaded = false
             print("self.isError: \(self.isError)")
         }
     }
