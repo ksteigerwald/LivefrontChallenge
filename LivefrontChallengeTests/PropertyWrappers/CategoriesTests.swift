@@ -17,7 +17,6 @@ final class CategoriesTests: XCTestCase {
     let expectation = XCTestExpectation(description: "The first publishes value is an empty section")
 
     func testFetchCategories() {
-    let expectation = XCTestExpectation(description: "The first publishes value is an empty section")
         categories.fetchCategories()
 
         categories.$list

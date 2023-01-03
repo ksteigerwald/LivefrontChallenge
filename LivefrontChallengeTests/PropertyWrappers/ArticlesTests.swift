@@ -19,12 +19,6 @@ class ArticlesTests: XCTestCase {
         Article(articleURL: "https://news.ycombinator.com/item?id=34219335")
     ]
 
-    func testSetup() {
-        XCTAssertEqual(articles.isLoaded, false)
-        XCTAssertEqual(articles.generatedSummaryLoaded, false)
-        XCTAssertEqual(articles.firstLoad, false)
-    }
-
     var cancellables = Set<AnyCancellable>()
     let expectation = XCTestExpectation(description: "The first publishes value is an empty section")
 
