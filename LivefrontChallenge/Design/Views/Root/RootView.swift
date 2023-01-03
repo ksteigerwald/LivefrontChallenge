@@ -17,12 +17,15 @@ struct RootView: View {
     @State var articleFeedItems: [ArticleFeedItem]
 
     @CategoryProperty var categories: Categories
-    @FeedProperty var articles: Feed
+    @FeedProperty var feed: Feed
+
+    @State private var hasError: Bool = false
+    @State private var errorMsg: String = ""
 
     var body: some View {
         ZStack {
             Color.DesignSystem.greyscale900
-            if articles.isFeedItemLoaded {
+            if feed.isFeedItemLoaded {
                 NavigationStack(path: $path) {
                     ZStack(alignment: .topLeading) {
                         mainContent
@@ -45,17 +48,25 @@ struct RootView: View {
             }
         }
         .task {
-            articles.getLatestArticles()
+            feed.getLatestArticles()
         }
-        .onReceive(articles.$isFeedItemLoaded) { _ in
-            articleFeedItems = articles.list
+        .onReceive(feed.$isFeedItemLoaded) { _ in
+            articleFeedItems = feed.list
         }
-        .onReceive(categories.$error) { _ in
+        .toast(isPresenting: $hasError, alert: {
             AlertToast(
                 displayMode: .alert,
                 type: .error(Color.DesignSystem.alertsErrorBase),
-                title: "Something Broke"
+                title: "Error: \(errorMsg)"
             )
+        }, completion: {
+            hasError = false
+            errorMsg = ""
+        })
+        .onReceive(categories.$error) { error in
+            guard let msg = error else { return }
+            errorMsg = msg.localizedDescription
+            hasError = true
         }
     }
 
@@ -65,7 +76,7 @@ struct RootView: View {
             RecommendationsView(recomendations: categories.list)
             NewsFeed(articleFeedItems: $articleFeedItems)
                 .refreshable {
-                    articles.getLatestArticles()
+                    feed.getLatestArticles()
                 }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)

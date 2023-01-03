@@ -11,7 +11,13 @@ import Combine
 /// A class for managing the feed of articles
 ///
 /// This class handles retrieving articles from the `ArticleRepository` and managing their state.
-public class Feed: ObservableObject {
+public class Feed: ObservableObject, StateManagerProtocol {
+
+    @Published var error: Error?
+
+    @Published var isError: Bool = false
+
+    @Published var isLoading: Bool = true
 
     /// An array of articles contained in the feed
     public var list: [ArticleFeedItem] = []
@@ -41,19 +47,37 @@ public class Feed: ObservableObject {
             .receive(on: RunLoop.main)
             .map(Result<CryptoCompareResponse, Error>.success)
             .sink(
-                receiveCompletion: {_ in },
+                receiveCompletion: { completion in
+                    switch completion {
+                    case .failure(let error):
+                        self.handleResponse(response: Result<ArticleFeedItem, Error>.failure(error))
+                    default: print(completion)
+                    }
+                },
                 receiveValue: { response in
                     switch response {
                     case .success(let data):
                         self.list = data.articles
-                        self.isFeedItemLoaded = true
+                        self.handleResponse(response: .success(data.articles))
                     case .failure(let error):
-                        print(error)
+                        self.handleResponse(response: Result<ArticleFeedItem, Error>.failure(error))
                     }
                 })
             .store(in: &cancellables)
     }
 
+    func handleResponse<T>(response: Result<T, Error>) {
+        switch response {
+        case .success:
+            self.error = nil
+            self.isLoading = false
+            self.isFeedItemLoaded = true
+        case .failure(let error):
+            self.error = error
+            self.isLoading = false
+            self.isFeedItemLoaded = false
+        }
+    }
 }
 
 /// A property wrapper for the Feed type.

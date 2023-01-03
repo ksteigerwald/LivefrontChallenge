@@ -73,7 +73,8 @@ public class Articles: ObservableObject, StateManagerProtocol {
                         self.handleResponse(response: Result<Article, Error>.failure(error))
                     default: print(completion)
                     }
-                }, receiveValue: { result in
+                },
+                receiveValue: { result in
                     switch result {
                     case .success(let data):
                         guard let choice = data.choices.first else { return }

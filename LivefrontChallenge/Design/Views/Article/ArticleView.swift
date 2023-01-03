@@ -72,13 +72,16 @@ struct ArticleView: View {
         .task {
             articles.generateArticleFromPrompt(prompt: .rewordArticle(context: articleFeedItem.url))
         }
-        .toast(isPresenting: $hasError) {
+        .toast(isPresenting: $hasError, alert: {
             AlertToast(
                 displayMode: .alert,
                 type: .error(Color.DesignSystem.alertsErrorBase),
                 title: "Error: \(errorMsg)"
             )
-        }
+        }, completion: {
+            hasError = false
+            errorMsg = ""
+        })
         .onReceive(articles.$error) { error in
             guard let msg = error else { return }
             errorMsg = msg.localizedDescription
