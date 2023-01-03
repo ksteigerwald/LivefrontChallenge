@@ -22,7 +22,7 @@ struct ArticleLoadingView: View {
                     .overlay(
                         Image(systemName: loadingOrError.image)
                             .foregroundColor(
-                                Color.DesignSystem.othersCamaron
+                                loadingOrError.onColor
                             )
                             .font(Font.DesignSystem.bodySmallBold)
                     ).padding(.trailing, 12)

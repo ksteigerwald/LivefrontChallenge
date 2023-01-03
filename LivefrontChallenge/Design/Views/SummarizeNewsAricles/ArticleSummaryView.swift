@@ -91,9 +91,18 @@ struct ArticleSummaryView: View {
             feeds = news
             articles.generateSummaryArticle(category: category, articles: news)
         }
-        .onReceive(articles.$generatedSummaryLoaded) { _ in
+        .onDisappear {
             // After we load the generated article, clear the feeds to ensure only one completion request is made.
             // TODO: Investigate the feasibility of utilizing property wrappers to facilitate the management of this task.
+            // TODO: State between ArticleFeed > Article & Summary is to mixed, sperate.
+            feeds = []
+            categories.news = []
+            articles.list = []
+            articles.cached = nil
+            articles.firstLoad = false
+            articles.isLoaded = false
+        }
+        .onReceive(articles.$generatedSummaryLoaded) { _ in
             feeds = []
             categories.news = []
             articles.list = []
