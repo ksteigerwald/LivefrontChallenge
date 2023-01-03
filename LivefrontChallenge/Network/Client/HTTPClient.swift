@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 /// Protocol for HTTPClient
 protocol HTTPClient {
@@ -42,6 +43,7 @@ extension HTTPClient {
 
         do {
             let (data, response) = try await URLSession.shared.data(for: urlRequest, delegate: nil)
+
             guard let response = response as? HTTPURLResponse else {
                 throw RequestError.noResponse
             }
@@ -68,4 +70,45 @@ extension HTTPClient {
             throw RequestError.offline
         }
     }
+
+    func fetch<T: Decodable>(
+        endpoint: Endpoint,
+        responseModel: T.Type
+    ) -> Publishers.Share<URLSession.DataTaskPublisher>? {
+        var request = URLComponents(string: endpoint.url + endpoint.path)!
+
+        if let parameters = endpoint.parameters {
+            request.queryItems = parameters
+        }
+
+        guard let url = request.url else { return nil }
+
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = endpoint.method.rawValue
+        urlRequest.allHTTPHeaderFields = endpoint.headers
+        // urlRequest.cachePolicy = .returnCacheDataElseLoad
+
+        if let body = endpoint.body {
+            urlRequest.httpBody = try? JSONSerialization.data(withJSONObject: body, options: .sortedKeys)
+        }
+
+        let sharedPublisher = URLSession.shared.dataTaskPublisher(for: url).share()
+
+        let cancel1 = sharedPublisher
+            .map { $0.data }
+            .handleEvents(receiveSubscription: { _ in
+                print("Started loading data")
+            }, receiveOutput: { data in
+                print(Double(data.count) / Double(200000000))
+                // let currentProgress = Double(data.count) / Double(200000000)
+                // self.updateProgress(currentProgress)
+            }, receiveCompletion: { _ in
+                print("Finished loading data")
+            }, receiveCancel: {
+                print("Cancelled loading data")
+            })
+            .eraseToAnyPublisher()
+        return sharedPublisher
+    }
+
 }

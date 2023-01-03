@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 /// Protocol for interacting with the OpenAI API
 protocol OpenAIServiceable {
@@ -19,6 +20,13 @@ protocol OpenAIServiceable {
 final class OpenAIService: HTTPClient, OpenAIServiceable {
     func getSummaries(requestParams: OpenAIRequestParams) async throws -> Result<OpenAIResponse, RequestError> {
         try await sendRequest(
+            endpoint: OpenAIEndpoint.documents(params: requestParams),
+            responseModel: OpenAIResponse.self
+        )
+    }
+
+    func syncSummaries(requestParams: OpenAIRequestParams) -> Publishers.Share<URLSession.DataTaskPublisher>? {
+        fetch(
             endpoint: OpenAIEndpoint.documents(params: requestParams),
             responseModel: OpenAIResponse.self
         )
