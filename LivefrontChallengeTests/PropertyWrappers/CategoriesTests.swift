@@ -11,10 +11,13 @@ import OHHTTPStubs
 import OHHTTPStubsSwift
 @testable import LivefrontChallenge
 final class CategoriesTests: XCTestCase {
+
     @CategoryProperty var categories
     var cancellables = Set<AnyCancellable>()
     let expectation = XCTestExpectation(description: "The first publishes value is an empty section")
+
     func testFetchCategories() {
+    let expectation = XCTestExpectation(description: "The first publishes value is an empty section")
         categories.fetchCategories()
 
         categories.$list

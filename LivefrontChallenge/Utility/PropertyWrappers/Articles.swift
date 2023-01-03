@@ -9,51 +9,56 @@ import Foundation
 import Combine
 import SwiftUI
 
- /// Articles is an ObservableObject that is responsible for loading and generating articles.
- /// It uses a repository to fetch data and uses a property wrapper to be a part of the SwiftUI environment.
-public class Articles: ObservableObject {
+/// Articles is an ObservableObject that is responsible for loading and generating articles.
+/// It uses a repository to fetch data and uses a property wrapper to be a part of the SwiftUI environment.
+public class Articles: ObservableObject, StateManagerProtocol {
 
-     /// A shared instance of Articles that is used to be accessed throughout the app.
+    @Published var error: Error?
+
+    @Published var isError: Bool = false
+
+    @Published var isLoading: Bool = true
+
+    @Published var isLoaded: Bool = false
+
+    /// A shared instance of Articles that is used to be accessed throughout the app.
     public static let shared = Articles()
 
-     /// A list of articles that is used to store and display data.
+    /// A list of articles that is used to store and display data.
     @State public var list: [Article] = []
 
-     /// A boolean value that indicates whether the summary article has been loaded.
+    /// A boolean value that indicates whether the summary article has been loaded.
     @Published public var generatedSummaryLoaded: Bool = false
 
-     /// A boolean value that indicates whether the generated article has been loaded.
-    @Published public var isLoaded: Bool = false
-
-     /// A boolean value that is used to check if the app has been loaded for the first time.
+    /// A boolean value that is used to check if the app has been loaded for the first time.
     public var firstLoad: Bool = false
 
-     /// An article object that stores generated data.
+    /// An article object that stores generated data.
     public var generatedContent: Article = .init()
 
-     /// An article object that stores the summary article.
+    /// An article object that stores the summary article.
     public var document: Article = .init()
 
-     /// An optional article object that stores cached data.
+    /// An optional article object that stores cached data.
     public var cached: Article?
 
     /// An instance of ArticleRepository used to fetch data.
     private let repository: ArticleRepository
 
-     /// A set of cancellables used to cancel ongoing tasks.
+    /// A set of cancellables used to cancel ongoing tasks.
     var cancellables = Set<AnyCancellable>()
 
-     /// Initializes a new instance of `Articles` with a repository.
-     /// - Parameters:
-     ///   - repository: An instance of ArticleRepository used to fetch data.
+    /// Initializes a new instance of `Articles` with a repository.
+    /// - Parameters:
+    ///   - repository: An instance of ArticleRepository used to fetch data.
     init(repository: ArticleRepository = ArticleRepository()) {
         self.repository = repository
     }
 
-     /// Generates a summary article from a list of articles and a category.
-     /// - Parameters:
-     ///   - category: The category for the summary article.
-     ///   - articles: A list of articles to generate the summary from.
+    /// Generates a summary article from a list of articles and a category.
+    /// - Parameters:
+    ///   - category: The category for the summary article.
+    ///   - articles: A list of articles to generate the summary from.
     public func generateSummaryArticle(category: NewsCategory, articles: [Article]) {
         let urls = articles.map { $0.articleURL }
         guard let image = articles.first?.imageURL else { return }
@@ -61,7 +66,13 @@ public class Articles: ObservableObject {
         repository.generateSummaryArticle(category: category.name, articles: urls)
             .receive(on: RunLoop.main)
             .map(Result<OpenAIResponse, Error>.success)
-            .sink(receiveCompletion: { _ in }, receiveValue: { result in
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    self.handleResponse(response: Result<Article, Error>.failure(error))
+                default: print(completion)
+                }
+            }, receiveValue: { result in
                 switch result {
                 case .success(let data):
                     guard let choice = data.choices.first else { return }
@@ -74,8 +85,9 @@ public class Articles: ObservableObject {
                     )
                     self.document = article
                     self.generatedSummaryLoaded = true
+                    self.handleResponse(response: .success(article))
                 case .failure(let error):
-                    print(error)
+                    self.handleResponse(response: Result<Article, Error>.failure(error))
                 }
             })
             .store(in: &cancellables)
@@ -100,7 +112,7 @@ public class Articles: ObservableObject {
                         guard let val = Array(data.choices.prefix(1)).first else { return }
                         guard let content = val.text.parseHeadlineAndBody() else { return }
                         var heading: String = ""
-                        // TODO: this is way too ask not tell.
+                        // TODO: Compose a directive that encourages the listener to take action.
                         if case .toneAnalysis = prompt {
                             heading = self.cached!.headline
                         }
@@ -110,10 +122,9 @@ public class Articles: ObservableObject {
                             body: content.body
                         )
                         self.generatedContent = article
-                        self.isLoaded = true
-
+                        self.handleResponse(response: .success(article))
                     case .failure(let error):
-                        print(error)
+                        self.handleResponse(response: Result<Article, Error>.failure(error))
                     }
                 })
             .store(in: &cancellables)
@@ -132,6 +143,17 @@ public class Articles: ObservableObject {
                 imageURL: item.imageUrl
             )
             self.cached = cacheArticle
+        }
+    }
+
+    func handleResponse<T>(response: Result<T, Error>) {
+        switch response {
+        case .success:
+            self.error = nil
+            self.isLoading = false
+        case .failure(let error):
+            self.error = error
+            self.isLoading = false
         }
     }
 }

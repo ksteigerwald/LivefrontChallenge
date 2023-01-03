@@ -1,0 +1,19 @@
+{
+  "id": "cmpl-6URWywfWiFh5cXz9pmuqVLcHJBNkq",
+  "object": "text_completion",
+  "created": 1672713688,
+  "model": "text-davinci-003",
+  "choices": [
+    {
+      "text": "\n\nSummary of Must-Read Books for 2023\n\nParagraph 1: \nThere are many books to read in the upcoming year of 2023. From fiction to non-fiction, there is something for everyone to enjoy. Whether you are looking for a new adventure or exploring a new topic, these must-read books are sure to provide an engaging and thought-provoking read. \n\nParagraph 2: \nOne of the most anticipated books of 2023 is The Book of Longings by Sue Monk Kidd. This historical fiction novel follows the story of Ana, a young woman living in first-century Palestine. Through Ana's journey, readers are given an intimate look into the lives of women during the time of Jesus. \n\nParagraph 3: \nAnother great read for 2023 is The Vanishing Half by Brit Bennett. This novel follows the lives of two twin sisters, Desiree and Stella, as their paths diverge and they must confront the secrets of the past. With its exploration of race, identity, and family, this book is sure to be a hit in the upcoming year. \n\nParagraph 4: \nFor those looking for a non-fiction read, The Soul of America: The Battle for Our Better Angels by Jon Meacham is a great choice. Examining the history of the United States from the Civil War to the present day, Meacham provides an insightful look at the current political climate and how we can move forward. \n\nParagraph 5:\nNo matter what type of book you are looking for, there are plenty of must-read books for 2023. From historical fiction to non-fiction, there is something for everyone to enjoy. With these books, you are sure to have an engaging and thought-provoking read.",
+      "index": 0,
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 61,
+    "completion_tokens": 370,
+    "total_tokens": 431
+  }
+}

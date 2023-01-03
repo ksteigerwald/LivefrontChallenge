@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import AlertToast
 
 struct ArticleSummaryView: View {
 
@@ -14,9 +15,11 @@ struct ArticleSummaryView: View {
     @ArticleProperty var articles: Articles
 
     @State private var feeds: [Article] = []
-
     @Binding var path: NavigationPath
     @State var category: NewsCategory
+
+    @State private var hasError: Bool = false
+    @State private var errorMsg: String = ""
 
     var body: some View {
         ZStack(alignment: .leading) {
@@ -62,6 +65,18 @@ struct ArticleSummaryView: View {
             path: $path,
             heading: "Summary Article")
         )
+        .toast(isPresenting: $hasError) {
+            AlertToast(
+                displayMode: .alert,
+                type: .error(Color.DesignSystem.alertsErrorBase),
+                title: "Error: \(errorMsg)"
+            )
+        }
+        .onReceive(articles.$error) { error in
+            guard let msg = error else { return }
+            errorMsg = msg.localizedDescription
+            hasError = true
+        }
         .task {
             articles.generatedSummaryLoaded = false
             articles.document = .init()

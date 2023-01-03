@@ -51,7 +51,7 @@ struct RootView: View {
             articleFeedItems = articles.list
         }
         .onReceive(categories.$error) { _ in
-            let toast = AlertToast(
+            AlertToast(
                 displayMode: .alert,
                 type: .error(Color.DesignSystem.alertsErrorBase),
                 title: "Something Broke"
