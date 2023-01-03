@@ -15,22 +15,14 @@ extension String {
     /// Parses a string into a headline and body.
     /// - Returns: An array containing the headline and body, or `nil` if there are fewer than 2 lines in the string.
     func parseHeadlineAndBody() -> ParsedDoc? {
-        var filtered = (self as NSString).components(separatedBy: "\n").filter { element in
-            element.trimmingCharacters(in: .whitespacesAndNewlines).count > 0
-        }
+        let filtered = (self as NSString).components(separatedBy: "\n")
+            .filter { $0.trimmingCharacters(in: .whitespacesAndNewlines).count > 0 }
 
-        // TODO: Not happy with this, will come back with a better approach
-        guard filtered.count >= 1 else {
-            return nil
-        }
+        guard let headline = filtered.first, !headline.isEmpty else { return nil }
 
-        if filtered.count == 1 {
-            return ParsedDoc(headline: "", body: filtered.remove(at: 0))
-        }
-
-        let headline = filtered.remove(at: 0)
-
-        let body = filtered.joined(separator: "\n\n")
+        let body = filtered
+            .dropFirst()
+            .joined(separator: "\n\n")
 
         return ParsedDoc(headline: headline, body: body)
     }

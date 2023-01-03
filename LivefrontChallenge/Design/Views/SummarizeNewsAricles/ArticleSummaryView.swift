@@ -74,7 +74,7 @@ struct ArticleSummaryView: View {
         }
         .onReceive(articles.$generatedSummaryLoaded) { _ in
             // After we load the generated article, clear the feeds to ensure only one completion request is made.
-            // TODO: figure out how to manage this through the property wrappers
+            // TODO: Investigate the feasibility of utilizing property wrappers to facilitate the management of this task.
             feeds = []
             categories.news = []
             articles.list = []
