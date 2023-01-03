@@ -7,7 +7,7 @@
 
 import Foundation
 /// An enum that represents an error that can occur during a network request.
-enum RequestError: Error {
+public enum RequestError: Error {
 
     /// The error that occurs when the response cannot be decoded.
     case decode

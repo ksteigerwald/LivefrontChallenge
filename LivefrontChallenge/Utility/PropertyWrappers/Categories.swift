@@ -8,6 +8,14 @@
 import Foundation
 import Combine
 import SwiftUI
+
+protocol StateManagerProtocol {
+    var error: Error? { get set }
+    var isError: Bool { get set }
+    var isLoading: Bool { get set }
+    func handleResponse<T>(response: Result<T, Error>)
+}
+
 /// The `Categories` class provides access to the list of NewsCategories and Articles related to a particular category. It provides methods to fetch the list of categories and articles for a particular category.
 ///
 /// - Parameters:
@@ -15,17 +23,29 @@ import SwiftUI
 ///
 /// - Remark:
 ///   The `Categories` class is a singleton and should be accessed via the `shared` static property.
-public class Categories: ObservableObject {
+public class Categories: ObservableObject, StateManagerProtocol {
+
+    @Published var isError: Bool = false
+
+    @Published var error: Error?
+
+    @Published var isLoading: Bool = false
+
     /// `list` - An array of `NewsCategory` objects, available as a published property.
     @Published public var list: [NewsCategory] = []
+
     /// `news` - An array of `Article` objects, available as a published property.
     @Published public var news: [Article] = []
+
     /// `shared` - A singleton instance of the `Categories` class.
     public static let shared = Categories()
+
     /// `repository` - A `CategoryRepository` object used to interact with the category repository.
     private let repository: CategoryRepository
+
     /// `cancellables` - A set of `AnyCancellable` objects used to manage requests.
     var cancellables = Set<AnyCancellable>()
+
     /// `init(repository: CategoryRepository = CategoryRepository())` - Initializes the `Categories` class with a given `CategoryRepository`. If none is provided, a default `CategoryRepository` is instantiated.
     init(repository: CategoryRepository = CategoryRepository()) {
         self.repository = repository
@@ -41,8 +61,9 @@ public class Categories: ObservableObject {
                 switch result {
                 case .success(let data):
                     self.list = data.map { NewsCategory(name: $0.categoryName)}
+                    self.handleResponse(response: .success(data))
                 case .failure(let error):
-                    print(error)
+                    self.handleResponse(response: Result<NewsCategory, Error>.failure(error))
                 }
             })
             .store(in: &cancellables)
@@ -65,12 +86,22 @@ public class Categories: ObservableObject {
                             articleURL: $0.url
                         )
                     }.prefix(10))
-                    print(self.news.count)
                 case .failure(let error):
-                    print(error)
+                    self.handleResponse(response: Result<NewsCategory, Error>.failure(error))
                 }
             })
             .store(in: &cancellables)
+    }
+
+    func handleResponse<T>(response: Result<T, Error>) {
+        switch response {
+        case .success:
+            self.error = nil
+            self.isLoading = false
+        case .failure(let error):
+            self.error = error
+            self.isLoading = false
+        }
     }
 }
 /// This struct provides a property wrapper for the `Categories` class.
