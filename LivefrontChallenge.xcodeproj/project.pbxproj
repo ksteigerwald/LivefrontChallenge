@@ -26,6 +26,8 @@
 		801C217129555E97008072D8 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C217029555E97008072D8 /* Dictionary.swift */; };
 		801C21732955633E008072D8 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801C21722955633E008072D8 /* Encodable.swift */; };
 		8023879929622B04008DC7C9 /* CategoriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023879829622B04008DC7C9 /* CategoriesTests.swift */; };
+		8023879C2963A04B008DC7C9 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 8023879B2963A04B008DC7C9 /* AlertToast */; };
+		8023879E2963A997008DC7C9 /* LoadingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023879D2963A997008DC7C9 /* LoadingBar.swift */; };
 		806A62AE295CA84B00E909AE /* FutureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A62AD295CA84B00E909AE /* FutureExtension.swift */; };
 		806A62B0295CA92B00E909AE /* FutureExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A62AF295CA92B00E909AE /* FutureExtensionTest.swift */; };
 		806A62B2295CAB2F00E909AE /* EncodableExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A62B1295CAB2F00E909AE /* EncodableExtensionTest.swift */; };
@@ -117,6 +119,7 @@
 		801C21722955633E008072D8 /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		80216C6129579F9E001C9301 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8023879829622B04008DC7C9 /* CategoriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTests.swift; sourceTree = "<group>"; };
+		8023879D2963A997008DC7C9 /* LoadingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBar.swift; sourceTree = "<group>"; };
 		806A62AD295CA84B00E909AE /* FutureExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtension.swift; sourceTree = "<group>"; };
 		806A62AF295CA92B00E909AE /* FutureExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtensionTest.swift; sourceTree = "<group>"; };
 		806A62B1295CAB2F00E909AE /* EncodableExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableExtensionTest.swift; sourceTree = "<group>"; };
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80C0A01829563E81000D6E30 /* BackedCodable in Frameworks */,
+				8023879C2963A04B008DC7C9 /* AlertToast in Frameworks */,
 				80C0A04529579703000D6E30 /* DesignSystem in Frameworks */,
 				80F9E642295A808300222177 /* RiveRuntime in Frameworks */,
 			);
@@ -299,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				8082773E2957C7C700CCA40B /* SecondaryButtonStyle.swift */,
+				8023879D2963A997008DC7C9 /* LoadingBar.swift */,
 			);
 			path = ViewHelpers;
 			sourceTree = "<group>";
@@ -535,6 +540,7 @@
 				80C0A01729563E81000D6E30 /* BackedCodable */,
 				80C0A04429579703000D6E30 /* DesignSystem */,
 				80F9E641295A808300222177 /* RiveRuntime */,
+				8023879B2963A04B008DC7C9 /* AlertToast */,
 			);
 			productName = LivefrontChallenge;
 			productReference = 80C287D62954E3E300067BBC /* LivefrontChallenge.app */;
@@ -616,6 +622,7 @@
 				801C215929552849008072D8 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
 				80C0A01629563E81000D6E30 /* XCRemoteSwiftPackageReference "BackedCodable" */,
 				80F9E640295A808300222177 /* XCRemoteSwiftPackageReference "rive-ios" */,
+				8023879A2963A04B008DC7C9 /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 80C287D72954E3E300067BBC /* Products */;
 			projectDirPath = "";
@@ -690,6 +697,7 @@
 				80827754295903E100CCA40B /* Router.swift in Sources */,
 				80C0A02C29575591000D6E30 /* CategoryRepository.swift in Sources */,
 				80C2881D29550C1100067BBC /* JSONPlaceHolderResponse.swift in Sources */,
+				8023879E2963A997008DC7C9 /* LoadingBar.swift in Sources */,
 				8082773F2957C7C700CCA40B /* SecondaryButtonStyle.swift in Sources */,
 				80C2881A29550BA900067BBC /* JSONPlaceHolderService.swift in Sources */,
 				801C0AD0295F85AA0035CCFB /* ToolButtonAction.swift in Sources */,
@@ -1057,6 +1065,14 @@
 				kind = branch;
 			};
 		};
+		8023879A2963A04B008DC7C9 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		80C0A01629563E81000D6E30 /* XCRemoteSwiftPackageReference "BackedCodable" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jegnux/BackedCodable";
@@ -1085,6 +1101,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 801C215929552849008072D8 /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
 			productName = OHHTTPStubsSwift;
+		};
+		8023879B2963A04B008DC7C9 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8023879A2963A04B008DC7C9 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 		80C0A01729563E81000D6E30 /* BackedCodable */ = {
 			isa = XCSwiftPackageProductDependency;

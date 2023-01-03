@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import AlertToast
 
 struct RootView: View {
 
@@ -19,7 +20,7 @@ struct RootView: View {
     @FeedProperty var articles: Feed
 
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack {
             Color.DesignSystem.greyscale900
             if articles.isFeedItemLoaded {
                 NavigationStack(path: $path) {
@@ -29,12 +30,18 @@ struct RootView: View {
                     .ignoresSafeArea(.all)
                 }
             } else {
-                VStack {
+                VStack(alignment: .center) {
                     Text("loading...")
                         .foregroundColor(Color.DesignSystem.primary100)
-                        .font(Font.DesignSystem.headingH1)
-                        .padding(.top, 200)
+                        .font(Font.DesignSystem.bodyLargeBold)
+                        .padding([.top, .bottom], 4)
+                    LoadingBar()
                 }
+                .frame(maxWidth: .infinity, maxHeight: 80)
+                .background(Color.DesignSystem.greyscale800)
+                .cornerRadius(12, corners: .allCorners)
+                .padding([.leading, .trailing], 24)
+                .padding([.top, .bottom], 12)
             }
         }
         .task {
@@ -42,6 +49,13 @@ struct RootView: View {
         }
         .onReceive(articles.$isFeedItemLoaded) { _ in
             articleFeedItems = articles.list
+        }
+        .onReceive(categories.$error) { _ in
+            let toast = AlertToast(
+                displayMode: .alert,
+                type: .error(Color.DesignSystem.alertsErrorBase),
+                title: "Something Broke"
+            )
         }
     }
 
