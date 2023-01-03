@@ -60,7 +60,9 @@ public class Categories: ObservableObject, StateManagerProtocol {
             .sink(receiveCompletion: {_ in}, receiveValue: { result in
                 switch result {
                 case .success(let data):
-                    self.list = data.map { NewsCategory(name: $0.categoryName)}
+                    self.list = data
+                        .filter { $0.categoryName.count < 5 }
+                        .map { NewsCategory(name: $0.categoryName)}
                     self.handleResponse(response: .success(data))
                 case .failure(let error):
                     self.handleResponse(response: Result<NewsCategory, Error>.failure(error))
