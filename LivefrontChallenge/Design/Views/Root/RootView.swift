@@ -16,6 +16,9 @@ struct RootView: View {
 
     @State var articleFeedItems: [ArticleFeedItem]
 
+    // The property wrappers end up becoming ViewModels. I am still
+    // groking this technique but will continue to press to find a
+    // solution that is more adaptable to SwiftUI best practices.
     @CategoryProperty var categories: Categories
     @FeedProperty var feed: Feed
 

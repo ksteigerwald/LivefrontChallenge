@@ -21,6 +21,11 @@ struct NewsListView: View {
                 Text("Hello, I never found a home, but I like to hang out here.")
                     .font(Font.DesignSystem.bodyMediumRegular)
             }
+            .navigationBarBackButtonHidden()
+            .modifier(ToolbarModifier(
+                path: $path,
+                heading: "Zippy's Play Place")
+            )
         }
         .ignoresSafeArea(.all)
     }
