@@ -31,11 +31,13 @@ struct ArticleLoadingView: View {
                     Text(loadingOrError.loadingHeading)
                         .foregroundColor(Color.DesignSystem.greyscale50)
                         .font(Font.DesignSystem.bodySmallBold)
-                        .padding(.bottom, 4)
+                        .padding(.bottom, 2)
                     Text(loadingOrError.loadingMessage)
                         .multilineTextAlignment(.leading)
                         .foregroundColor(Color.DesignSystem.greyscale500)
                         .font(Font.DesignSystem.bodyXsmallMedium)
+                    LoadingBar(container: 240, loadingColor: loadingOrError.onColor)
+                        .opacity(0.25)
 
                 }
             }

@@ -9,15 +9,16 @@ import SwiftUI
 
 struct LoadingBar: View {
     @State private var progress: CGFloat = 0.0
-
+    @State public var container: CGFloat = 300
+    @State public var loadingColor: Color = Color.DesignSystem.secondaryBase
     var body: some View {
         ZStack {
             Capsule()
-                .frame(width: 300, height: 10)
+                .frame(width: container, height: 10)
                 .foregroundColor(Color.DesignSystem.greyscale800)
             Capsule()
                 .frame(width: progress, height: 10)
-                .foregroundColor(Color.DesignSystem.secondaryBase)
+                .foregroundColor(loadingColor)
         }
         .onAppear {
             withAnimation(.linear) {
@@ -28,8 +29,8 @@ struct LoadingBar: View {
 
     func startLoading() {
         Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
-            self.progress += 10
-            if self.progress >= 300 {
+            self.progress += 1
+            if self.progress >= container {
                 timer.invalidate()
             }
         }
