@@ -17,6 +17,9 @@ struct NewsListView: View {
             VStack {
                 RiveViewModel(fileName: "tech").view()
                     .ignoresSafeArea()
+                    .frame(maxWidth: .infinity, maxHeight: 200)
+                Text("Hello, I never found a home, but I like to hang out here.")
+                    .font(Font.DesignSystem.bodyMediumRegular)
             }
         }
         .ignoresSafeArea(.all)
