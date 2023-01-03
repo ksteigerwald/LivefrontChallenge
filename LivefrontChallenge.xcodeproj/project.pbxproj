@@ -29,6 +29,7 @@
 		8023879C2963A04B008DC7C9 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 8023879B2963A04B008DC7C9 /* AlertToast */; };
 		8023879E2963A997008DC7C9 /* LoadingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023879D2963A997008DC7C9 /* LoadingBar.swift */; };
 		802387A22963CF60008DC7C9 /* GeneratedArticle.json in Resources */ = {isa = PBXBuildFile; fileRef = 802387A12963CF60008DC7C9 /* GeneratedArticle.json */; };
+		802387A42963D051008DC7C9 /* GeneratedArticleError.json in Resources */ = {isa = PBXBuildFile; fileRef = 802387A32963D051008DC7C9 /* GeneratedArticleError.json */; };
 		806A62AE295CA84B00E909AE /* FutureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A62AD295CA84B00E909AE /* FutureExtension.swift */; };
 		806A62B0295CA92B00E909AE /* FutureExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A62AF295CA92B00E909AE /* FutureExtensionTest.swift */; };
 		806A62B2295CAB2F00E909AE /* EncodableExtensionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806A62B1295CAB2F00E909AE /* EncodableExtensionTest.swift */; };
@@ -122,6 +123,7 @@
 		8023879829622B04008DC7C9 /* CategoriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTests.swift; sourceTree = "<group>"; };
 		8023879D2963A997008DC7C9 /* LoadingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingBar.swift; sourceTree = "<group>"; };
 		802387A12963CF60008DC7C9 /* GeneratedArticle.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GeneratedArticle.json; sourceTree = "<group>"; };
+		802387A32963D051008DC7C9 /* GeneratedArticleError.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GeneratedArticleError.json; sourceTree = "<group>"; };
 		806A62AD295CA84B00E909AE /* FutureExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtension.swift; sourceTree = "<group>"; };
 		806A62AF295CA92B00E909AE /* FutureExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureExtensionTest.swift; sourceTree = "<group>"; };
 		806A62B1295CAB2F00E909AE /* EncodableExtensionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableExtensionTest.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				80C0A00E29560B10000D6E30 /* CryptoCompare.json */,
 				80C0A01B295658C9000D6E30 /* CryptoCompareNewsCategories.json */,
 				802387A12963CF60008DC7C9 /* GeneratedArticle.json */,
+				802387A32963D051008DC7C9 /* GeneratedArticleError.json */,
 			);
 			path = JSON;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				80C0A04C29579B39000D6E30 /* LibreBaskerville-Bold.ttf in Resources */,
 				80C0A01C295658C9000D6E30 /* CryptoCompareNewsCategories.json in Resources */,
 				80C287DE2954E3E700067BBC /* Assets.xcassets in Resources */,
+				802387A42963D051008DC7C9 /* GeneratedArticleError.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

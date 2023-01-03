@@ -151,9 +151,12 @@ public class Articles: ObservableObject, StateManagerProtocol {
         case .success:
             self.error = nil
             self.isLoading = false
+            self.isError = false
         case .failure(let error):
             self.error = error
+            self.isError = true
             self.isLoading = false
+            print("self.isError: \(self.isError)")
         }
     }
 }

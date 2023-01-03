@@ -68,7 +68,7 @@ struct ArticleView: View {
         .task {
             articles.generateArticleFromPrompt(prompt: .rewordArticle(context: articleFeedItem.url))
         }
-        .onReceive(articles.$isLoaded) { loaded in
+        .onReceive(articles.$isLoading) { loaded in
             guard loaded else { return }
             articles.cacheHadler(item: articleFeedItem)
             isLoaded = loaded
