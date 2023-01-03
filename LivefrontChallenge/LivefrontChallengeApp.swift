@@ -22,7 +22,6 @@ struct LivefrontChallengeApp: App {
                     RootView(articleFeedItems: [])
                         .environment(\.colorScheme, .dark)
                         .background(Color.DesignSystem.greyscale900)
-                        .background(Color.DesignSystem.greyscale900)
                 }
                 .ignoresSafeArea(.all)
             }

@@ -42,6 +42,7 @@ extension HTTPClient {
 
         do {
             let (data, response) = try await URLSession.shared.data(for: urlRequest, delegate: nil)
+
             guard let response = response as? HTTPURLResponse else {
                 throw RequestError.noResponse
             }
