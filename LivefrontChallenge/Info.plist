@@ -2,6 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSExceptionDomains</key>
+	<dict>
+		<key>api.coingecko.com</key>
+		<dict>
+			<key>NSExceptionAllowsInsecureHTTPLoads</key>
+			<true/>
+		</dict>
+		<key>api.openai.com</key>
+		<dict>
+			<key>NSExceptionAllowsInsecureHTTPLoads</key>
+			<true/>
+		</dict>
+		<key>hacker-news.firebaseio.com</key>
+		<dict>
+			<key>NSExceptionAllowsInsecureHTTPLoads</key>
+			<true/>
+		</dict>
+		<key>jsonplaceholder.typicode.com</key>
+		<dict>
+			<key>NSExceptionAllowsInsecureHTTPLoads</key>
+			<true/>
+		</dict>
+		<key>min-api.cryptocompare.com</key>
+		<dict>
+			<key>NSExceptionAllowsInsecureHTTPLoads</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>LibreBaskerville-Bold.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -9,37 +41,5 @@
 		<key>UISceneConfigurations</key>
 		<dict/>
 	</dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>LibreBaskerville-Bold.ttf</string>
-  </array>
-  <key>NSExceptionDomains</key>
-  <dict>
-    <key>jsonplaceholder.typicode.com</key>
-    <dict>
-        <key>NSExceptionAllowsInsecureHTTPLoads</key>
-        <true/>
-    </dict>
-    <key>api.coingecko.com</key>
-    <dict>
-        <key>NSExceptionAllowsInsecureHTTPLoads</key>
-        <true/>
-    </dict>
-    <key>api.openai.com</key>
-    <dict>
-        <key>NSExceptionAllowsInsecureHTTPLoads</key>
-        <true/>
-    </dict>
-    <key>min-api.cryptocompare.com</key>
-    <dict>
-        <key>NSExceptionAllowsInsecureHTTPLoads</key>
-        <true/>
-    </dict>
-    <key>hacker-news.firebaseio.com</key>
-    <dict>
-        <key>NSExceptionAllowsInsecureHTTPLoads</key>
-        <true/>
-    </dict>
-  </dict>
 </dict>
 </plist>

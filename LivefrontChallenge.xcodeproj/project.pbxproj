@@ -65,7 +65,6 @@
 		80C287E12954E3E700067BBC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C287E02954E3E700067BBC /* Preview Assets.xcassets */; };
 		80C287EB2954E3E800067BBC /* LivefrontChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C287EA2954E3E800067BBC /* LivefrontChallengeTests.swift */; };
 		80C288062954E8A400067BBC /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C288052954E8A400067BBC /* HTTPClient.swift */; };
-		80C288092954EAAC00067BBC /* HTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C288082954EAAC00067BBC /* HTTPClientTests.swift */; };
 		80C2880E2954EC8300067BBC /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C2880D2954EC8300067BBC /* Endpoint.swift */; };
 		80C288112954EF7C00067BBC /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C288102954EF7C00067BBC /* RequestMethod.swift */; };
 		80C288132954F06700067BBC /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C288122954F06700067BBC /* RequestError.swift */; };
@@ -147,7 +146,7 @@
 		80C0A02729575299000D6E30 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		80C0A02B29575591000D6E30 /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepository.swift; sourceTree = "<group>"; };
 		80C0A043295796F5000D6E30 /* DesignSystem */ = {isa = PBXFileReference; lastKnownFileType = text; name = DesignSystem; path = Sources/DesignSystem; sourceTree = SOURCE_ROOT; };
-		80C0A04929579B39000D6E30 /* LibreBaskerville-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "LibreBaskerville-Bold.ttf"; path = "../../../../Dropbox (Personal)/My Mac (Velaru.cable.rcn.com)/Downloads/Libre_Baskerville/LibreBaskerville-Bold.ttf"; sourceTree = "<group>"; };
+		80C0A04929579B39000D6E30 /* LibreBaskerville-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "LibreBaskerville-Bold.ttf"; path = "Sources/Fonts/LibreBaskerville-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		80C287D62954E3E300067BBC /* LivefrontChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LivefrontChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C287D92954E3E300067BBC /* LivefrontChallengeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivefrontChallengeApp.swift; sourceTree = "<group>"; };
 		80C287DD2954E3E700067BBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -156,7 +155,6 @@
 		80C287EA2954E3E800067BBC /* LivefrontChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivefrontChallengeTests.swift; sourceTree = "<group>"; };
 		80C287F02954E3E800067BBC /* LivefrontChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LivefrontChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C288052954E8A400067BBC /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
-		80C288082954EAAC00067BBC /* HTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
 		80C2880D2954EC8300067BBC /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		80C288102954EF7C00067BBC /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
 		80C288122954F06700067BBC /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
@@ -165,7 +163,7 @@
 		80C28D2D295C0AFC002349C8 /* Prompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prompts.swift; sourceTree = "<group>"; };
 		80D3248F2961DCFC00F5BCD2 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		80D4BE292955230C000DA3B5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		80F9E649295A826B00222177 /* tech.riv */ = {isa = PBXFileReference; lastKnownFileType = file; name = tech.riv; path = "../../../../../Dropbox (Personal)/My Mac (Velaru.cable.rcn.com)/Downloads/tech.riv"; sourceTree = "<group>"; };
+		80F9E649295A826B00222177 /* tech.riv */ = {isa = PBXFileReference; lastKnownFileType = file; name = tech.riv; path = Sources/Rive/tech.riv; sourceTree = SOURCE_ROOT; };
 		80F9E64B295A8E1100222177 /* SummaryLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryLoadingView.swift; sourceTree = "<group>"; };
 		80F9E64D295AD05600222177 /* ContentGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGenerator.swift; sourceTree = "<group>"; };
 		80F9E653295BBBFC00222177 /* ContentGeneratorRevealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentGeneratorRevealView.swift; sourceTree = "<group>"; };
@@ -440,7 +438,6 @@
 		80C288072954EA8500067BBC /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				80C288082954EAAC00067BBC /* HTTPClientTests.swift */,
 				801C216E29555B4A008072D8 /* OpenAITests.swift */,
 				80C0A014295611D5000D6E30 /* CryptoCompareTests.swift */,
 			);
@@ -719,7 +716,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				800C0036296225D200DCC083 /* ArticlesTests.swift in Sources */,
-				80C288092954EAAC00067BBC /* HTTPClientTests.swift in Sources */,
 				801C216F29555B4A008072D8 /* OpenAITests.swift in Sources */,
 				80C0A015295611D5000D6E30 /* CryptoCompareTests.swift in Sources */,
 				806A62B2295CAB2F00E909AE /* EncodableExtensionTest.swift in Sources */,
@@ -879,11 +875,10 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LivefrontChallenge/Info.plist;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -891,9 +886,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.velaru.LivefrontChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -909,11 +907,10 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LivefrontChallenge/Info.plist;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -921,9 +918,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.velaru.LivefrontChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
